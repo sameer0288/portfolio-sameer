@@ -79,16 +79,16 @@ export function ContactSection() {
           <div className="lg:col-span-5 space-y-6">
             <div className="inline-flex items-center gap-2 text-[var(--accent)] mono-label mb-2">
               <Mail className="w-3.5 h-3.5" />
-              <span>04 // MAKE CONTACT</span>
+              <span>04 // CONTACT</span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[var(--text)] leading-tight">
-              Have a meaningful problem? <br />
-              <span className="text-[var(--accent)]">Let&apos;s build together.</span>
+              Let&apos;s talk about <br />
+              <span className="text-[var(--accent)]">your engineering needs.</span>
             </h2>
 
             <p className="text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
-              I&apos;m interested in software engineering, backend systems, and applied AI opportunities where solid software architecture makes a measurable difference.
+              Available for full-time Software Engineer (SDE-1 / SDE-2) roles, contract engineering, and high-impact GenAI development.
             </p>
 
             {/* Direct Channels */}

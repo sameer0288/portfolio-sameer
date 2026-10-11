@@ -246,13 +246,13 @@ export function ChatAssistant() {
 
           {!isMinimized && (
             <>
-              {/* Disclaimer / Model Telemetry Banner */}
+              {/* Model status banner */}
               <div className="px-3.5 py-1.5 bg-[color-mix(in_srgb,var(--bg)_90%,transparent)] border-b border-[var(--border)] flex items-center justify-between text-[10px] text-[var(--text-subtle)] font-mono">
                 <span className="flex items-center gap-1.5 truncate">
                   <Terminal className="w-3 h-3 text-[var(--accent)] flex-shrink-0" />
-                  <span className="truncate">Model: Google Gemma 31B / Nemotron Lightning</span>
+                  <span className="truncate">AI Assistant · Powered by OpenRouter</span>
                 </span>
-                <span className="text-emerald-400 font-semibold flex-shrink-0">● OpenRouter Live</span>
+                <span className="text-emerald-400 font-semibold flex-shrink-0">● Online</span>
               </div>
 
               {/* Message List */}
@@ -346,7 +346,7 @@ export function ChatAssistant() {
                       <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-bounce [animation-delay:0.2s]" />
                       <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-bounce [animation-delay:0.4s]" />
                       <span className="text-[11px] font-mono text-[var(--text-muted)] ml-1">
-                        Synthesizing verified response...
+                        Finding answer from resume & code...
                       </span>
                     </div>
                   </div>

@@ -33,15 +33,15 @@ export function ProjectGrid() {
           <div>
             <div className="inline-flex items-center gap-2 text-[var(--accent)] mono-label mb-3">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>01 // SELECTED WORK</span>
+              <span>01 // FEATURED PROJECTS</span>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[var(--text)]">
-              Engineering with <span className="text-[var(--accent)]">real-world impact.</span>
+              Production software & <span className="text-[var(--accent)]">live applications.</span>
             </h2>
           </div>
 
           <p className="max-w-md text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
-            A verified selection of production platforms, enterprise CRM modules, and AI vector-search systems. Explore live deployments and architecture notes.
+            Five verified systems spanning consumer retention, workforce CRM, vector database search at scale, and AI career tools.
           </p>
         </div>
 

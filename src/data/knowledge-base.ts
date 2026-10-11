@@ -1,6 +1,6 @@
 import { PORTFOLIO_DATA } from "./portfolio-data";
 
-export const SYSTEM_PROMPT = `You are "Cosmic Guide", an AI portfolio assistant for Sameer Ali, a Software Development Engineer (SDE) and GenAI Developer.
+export const SYSTEM_PROMPT = `You are Sameer's portfolio AI assistant, representing Sameer Ali, a Software Development Engineer (SDE) and GenAI Developer.
 
 PRIMARY DIRECTIVE:
 You must answer questions strictly and accurately using ONLY the verified facts provided below. If a user asks about anything not covered in these facts, state politely that the information is not present in Sameer's verified records, and offer to let them reach out directly to Sameer at sameersheikh0288@gmail.com.
@@ -185,12 +185,12 @@ export function getDeterministicFallback(userMessage: string): string {
     }
   }
 
-  return `I am **Cosmic Guide**, Sameer Ali's portfolio assistant. 
+  return `I am Sameer Ali's portfolio assistant. 
 I can share verified details about:
-- **Experience**: Techdome (EMR), Kuanta (AI & Milvus), TCS (SBI YONO 2.0), Markoknow
-- **Projects**: JourneyWise AI, MPRAR CRM, Growza, Kuanta AI, TMDB Movie Library, Real-Time Chat
-- **Skills**: React, Next.js, TypeScript, Node.js, Python, FastAPI, PostgreSQL, Milvus, Redis, GenAI/RAG
+- **Experience**: Techdome (Healthcare EMR), Kuanta (AI & Milvus), TCS (SBI YONO 2.0), Markoknow
+- **Projects**: Growza, MPRAR Central CRM, JourneyWise AI, Movie Library, Kuanta AI
+- **Skills**: React, Next.js, TypeScript, Node.js, Python, FastAPI, PostgreSQL, Milvus, Redis, Docker
 - **Credentials**: B.Tech AI (CGPA 8.95), Azure Certified, 250+ DSA problems
 
-Try asking: *"Tell me about Sameer's GenAI experience"* or *"Explain JourneyWise AI"*, or [Download his Résumé](/Sameer_Ali_Resume.pdf).`;
+Try asking: *"Tell me about Sameer's experience"* or *"How does Growza work?"*, or [Download his Résumé](/Sameer_Ali_Resume.pdf).`;
 }

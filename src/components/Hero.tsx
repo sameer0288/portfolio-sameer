@@ -139,7 +139,7 @@ export function Hero() {
 
               <span className="text-[11px] font-mono text-[var(--text-muted)] hidden sm:inline-flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                <span>{activeView === "profile" ? "Verified SDE" : "Live Telemetry"}</span>
+                <span>{activeView === "profile" ? "Indore / Remote" : "5 Production Systems"}</span>
               </span>
             </div>
 

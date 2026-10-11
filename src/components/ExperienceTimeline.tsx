@@ -15,15 +15,15 @@ export function ExperienceTimeline() {
           <div>
             <div className="inline-flex items-center gap-2 text-[var(--accent)] mono-label mb-3">
               <Briefcase className="w-3.5 h-3.5" />
-              <span>02 // TRAJECTORY</span>
+              <span>02 // WORK EXPERIENCE</span>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[var(--text)]">
-              Building through <span className="text-[var(--accent)]">real constraints.</span>
+              Experience across <span className="text-[var(--accent)]">production systems.</span>
             </h2>
           </div>
 
           <p className="max-w-md text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
-            Professional trajectory spanning healthcare EMR systems, high-scale AI vector retrieval, enterprise banking (SBI YONO 2.0), and commercial SaaS.
+            2.5+ years building full-stack applications, vector-search pipelines, enterprise banking systems (SBI YONO 2.0 at TCS), and healthcare EMR software.
           </p>
         </div>
 
@@ -33,9 +33,9 @@ export function ExperienceTimeline() {
           <div className="lg:col-span-5 space-y-6">
             <div className="cosmic-panel p-8 rounded-2xl border border-[var(--border)]">
               <h3 className="text-2xl sm:text-3xl font-extrabold text-[var(--text)] leading-tight mb-4">
-                Engineer. <br />
-                Problem solver. <br />
-                <span className="text-[var(--accent)]">Curious by design.</span>
+                Full-Stack SDE <br />
+                & GenAI Developer <br />
+                <span className="text-[var(--accent)]">2.5+ Years in Production</span>
               </h3>
               <p className="text-sm sm:text-base text-[var(--text-muted)] leading-relaxed mb-4">
                 I enjoy making complicated workflows feel simple—building interfaces people can use, APIs teams can depend on, and AI features that solve an actual problem instead of merely looking impressive.

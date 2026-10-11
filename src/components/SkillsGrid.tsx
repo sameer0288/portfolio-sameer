@@ -43,15 +43,15 @@ export function SkillsGrid() {
           <div>
             <div className="inline-flex items-center gap-2 text-[var(--accent)] mono-label mb-3">
               <Wrench className="w-3.5 h-3.5" />
-              <span>03 // TOOLKIT & ARCHITECTURE</span>
+              <span>03 // TECHNICAL SKILLS</span>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[var(--text)]">
-              Tools for the <span className="text-[var(--accent)]">mission.</span>
+              Core stack & <span className="text-[var(--accent)]">technologies.</span>
             </h2>
           </div>
 
           <p className="max-w-md text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
-            A practical production toolkit across responsive interface engineering, scalable backend APIs, database optimization, and applied GenAI.
+            Frontend UI libraries, backend API frameworks, databases, and GenAI systems used in production applications.
           </p>
         </div>
 
