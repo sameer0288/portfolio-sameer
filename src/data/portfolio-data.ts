@@ -76,6 +76,59 @@ export const PORTFOLIO_DATA = {
 
   projects: [
     {
+      id: "growza",
+      title: "Growza",
+      tagline: "Every bill you write is a customer you can bring back",
+      category: "Product Engineering",
+      description: "A business platform helping salons, gyms, cafés & clinics in India manage contactless table/counter ordering and bring customers back through automated WhatsApp retention.",
+      longDescription: "Growza turns daily transactions into a real customer list, then brings people back with intelligent WhatsApp re-engagement—without business owners having to remember who or when. Features frictionless QR menus, live order updates, and customer retention workflows.",
+      role: "Product Engineering & Full Stack",
+      verifiedStatus: "Live Product",
+      imageUrl: "/images/projects/growza.png",
+      accentColor: "#10b981",
+      tags: ["React", "Next.js", "Node.js", "Tailwind CSS", "WhatsApp Workflows", "Customer Retention"],
+      metrics: [
+        "Contactless QR-code ordering with zero app download",
+        "Automated WhatsApp customer re-engagement",
+        "Real-time order sync for salons, gyms, cafés & clinics",
+        "Self-serve merchant onboarding in ~2 minutes",
+      ],
+      liveUrl: "https://www.growza.me/",
+      featured: true,
+    },
+    {
+      id: "mprar-crm",
+      title: "MPRAR — Central & Pulse",
+      tagline: "Enterprise workforce CRM with super-admin dashboard & mobile attendance",
+      category: "Workforce & Enterprise",
+      description: "Workforce management CRM with two core portals: Central (super-admin management dashboard) and Pulse (employee mobile workforce dashboard) covering clock-in/out, HR workflows, training, and leave management.",
+      longDescription: "Contributed full-stack modules across Central (super-admin management portal) and Pulse (employee mobile-friendly dashboard). Implemented shift clock-in/out verification, leave request approvals, document compliance records, multi-company subscription billing, and robust PostgreSQL database transactions.",
+      role: "Full Stack Engineer (Freelance Contribution)",
+      verifiedStatus: "Professional Contribution",
+      imageUrl: "/images/projects/mprar.png",
+      accentColor: "#a855f7",
+      tags: ["React.js", "Node.js", "PostgreSQL", "HR Workflows", "Role-Based Auth", "REST APIs"],
+      metrics: [
+        "28 Total companies onboarded on Central",
+        "17 Active paying client organizations",
+        "£2,645 Monthly recurring revenue (MRR) tracked",
+        "Pulse module: 596 active seats across 19 companies (68% adoption)",
+      ],
+      liveUrl: "https://central.mprar.com/",
+      featured: true,
+      codeSnippet: {
+        language: "sql",
+        caption: "Audited Attendance & Clock-In/Out Transaction",
+        code: `-- PostgreSQL attendance verification query with conflict resolution
+INSERT INTO employee_timesheets (employee_id, shift_id, clock_in_timestamp, location_point)
+VALUES ($1, $2, CURRENT_TIMESTAMP, ST_Point($3, $4))
+ON CONFLICT (employee_id, shift_id) 
+DO UPDATE SET clock_out_timestamp = CURRENT_TIMESTAMP
+WHERE employee_timesheets.clock_out_timestamp IS NULL
+RETURNING id, shift_id, duration_minutes;`,
+      },
+    },
+    {
       id: "journeywise-ai",
       title: "JourneyWise AI",
       tagline: "AI Career Platform with Interview War Room & ATS scoring rubrics",
@@ -108,93 +161,6 @@ Return JSON strictly adhering to schema:
       },
     },
     {
-      id: "mprar-crm",
-      title: "MPRAR — Central & Pulse",
-      tagline: "UK workforce management CRM for HR workflows, attendance, and operations",
-      category: "Workforce & Enterprise",
-      description: "Workforce management CRM with two portals (Central management dashboard and Pulse mobile workforce portal) covering clock-in/out, HR workflows, training, and leave management.",
-      longDescription: "Contributed full-stack modules across Central (super-admin management portal) and Pulse (employee mobile-friendly dashboard). Implemented shift clock-in/out verification, leave request approvals, document compliance records, multi-company subscription billing, and robust PostgreSQL database transactions.",
-      role: "Full Stack Engineer (Freelance Contribution)",
-      verifiedStatus: "Professional Contribution",
-      imageUrl: "/images/projects/mprar.png",
-      accentColor: "#a855f7",
-      tags: ["React.js", "Node.js", "PostgreSQL", "HR Workflows", "Role-Based Auth", "REST APIs"],
-      metrics: [
-        "28 Total companies onboarded",
-        "17 Active paying client organizations",
-        "£2,645 Monthly recurring revenue (MRR) tracked",
-        "Pulse module: 596 active seats across 19 companies (68% adoption)",
-      ],
-      liveUrl: "https://central.mprar.com/",
-      featured: true,
-      codeSnippet: {
-        language: "sql",
-        caption: "Audited Attendance & Clock-In/Out Transaction",
-        code: `-- PostgreSQL attendance verification query with conflict resolution
-INSERT INTO employee_timesheets (employee_id, shift_id, clock_in_timestamp, location_point)
-VALUES ($1, $2, CURRENT_TIMESTAMP, ST_Point($3, $4))
-ON CONFLICT (employee_id, shift_id) 
-DO UPDATE SET clock_out_timestamp = CURRENT_TIMESTAMP
-WHERE employee_timesheets.clock_out_timestamp IS NULL
-RETURNING id, shift_id, duration_minutes;`,
-      },
-    },
-    {
-      id: "growza",
-      title: "Growza",
-      tagline: "Every bill you write is a customer you can bring back",
-      category: "Product Engineering",
-      description: "A business platform helping salons, gyms, cafés & clinics in India manage contactless table/counter ordering and bring customers back through automated WhatsApp retention.",
-      longDescription: "Growza turns daily transactions into a real customer list, then brings people back with intelligent WhatsApp re-engagement—without business owners having to remember who or when. Features frictionless QR menus, live order updates, and customer retention workflows.",
-      role: "Product Engineering & Full Stack",
-      verifiedStatus: "Live Product",
-      imageUrl: "/images/projects/growza.png",
-      accentColor: "#10b981",
-      tags: ["React", "Next.js", "Node.js", "Tailwind CSS", "WhatsApp Workflows", "Customer Retention"],
-      metrics: [
-        "Contactless QR-code ordering with zero app download",
-        "Automated WhatsApp customer re-engagement",
-        "Real-time order sync for salons, gyms, cafés & clinics",
-        "Self-serve merchant onboarding in ~2 minutes",
-      ],
-      liveUrl: "https://www.growza.me/",
-      featured: true,
-    },
-    {
-      id: "kuanta-ai",
-      title: "Kuanta AI",
-      tagline: "AI Deal Scouting & Vector Search platform indexing 3M+ records into Milvus",
-      category: "AI & GenAI",
-      description: "Built a Python/FastAPI backend service that scrapes and vectorizes 3M+ startup and investor records into Milvus, powering an LLM-driven deal-scouting model.",
-      longDescription: "At Kuanta, Sameer engineered core AI infrastructure for startup and investor discovery. He designed resilient data pipelines to normalize unstructured web data, generated embeddings, and performed high-dimensional vector search using Milvus, connected to responsive React/TypeScript interfaces.",
-      role: "Software Engineer — Full Stack & AI Systems",
-      verifiedStatus: "Professional Contribution",
-      imageUrl: "/images/projects/kuanta.png",
-      accentColor: "#06b6d4",
-      tags: ["Python", "FastAPI", "Milvus (Vector DB)", "Vector Embeddings", "React", "TypeScript", "Data Pipelines"],
-      metrics: [
-        "3M+ startup & investor records vectorized",
-        "High-throughput semantic similarity retrieval via Milvus",
-        "Automated normalization pipelines for high-dimensional data",
-        "Sub-second vector query latency in production",
-      ],
-      liveUrl: "https://kuanta.ai/",
-      featured: true,
-      codeSnippet: {
-        language: "python",
-        caption: "FastAPI & Milvus High-Dimensional Vector Search",
-        code: `# Kuanta AI - Vector ingestion & similarity search
-@app.post("/api/v1/deal-scout/search")
-async def semantic_search(query: QuerySchema):
-    embedding = await embedding_service.embed(query.text)
-    search_params = {"metric_type": "COSINE", "params": {"nprobe": 16}}
-    results = milvus_collection.search(
-        data=[embedding], anns_field="vector", param=search_params, limit=query.top_k
-    )
-    return format_ranked_startups(results)`,
-      },
-    },
-    {
       id: "movie-library",
       title: "Movie Library Platform",
       tagline: "Full-stack cinematic discovery platform consuming TMDB REST APIs",
@@ -207,7 +173,7 @@ async def semantic_search(query: QuerySchema):
       accentColor: "#ef4444",
       tags: ["React", "Node.js", "Express", "REST APIs", "TMDB", "Debounced Search", "Vercel"],
       metrics: [
-        "Dynamic TMDB catalog queries with rating breakdowns",
+        "Dynamic TMDB catalog queries with rating breakdowns (e.g. 8.4 score)",
         "Zero-flicker debounced search across titles & cast",
         "Custom user playlists & watchlist persistence",
         "Responsive cinematic UI with dark/light viewing modes",
@@ -232,19 +198,38 @@ export async function searchMovies(query, page = 1) {
       },
     },
     {
-      id: "realtime-chat",
-      title: "Real-Time WebSocket Engine",
-      tagline: "High-concurrency chat and collaboration system with Redis pub/sub",
-      category: "Full Stack",
-      description: "Real-time communication engine supporting instantaneous room messaging, user presence tracking, and distributed message distribution via Redis.",
-      longDescription: "Designed to handle high concurrent connection counts with low latency. Features bi-directional WebSocket communication, message persistence, offline queueing, and typing indicators.",
-      role: "Backend Architect & Developer",
-      verifiedStatus: "Open Source / Showcase",
-      accentColor: "#6366f1",
-      tags: ["Node.js", "WebSockets", "Socket.io", "Redis", "TypeScript", "Concurrent Systems"],
-      metrics: ["Instant sub-50ms message broadcast", "Distributed Redis Pub/Sub channels", "Presence heartbeats"],
-      githubUrl: "https://github.com/sameer0288",
-      featured: false,
+      id: "kuanta-ai",
+      title: "Kuanta AI",
+      tagline: "Every startup has a signal — deal scouting indexing 3M+ records into Milvus",
+      category: "AI & GenAI",
+      description: "Built a Python/FastAPI backend service that scrapes and vectorizes 3M+ startup and investor records into Milvus, powering an LLM-driven deal-scouting model.",
+      longDescription: "At Kuanta, Sameer engineered core AI infrastructure for startup and investor discovery. He designed resilient data pipelines to normalize unstructured web data, generated embeddings, and performed high-dimensional vector search using Milvus, connected to responsive React/TypeScript interfaces.",
+      role: "Software Engineer — Full Stack & AI Systems",
+      verifiedStatus: "Professional Contribution",
+      imageUrl: "/images/projects/kuanta.png",
+      accentColor: "#f97316",
+      tags: ["Python", "FastAPI", "Milvus (Vector DB)", "Vector Embeddings", "React", "TypeScript", "Data Pipelines"],
+      metrics: [
+        "3M+ startup & investor records vectorized into Milvus",
+        "High-throughput semantic similarity retrieval via Milvus",
+        "Automated normalization pipelines for high-dimensional data",
+        "Sub-second vector query latency in production",
+      ],
+      liveUrl: "https://kuanta.ai/",
+      featured: true,
+      codeSnippet: {
+        language: "python",
+        caption: "FastAPI & Milvus High-Dimensional Vector Search",
+        code: `# Kuanta AI - Vector ingestion & similarity search
+@app.post("/api/v1/deal-scout/search")
+async def semantic_search(query: QuerySchema):
+    embedding = await embedding_service.embed(query.text)
+    search_params = {"metric_type": "COSINE", "params": {"nprobe": 16}}
+    results = milvus_collection.search(
+        data=[embedding], anns_field="vector", param=search_params, limit=query.top_k
+    )
+    return format_ranked_startups(results)`,
+      },
     },
   ] as Project[],
 

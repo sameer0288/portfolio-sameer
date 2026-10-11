@@ -81,6 +81,9 @@ export default function RootLayout({
         {/* Nebula ambient gradients */}
         <div className="nebula-glow" aria-hidden="true" />
 
+        {/* Subtle tech grid mesh */}
+        <div className="tech-grid" aria-hidden="true" />
+
         {/* Global sticky navigation bar */}
         <Navbar />
 

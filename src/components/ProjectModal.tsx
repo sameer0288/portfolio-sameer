@@ -129,7 +129,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                 {project.title}
               </h2>
             </div>
-            <p className="text-sm sm:text-base font-medium text-[var(--accent)]">
+            <p className="text-sm sm:text-base font-semibold" style={{ color: accent }}>
               {project.tagline}
             </p>
           </div>
@@ -153,9 +153,10 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
               type="button"
               className={`px-4 py-2.5 text-xs font-mono border-b-2 transition-colors cursor-pointer flex items-center gap-1.5 ${
                 activeTab === "overview"
-                  ? "border-[var(--accent)] text-[var(--text)] font-bold"
+                  ? "text-[var(--text)] font-bold"
                   : "border-transparent text-[var(--text-muted)] hover:text-[var(--text)]"
               }`}
+              style={activeTab === "overview" ? { borderColor: accent, color: accent } : {}}
             >
               <Layers className="w-3.5 h-3.5" />
               <span>Overview & Scope</span>
@@ -166,9 +167,10 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
               type="button"
               className={`px-4 py-2.5 text-xs font-mono border-b-2 transition-colors cursor-pointer flex items-center gap-1.5 ${
                 activeTab === "metrics"
-                  ? "border-[var(--accent)] text-[var(--text)] font-bold"
+                  ? "text-[var(--text)] font-bold"
                   : "border-transparent text-[var(--text-muted)] hover:text-[var(--text)]"
               }`}
+              style={activeTab === "metrics" ? { borderColor: accent, color: accent } : {}}
             >
               <BarChart3 className="w-3.5 h-3.5" />
               <span>Production Metrics</span>
@@ -180,9 +182,10 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                 type="button"
                 className={`px-4 py-2.5 text-xs font-mono border-b-2 transition-colors cursor-pointer flex items-center gap-1.5 ${
                   activeTab === "code"
-                    ? "border-[var(--accent)] text-[var(--text)] font-bold"
+                    ? "text-[var(--text)] font-bold"
                     : "border-transparent text-[var(--text-muted)] hover:text-[var(--text)]"
                 }`}
+                style={activeTab === "code" ? { borderColor: accent, color: accent } : {}}
               >
                 <Code2 className="w-3.5 h-3.5" />
                 <span>Architecture & Code</span>

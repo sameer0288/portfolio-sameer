@@ -141,13 +141,16 @@ export function ProjectCard({ project, index, onSelect }: ProjectCardProps) {
           {/* Real Metrics Badges (From live screenshot / production systems) */}
           {project.metrics && project.metrics.length > 0 && (
             <div className="mb-4 space-y-1.5">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
-                {project.metrics.slice(0, 2).map((m, i) => (
+              <div className="grid grid-cols-1 gap-1.5">
+                {project.metrics.slice(0, 3).map((m, i) => (
                   <div
                     key={i}
-                    className="px-2.5 py-1.5 rounded-lg bg-[var(--panel)] border border-[var(--border)] text-[11px] font-mono text-[var(--text)] flex items-center gap-1.5 truncate"
+                    className="px-2.5 py-1 rounded-lg bg-[var(--panel)] border border-[var(--border)] text-[11px] font-mono text-[var(--text)] flex items-center gap-2 truncate"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] flex-shrink-0" />
+                    <span
+                      className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                      style={{ backgroundColor: accent }}
+                    />
                     <span className="truncate">{m}</span>
                   </div>
                 ))}

@@ -18,30 +18,24 @@ export function Hero() {
           {/* Left Column: Editorial Headline & Actions */}
           <div className="lg:col-span-7 flex flex-col justify-center text-left">
             {/* Mission Tag */}
-            <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full border border-[var(--border)] bg-[var(--panel)] backdrop-blur-md mb-6 w-fit">
-              <span className="w-2 h-2 rounded-full bg-[var(--accent)] shadow-[0_0_10px_var(--accent)] animate-pulse" />
-              <span className="mono-label text-[11px] text-[var(--text-muted)] tracking-wider">
-                Full-Stack SDE × Applied GenAI Engineer
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-[var(--border-strong)] bg-[var(--panel)] backdrop-blur-md mb-6 w-fit shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_12px_#34d399] animate-pulse" />
+              <span className="mono-label text-[11px] text-[var(--text)] tracking-wider font-semibold">
+                SDE-1 @ Techdome · Full-Stack & GenAI Engineer
               </span>
             </div>
 
             {/* Main Editorial Headline */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.04] text-[var(--text)] mb-6">
-              <span>I build </span>
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[var(--text)] via-[var(--text-muted)] to-[var(--text)]">
-                software
-              </span>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.08] text-[var(--text)] mb-6">
+              <span>I build software that works. </span>
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400">
-                that works.
-              </span>
-              <span className="block text-[var(--accent)] underline decoration-[rgba(var(--accent-rgb),0.35)] decoration-wavy decoration-2">
                 AI that delivers.
               </span>
             </h1>
 
             {/* Subheading / Bio */}
             <p className="text-base sm:text-lg text-[var(--text-muted)] leading-relaxed max-w-2xl mb-8">
-              {bio}
+              Full-Stack Software Engineer and GenAI builder with 2.5+ years of production experience crafting reliable interfaces, high-throughput backend architectures (SBI YONO 2.0 at TCS), and vector-search pipelines with 3M+ records in Milvus (Kuanta).
             </p>
 
             {/* Action Buttons */}

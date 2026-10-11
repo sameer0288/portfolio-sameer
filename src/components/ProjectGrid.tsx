@@ -49,6 +49,11 @@ export function ProjectGrid() {
         <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 no-scrollbar" role="tablist">
           {CATEGORIES.map((cat) => {
             const isSelected = selectedCategory === cat;
+            const count =
+              cat === "All"
+                ? PORTFOLIO_DATA.projects.length
+                : PORTFOLIO_DATA.projects.filter((p) => p.category === cat).length;
+
             return (
               <button
                 key={cat}
@@ -56,13 +61,22 @@ export function ProjectGrid() {
                 role="tab"
                 aria-selected={isSelected}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-2 rounded-xl text-xs font-mono whitespace-nowrap transition-all duration-200 cursor-pointer ${
+                className={`px-3.5 py-2 rounded-xl text-xs font-mono whitespace-nowrap transition-all duration-200 cursor-pointer flex items-center gap-2 ${
                   isSelected
                     ? "bg-[var(--accent)] text-[var(--accent-dark)] font-bold shadow-[0_0_20px_rgba(var(--accent-rgb),0.25)]"
                     : "bg-[var(--panel)] text-[var(--text-muted)] hover:text-[var(--text)] border border-[var(--border)]"
                 }`}
               >
-                {cat}
+                <span>{cat}</span>
+                <span
+                  className={`text-[10px] px-1.5 py-0.5 rounded-md font-semibold ${
+                    isSelected
+                      ? "bg-black/20 text-inherit"
+                      : "bg-[var(--panel-solid)] text-[var(--text-subtle)] border border-[var(--border)]"
+                  }`}
+                >
+                  {count}
+                </span>
               </button>
             );
           })}
