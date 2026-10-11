@@ -9,6 +9,7 @@ test("Portfolio personal info matches verified résumé", () => {
   assert.equal(PORTFOLIO_DATA.personal.email, "sameersheikh0288@gmail.com");
   assert.equal(PORTFOLIO_DATA.personal.phone, "+91 8306690288");
   assert.ok(PORTFOLIO_DATA.personal.github.includes("sameer0288"));
+  assert.equal(PORTFOLIO_DATA.personal.linkedin, "https://www.linkedin.com/in/sameer0288/");
 });
 
 test("All 4 required primary projects exist with verified live URLs", () => {

@@ -62,7 +62,7 @@ export const PORTFOLIO_DATA = {
     email: "sameersheikh0288@gmail.com",
     phone: "+91 8306690288",
     github: "https://github.com/sameer0288",
-    linkedin: "https://www.linkedin.com/in/sameer-ali/",
+    linkedin: "https://www.linkedin.com/in/sameer0288/",
     resumeUrl: "/Sameer_Ali_Resume.pdf",
     stats: [
       { label: "Current Role", value: "SDE-1", sub: "Techdome Healthcare EMR" },
