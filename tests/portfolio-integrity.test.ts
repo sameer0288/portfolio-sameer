@@ -12,7 +12,23 @@ test("Portfolio personal info matches verified résumé", () => {
   assert.equal(PORTFOLIO_DATA.personal.linkedin, "https://www.linkedin.com/in/sameer0288/");
 });
 
-test("All 4 required primary projects exist with verified live URLs", () => {
+test("All 5 required projects exist in exact required order with WebSocket engine removed", () => {
+  const ids = PORTFOLIO_DATA.projects.map((p) => p.id);
+  assert.deepEqual(ids, [
+    "growza",
+    "mprar-crm",
+    "journeywise-ai",
+    "movie-library",
+    "kuanta-ai",
+  ]);
+
+  // Real-Time WebSocket Engine must not exist
+  assert.equal(
+    PORTFOLIO_DATA.projects.some((p) => p.id === "realtime-chat"),
+    false,
+    "Real-Time WebSocket Engine must be removed"
+  );
+
   const mprar = PORTFOLIO_DATA.projects.find((p) => p.id === "mprar-crm");
   assert.ok(mprar, "MPRAR CRM should exist");
   assert.equal(mprar.liveUrl, "https://central.mprar.com/");
