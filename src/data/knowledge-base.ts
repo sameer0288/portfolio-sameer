@@ -48,38 +48,33 @@ WORK EXPERIENCE:
    - Contributions: ~60% reduction in response times through Redis caching and query optimizations.
 
 FEATURED PROJECTS:
-1. JourneyWise AI (https://journeywise-ai.vercel.app/)
-   - Category: AI & GenAI Career Platform
-   - Role: Creator & Lead Developer
-   - Stack: Next.js, GenAI APIs, TypeScript, Tailwind CSS, PostgreSQL
-   - Description: AI career platform with automated résumé parsing, ATS-style scoring & feedback, résumé improvement recommendations, job search insights, and interactive interview preparation.
+1. Growza (https://www.growza.me/)
+   - Category: Hospitality Business Platform
+   - Stack: React, Next.js, Node.js, Tailwind CSS
+   - Description: Platform helping salons, gyms, cafés and clinics manage contactless table/counter ordering and automated WhatsApp customer retention.
 
-2. Kuanta AI (https://kuanta.ai/)
-   - Category: AI & GenAI Deal-Scouting
-   - Role: Software Engineer — Full Stack & AI Systems (Professional Contribution)
-   - Stack: Python, FastAPI, Milvus (Vector DB), React, TypeScript
-   - Description: Vector search platform indexing 3M+ records to power an LLM-driven deal scouting model.
-
-3. MPRAR — Central & Pulse (https://central.mprar.com/)
+2. MPRAR — Central & Pulse (https://central.mprar.com/)
    - Category: Workforce Management CRM
    - Role: Full Stack Engineer (Freelance Contribution)
    - Stack: React.js, Node.js, PostgreSQL
-   - Description: UK workforce CRM covering HR workflows, attendance clock-in/out, training management, and leave requests.
+   - Description: UK workforce CRM covering HR workflows, attendance clock-in/out, training management, leave requests, and multi-company billing (28 companies, £2,645 MRR, 596 seats).
 
-4. Growza (https://www.growza.me/)
-   - Category: Hospitality Business Platform
-   - Stack: React, Next.js, Node.js, Tailwind CSS
-   - Description: Platform helping cafés and restaurants manage contactless table ordering and customer retention.
+3. JourneyWise AI (https://journeywise-ai.vercel.app/)
+   - Category: AI & GenAI Career Platform
+   - Role: Creator & Lead Developer
+   - Stack: Next.js, GenAI APIs, TypeScript, Tailwind CSS
+   - Description: AI career platform with automated résumé parsing, ATS-style scoring & feedback, 72/100 readiness rubrics, and interactive AI interview War Room practice.
 
-5. Movie Library Platform (https://movie-library-flame.vercel.app/ | https://github.com/sameer0288/movie-library)
-   - Category: Media Discovery Platform
+4. Movie Library Platform (https://movie-library-flame.vercel.app/ | https://github.com/sameer0288/movie-library)
+   - Category: Full Stack Media Discovery Platform
    - Stack: React, Node.js, REST APIs (TMDB), Vercel
-   - Description: Full-stack dynamic movie search, filtering, custom playlists, and cinematic TMDB streaming discovery.
+   - Description: Full-stack dynamic movie search, zero-flicker debounced queries, custom playlists, and cinematic TMDB streaming discovery.
 
-6. Real-Time Chat Engine
-   - Category: Concurrent Communication
-   - Stack: Node.js, WebSockets / Socket.io, Redis, React
-   - Description: Instantaneous bi-directional messaging with Redis pub/sub and presence tracking.
+5. Kuanta AI (https://kuanta.ai/)
+   - Category: AI & GenAI Deal-Scouting
+   - Role: Software Engineer — Full Stack & AI Systems (Professional Contribution)
+   - Stack: Python, FastAPI, Milvus (Vector DB), React, TypeScript
+   - Description: Vector search platform indexing 3M+ records into Milvus to power an LLM-driven deal scouting model.
 
 EDUCATION:
 - Rajasthan Technical University (2020 – 2024): B.Tech in Computer Science (Artificial Intelligence) — CGPA: 8.95 / 10

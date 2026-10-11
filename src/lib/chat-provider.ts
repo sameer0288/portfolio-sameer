@@ -88,6 +88,37 @@ export class OpenRouterProvider implements ChatProvider {
         const errorStatus = response.status;
         console.warn(`[ChatProvider] OpenRouter responded with status ${errorStatus}`);
         
+        // If primary model is rate-limited or temporarily unavailable, try alternate free model
+        if ((errorStatus === 429 || errorStatus === 404) && this.model !== "nvidia/nemotron-3.5-lightning:free") {
+          try {
+            const backupPayload = { ...payload, model: "nvidia/nemotron-3.5-lightning:free" };
+            const backupRes = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${this.apiKey.trim()}`,
+                "HTTP-Referer": "https://sameerali.dev",
+                "X-Title": "Sameer Ali Portfolio Guide",
+              },
+              body: JSON.stringify(backupPayload),
+            });
+            if (backupRes.ok) {
+              const bData = await backupRes.json();
+              const bReply = bData?.choices?.[0]?.message?.content?.trim();
+              if (bReply) {
+                return {
+                  content: bReply,
+                  isFallback: false,
+                  provider: "openrouter",
+                  model: "nvidia/nemotron-3.5-lightning:free",
+                };
+              }
+            }
+          } catch {
+            // Fall through to deterministic fallback
+          }
+        }
+
         let warning = `Provider error (${errorStatus}). Using verified knowledge fallback.`;
         if (errorStatus === 429) {
           warning = "OpenRouter free-tier rate limit reached. Switched to verified knowledge fallback.";
