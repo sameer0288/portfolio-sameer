@@ -12,6 +12,7 @@ Where relevant, provide markdown links:
 - Kuanta AI: [Kuanta AI](https://kuanta.ai/)
 - MPRAR Central CRM: [MPRAR Central](https://central.mprar.com/)
 - Growza: [Growza](https://www.growza.me/)
+- Movie Library: [Movie Library](https://movie-library-flame.vercel.app/)
 - GitHub: [GitHub Profile](https://github.com/sameer0288)
 - Email: [sameersheikh0288@gmail.com](mailto:sameersheikh0288@gmail.com)
 
@@ -70,10 +71,10 @@ FEATURED PROJECTS:
    - Stack: React, Next.js, Node.js, Tailwind CSS
    - Description: Platform helping cafés and restaurants manage contactless table ordering and customer retention.
 
-5. Movie Library Web App
+5. Movie Library Platform (https://movie-library-flame.vercel.app/ | https://github.com/sameer0288/movie-library)
    - Category: Media Discovery Platform
-   - Stack: React, Node.js, REST APIs (TMDB)
-   - Description: Full-stack dynamic movie search, filtering, and catalog exploration.
+   - Stack: React, Node.js, REST APIs (TMDB), Vercel
+   - Description: Full-stack dynamic movie search, filtering, custom playlists, and cinematic TMDB streaming discovery.
 
 6. Real-Time Chat Engine
    - Category: Concurrent Communication

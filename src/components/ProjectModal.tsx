@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Project } from "@/data/portfolio-data";
-import { X, ExternalLink, CheckCircle2, Terminal, Layers } from "lucide-react";
+import { X, ExternalLink, CheckCircle2, Terminal, Layers, Lock, BarChart3, Code2, Globe } from "lucide-react";
 import { GithubIcon } from "./BrandIcons";
 
 interface ProjectModalProps {
@@ -11,7 +11,10 @@ interface ProjectModalProps {
 }
 
 export function ProjectModal({ project, onClose }: ProjectModalProps) {
+  const [activeTab, setActiveTab] = useState<"overview" | "metrics" | "code">("overview");
+
   useEffect(() => {
+    setActiveTab("overview");
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
@@ -27,118 +30,230 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
 
   if (!project) return null;
 
+  const accent = project.accentColor || "var(--accent)";
+
+  const getDisplayDomain = () => {
+    if (project.liveUrl) {
+      try {
+        const url = new URL(project.liveUrl);
+        return url.hostname + (url.pathname.length > 1 ? url.pathname : "");
+      } catch {
+        return project.liveUrl.replace(/^https?:\/\//, "");
+      }
+    }
+    return `${project.id}.production`;
+  };
+
   return (
     <div
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-project-title"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-8 bg-black/75 backdrop-blur-md overflow-y-auto animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md overflow-y-auto animate-in fade-in duration-200"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-3xl my-8 cosmic-panel rounded-2xl border border-[var(--border-strong)] bg-[var(--panel-solid)] p-6 sm:p-8 shadow-2xl text-left"
+        className="relative w-full max-w-4xl my-auto cosmic-panel rounded-2xl border border-[var(--border-strong)] bg-[var(--panel-solid)] shadow-2xl text-left overflow-hidden max-h-[92vh] flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header bar */}
-        <div className="flex items-center justify-between pb-4 border-b border-[var(--border)] mb-6">
+        {/* Modal Top Browser Bar */}
+        <div className="bg-[color-mix(in_srgb,var(--bg)_95%,transparent)] px-5 py-3 border-b border-[var(--border)] flex items-center justify-between gap-4 flex-shrink-0">
           <div className="flex items-center gap-2">
-            <span className="mono-label text-[11px] px-2.5 py-1 rounded bg-[color-mix(in_srgb,var(--accent)_15%,transparent)] text-[var(--accent)] font-semibold border border-[rgba(var(--accent-rgb),0.3)]">
-              {project.verifiedStatus}
+            <span className="w-3 h-3 rounded-full bg-rose-500/80" />
+            <span className="w-3 h-3 rounded-full bg-amber-500/80" />
+            <span className="w-3 h-3 rounded-full bg-emerald-500/80" />
+            <span className="hidden sm:inline-block text-xs font-mono text-[var(--text-muted)] ml-2">
+              Case Study // {project.category}
             </span>
-            <span className="mono-label text-[11px] text-[var(--text-muted)]">
-              {project.category}
-            </span>
           </div>
 
-          <button
-            onClick={onClose}
-            className="w-9 h-9 rounded-full border border-[var(--border)] flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--text)] hover:border-[var(--accent)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
-            aria-label="Close project modal"
-          >
-            <X className="w-5 h-5" />
-          </button>
-        </div>
-
-        {/* Title & Tagline */}
-        <h2 id="modal-project-title" className="text-2xl sm:text-3xl font-bold text-[var(--text)] mb-2">
-          {project.title}
-        </h2>
-        <p className="text-sm sm:text-base text-[var(--accent)] font-medium mb-6">
-          {project.tagline}
-        </p>
-
-        {/* Role & Verification */}
-        <div className="p-4 rounded-xl bg-[var(--panel)] border border-[var(--border)] mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div>
-            <div className="text-[11px] font-mono text-[var(--text-muted)] uppercase">Sameer&apos;s Role</div>
-            <div className="text-sm font-semibold text-[var(--text)]">{project.role}</div>
+          <div className="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-md bg-[var(--panel)] border border-[var(--border)] text-xs font-mono text-[var(--text-muted)]">
+            <Lock className="w-3 h-3 text-emerald-400" />
+            <span>{getDisplayDomain()}</span>
           </div>
-          <div className="flex items-center gap-2 text-xs text-emerald-400 font-mono">
-            <CheckCircle2 className="w-4 h-4" />
-            <span>Verified from Résumé</span>
+
+          <div className="flex items-center gap-2">
+            <button
+              onClick={onClose}
+              className="w-8 h-8 rounded-full border border-[var(--border)] flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--text)] hover:border-[var(--accent)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] cursor-pointer"
+              aria-label="Close project modal"
+            >
+              <X className="w-4 h-4" />
+            </button>
           </div>
         </div>
 
-        {/* Deep Dive Description */}
-        <div className="space-y-4 text-sm sm:text-base text-[var(--text-muted)] leading-relaxed mb-6">
-          <p>{project.longDescription}</p>
-        </div>
+        {/* Scrollable Content Container */}
+        <div className="overflow-y-auto flex-1 p-5 sm:p-7 space-y-6">
+          {/* Real Screenshot Banner */}
+          {project.imageUrl && (
+            <div className="rounded-xl overflow-hidden border border-[var(--border)] bg-space-950 shadow-lg relative group">
+              <img
+                src={project.imageUrl}
+                alt={`${project.title} live interface banner`}
+                className="w-full h-52 sm:h-72 object-cover object-top"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
 
-        {/* Key Metrics / Highlights */}
-        {project.metrics && project.metrics.length > 0 && (
-          <div className="mb-6">
-            <div className="text-xs font-mono uppercase text-[var(--text-muted)] tracking-wider mb-2 flex items-center gap-1.5">
-              <Layers className="w-4 h-4 text-[var(--accent)]" />
-              <span>Key Highlights & Engineering Scope</span>
-            </div>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-              {project.metrics.map((metric, i) => (
-                <li
-                  key={i}
-                  className="p-3 rounded-lg bg-[var(--panel)] border border-[var(--border)] text-xs text-[var(--text)] flex items-center gap-2"
+              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+                <span
+                  className="mono-label text-[11px] px-2.5 py-1 rounded font-semibold border backdrop-blur-md"
+                  style={{
+                    backgroundColor: `color-mix(in srgb, ${accent} 20%, transparent)`,
+                    color: "#ffffff",
+                    borderColor: `color-mix(in srgb, ${accent} 50%, transparent)`,
+                  }}
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)]" />
-                  <span>{metric}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+                  {project.verifiedStatus}
+                </span>
 
-        {/* Code Snippet / Architecture Peek */}
-        {project.codeSnippet && (
-          <div className="mb-6">
-            <div className="text-xs font-mono uppercase text-[var(--text-muted)] tracking-wider mb-2 flex items-center gap-1.5">
-              <Terminal className="w-4 h-4 text-cyan-400" />
-              <span>{project.codeSnippet.caption}</span>
+                {project.liveUrl && (
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-black/70 backdrop-blur-md border border-white/20 text-xs font-mono text-white hover:border-[var(--accent)] transition-colors"
+                  >
+                    <span>Open Live Platform</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                )}
+              </div>
             </div>
-            <div className="rounded-xl border border-[var(--border)] bg-[#070b14] p-4 overflow-x-auto text-xs font-mono text-emerald-300">
-              <pre>
-                <code>{project.codeSnippet.code}</code>
-              </pre>
-            </div>
-          </div>
-        )}
+          )}
 
-        {/* Tech Stack Tags */}
-        <div className="mb-8">
-          <div className="text-xs font-mono uppercase text-[var(--text-muted)] tracking-wider mb-2">
-            Technologies Used
+          {/* Title & Tagline */}
+          <div>
+            <div className="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+              <h2 id="modal-project-title" className="text-2xl sm:text-3xl font-extrabold text-[var(--text)] tracking-tight">
+                {project.title}
+              </h2>
+            </div>
+            <p className="text-sm sm:text-base font-medium text-[var(--accent)]">
+              {project.tagline}
+            </p>
           </div>
-          <div className="flex flex-wrap gap-2">
-            {project.tags.map((tag) => (
-              <span
-                key={tag}
-                className="px-2.5 py-1 rounded-md text-xs font-mono bg-[var(--panel)] border border-[var(--border)] text-[var(--text)]"
+
+          {/* Role & Verification Banner */}
+          <div className="p-4 rounded-xl bg-[var(--panel)] border border-[var(--border)] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <div className="text-[10px] font-mono text-[var(--text-muted)] uppercase tracking-wider">Sameer&apos;s Engineering Contribution</div>
+              <div className="text-sm font-semibold text-[var(--text)]">{project.role}</div>
+            </div>
+            <div className="flex items-center gap-1.5 text-xs text-emerald-400 font-mono">
+              <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
+              <span>Verified Experience & Codebase</span>
+            </div>
+          </div>
+
+          {/* Tab Navigation */}
+          <div className="border-b border-[var(--border)] flex items-center gap-2" role="tablist">
+            <button
+              onClick={() => setActiveTab("overview")}
+              type="button"
+              className={`px-4 py-2.5 text-xs font-mono border-b-2 transition-colors cursor-pointer flex items-center gap-1.5 ${
+                activeTab === "overview"
+                  ? "border-[var(--accent)] text-[var(--text)] font-bold"
+                  : "border-transparent text-[var(--text-muted)] hover:text-[var(--text)]"
+              }`}
+            >
+              <Layers className="w-3.5 h-3.5" />
+              <span>Overview & Scope</span>
+            </button>
+
+            <button
+              onClick={() => setActiveTab("metrics")}
+              type="button"
+              className={`px-4 py-2.5 text-xs font-mono border-b-2 transition-colors cursor-pointer flex items-center gap-1.5 ${
+                activeTab === "metrics"
+                  ? "border-[var(--accent)] text-[var(--text)] font-bold"
+                  : "border-transparent text-[var(--text-muted)] hover:text-[var(--text)]"
+              }`}
+            >
+              <BarChart3 className="w-3.5 h-3.5" />
+              <span>Production Metrics</span>
+            </button>
+
+            {project.codeSnippet && (
+              <button
+                onClick={() => setActiveTab("code")}
+                type="button"
+                className={`px-4 py-2.5 text-xs font-mono border-b-2 transition-colors cursor-pointer flex items-center gap-1.5 ${
+                  activeTab === "code"
+                    ? "border-[var(--accent)] text-[var(--text)] font-bold"
+                    : "border-transparent text-[var(--text-muted)] hover:text-[var(--text)]"
+                }`}
               >
-                {tag}
-              </span>
-            ))}
+                <Code2 className="w-3.5 h-3.5" />
+                <span>Architecture & Code</span>
+              </button>
+            )}
           </div>
+
+          {/* Tab 1: Overview */}
+          {activeTab === "overview" && (
+            <div className="space-y-4 text-sm text-[var(--text-muted)] leading-relaxed">
+              <p>{project.longDescription}</p>
+
+              <div className="pt-2">
+                <div className="text-xs font-mono uppercase text-[var(--text-muted)] tracking-wider mb-2">
+                  Technologies & System Architecture
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-2.5 py-1 rounded-md text-xs font-mono bg-[var(--panel)] border border-[var(--border)] text-[var(--text)]"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Tab 2: Metrics */}
+          {activeTab === "metrics" && (
+            <div className="space-y-4">
+              <p className="text-xs text-[var(--text-muted)]">
+                Verified milestones, scale metrics, and production operational statistics:
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {project.metrics?.map((metric, i) => (
+                  <div
+                    key={i}
+                    className="p-3.5 rounded-xl bg-[var(--panel)] border border-[var(--border)] text-xs text-[var(--text)] flex items-start gap-2.5"
+                  >
+                    <span className="w-2 h-2 rounded-full bg-[var(--accent)] mt-1 flex-shrink-0" />
+                    <span className="font-medium leading-relaxed">{metric}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Tab 3: Code */}
+          {activeTab === "code" && project.codeSnippet && (
+            <div className="space-y-3">
+              <div className="flex items-center justify-between text-xs font-mono text-[var(--text-muted)]">
+                <span className="flex items-center gap-1.5 text-cyan-400">
+                  <Terminal className="w-3.5 h-3.5" />
+                  <span>{project.codeSnippet.caption}</span>
+                </span>
+                <span className="text-[10px] uppercase text-[var(--accent)]">{project.codeSnippet.language}</span>
+              </div>
+              <div className="rounded-xl border border-[var(--border)] bg-[#070b14] p-4 overflow-x-auto text-xs font-mono text-emerald-300 shadow-inner">
+                <pre>
+                  <code>{project.codeSnippet.code}</code>
+                </pre>
+              </div>
+            </div>
+          )}
         </div>
 
-        {/* Modal Foot Actions */}
-        <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-[var(--border)]">
+        {/* Modal Footer Actions */}
+        <div className="bg-[color-mix(in_srgb,var(--bg)_95%,transparent)] p-4 sm:p-5 border-t border-[var(--border)] flex flex-wrap items-center justify-between gap-3 flex-shrink-0">
           <div className="flex items-center gap-3">
             {project.liveUrl && (
               <a
@@ -156,17 +271,17 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[var(--border)] bg-[var(--panel)] hover:border-[var(--accent)] text-xs font-mono text-[var(--text)]"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[var(--border)] bg-[var(--panel)] hover:border-[var(--accent)] text-xs font-mono text-[var(--text)] transition-colors"
               >
                 <GithubIcon className="w-3.5 h-3.5" />
-                <span>GitHub Source</span>
+                <span>GitHub Repository</span>
               </a>
             )}
           </div>
 
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-lg border border-[var(--border)] text-xs text-[var(--text-muted)] hover:text-[var(--text)]"
+            className="px-4 py-2 rounded-lg border border-[var(--border)] text-xs font-mono text-[var(--text-muted)] hover:text-[var(--text)] cursor-pointer"
           >
             Close Details
           </button>

@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Project } from "@/data/portfolio-data";
-import { ArrowUpRight, ExternalLink, Terminal, Sparkles, Building2, Store } from "lucide-react";
+import { ArrowUpRight, ExternalLink, Terminal, Sparkles, Building2, Store, Lock, CheckCircle2 } from "lucide-react";
 import { GithubIcon } from "./BrandIcons";
 
 interface ProjectCardProps {
@@ -27,96 +27,158 @@ export function ProjectCard({ project, index, onSelect }: ProjectCardProps) {
 
   const Icon = getIcon();
 
+  // Extract a clean display hostname for the browser capsule
+  const getDisplayDomain = () => {
+    if (project.liveUrl) {
+      try {
+        const url = new URL(project.liveUrl);
+        return url.hostname + (url.pathname.length > 1 ? url.pathname : "");
+      } catch {
+        return project.liveUrl.replace(/^https?:\/\//, "");
+      }
+    }
+    return `${project.id}.internal`;
+  };
+
+  const accent = project.accentColor || "var(--accent)";
+
   return (
-    <article className="group cosmic-panel rounded-2xl border border-[var(--border)] overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 hover:border-[var(--accent)] hover:shadow-[0_20px_45px_rgba(0,0,0,0.35)]">
-      {/* Visual Header / Simulated Engineering Terminal */}
-      <div className="relative h-48 sm:h-52 bg-gradient-to-br from-[#0c1428] via-[#090e1c] to-[#12232b] p-5 flex flex-col justify-between overflow-hidden border-b border-[var(--border)]">
-        {/* Subtle grid pattern background */}
-        <div
-          className="absolute inset-0 opacity-15 pointer-events-none"
-          style={{
-            backgroundImage: `linear-gradient(rgba(175,197,255,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(175,197,255,0.2) 1px, transparent 1px)`,
-            backgroundSize: "24px 24px",
-          }}
-        />
+    <article
+      onClick={() => onSelect(project)}
+      className="group cosmic-panel rounded-2xl border border-[var(--border)] overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 hover:border-[var(--border-strong)] hover:shadow-[0_24px_50px_rgba(0,0,0,0.4)] cursor-pointer relative"
+    >
+      {/* Top Browser Titlebar */}
+      <div className="bg-[color-mix(in_srgb,var(--bg)_92%,transparent)] border-b border-[var(--border)] px-4 py-2.5 flex items-center justify-between gap-3 text-xs font-mono">
+        {/* macOS / Browser traffic lights */}
+        <div className="flex items-center gap-1.5 flex-shrink-0">
+          <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
+          <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
+          <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
+        </div>
 
-        {/* Top bar of mock window */}
-        <div className="relative z-10 flex items-center justify-between">
-          <div className="flex items-center gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
-            <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
-          </div>
+        {/* Browser URL address capsule */}
+        <div className="flex-1 max-w-[280px] mx-auto px-2.5 py-1 rounded-md bg-[var(--panel-solid)] border border-[var(--border)] flex items-center justify-center gap-1.5 text-[11px] text-[var(--text-muted)] truncate shadow-inner">
+          <Lock className="w-2.5 h-2.5 text-emerald-400 flex-shrink-0" />
+          <span className="truncate">{getDisplayDomain()}</span>
+        </div>
 
-          <span className="mono-label text-[10px] px-2 py-0.5 rounded bg-[var(--panel-solid)] text-[var(--accent)] border border-[var(--border)] font-semibold">
+        {/* Verified status pill */}
+        <div className="flex items-center gap-1.5 flex-shrink-0">
+          <span
+            className="mono-label text-[10px] px-2 py-0.5 rounded font-semibold border"
+            style={{
+              backgroundColor: `color-mix(in srgb, ${accent} 15%, transparent)`,
+              color: accent,
+              borderColor: `color-mix(in srgb, ${accent} 40%, transparent)`,
+            }}
+          >
             {project.verifiedStatus}
           </span>
         </div>
+      </div>
 
-        {/* Center UI preview box */}
-        <div className="relative z-10 my-auto p-3.5 rounded-xl border border-white/10 bg-black/40 backdrop-blur-md transform group-hover:scale-[1.02] transition-transform">
-          <div className="flex items-center justify-between text-xs font-mono text-[var(--text-muted)] mb-1">
-            <span className="flex items-center gap-1.5 text-[var(--text)]">
-              <Icon className="w-3.5 h-3.5 text-[var(--accent)]" />
-              <span className="font-bold">{project.title}</span>
-            </span>
-            <span className="text-[10px] text-[var(--accent)]">ONLINE</span>
+      {/* Real High-Resolution Screenshot Preview */}
+      <div className="relative w-full h-56 sm:h-64 overflow-hidden bg-space-950 border-b border-[var(--border)]">
+        {project.imageUrl ? (
+          <>
+            <img
+              src={project.imageUrl}
+              alt={`${project.title} live interface preview`}
+              className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+              loading="lazy"
+            />
+            {/* Ambient bottom gradient so content blends smoothly */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[var(--panel-solid)] via-transparent to-transparent opacity-80 pointer-events-none" />
+
+            {/* Hover inspection overlay */}
+            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black/45 backdrop-blur-[2px]">
+              <span className="px-4 py-2 rounded-xl bg-[var(--accent)] text-[var(--accent-dark)] font-mono text-xs font-bold tracking-wider uppercase shadow-xl inline-flex items-center gap-1.5 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-200">
+                <span>View Architecture & Metrics</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </span>
+            </div>
+          </>
+        ) : (
+          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#0c1428] to-[#12232b]">
+            <Icon className="w-12 h-12 text-[var(--accent)] opacity-40" />
           </div>
-          <p className="text-[11px] text-[var(--text-muted)] line-clamp-1">
-            {project.tagline}
-          </p>
-        </div>
+        )}
 
-        {/* Bottom meta tag in header */}
-        <div className="relative z-10 flex items-center justify-between text-[10px] font-mono text-[var(--text-muted)]">
-          <span>INDEX: 0{index + 1}</span>
-          <span className="text-[var(--accent)]">{project.category}</span>
+        {/* Index counter badge */}
+        <div className="absolute top-3 left-3 px-2 py-1 rounded bg-black/60 backdrop-blur-md border border-white/10 text-[10px] font-mono text-white/90">
+          0{index + 1} // {project.category}
         </div>
       </div>
 
       {/* Body Content */}
       <div className="p-6 flex flex-col flex-1 justify-between">
         <div>
-          <div className="flex items-center justify-between gap-2 mb-2">
-            <span className="text-[11px] font-mono text-[var(--accent)] font-semibold">
-              ROLE: {project.role}
+          {/* Role & Verification */}
+          <div className="flex items-center justify-between gap-2 mb-2 text-xs font-mono">
+            <span className="text-[var(--text-muted)]">
+              Role: <strong className="text-[var(--text)]">{project.role}</strong>
+            </span>
+            <span className="flex items-center gap-1 text-emerald-400 text-[11px]">
+              <CheckCircle2 className="w-3.5 h-3.5" />
+              <span>Verified</span>
             </span>
           </div>
 
-          <h3 className="text-xl font-bold text-[var(--text)] group-hover:text-[var(--accent)] transition-colors mb-2">
-            {project.title}
+          {/* Title & Tagline */}
+          <h3 className="text-xl sm:text-2xl font-bold text-[var(--text)] group-hover:text-[var(--accent)] transition-colors mb-1.5 flex items-center justify-between">
+            <span>{project.title}</span>
+            <ArrowUpRight className="w-4 h-4 text-[var(--text-subtle)] group-hover:text-[var(--accent)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
           </h3>
 
-          <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-4 line-clamp-3">
+          <p className="text-xs font-medium text-[var(--accent)] mb-3">
+            {project.tagline}
+          </p>
+
+          <p className="text-sm text-[var(--text-muted)] leading-relaxed mb-4 line-clamp-2">
             {project.description}
           </p>
 
-          {/* Tags */}
+          {/* Real Metrics Badges (From live screenshot / production systems) */}
+          {project.metrics && project.metrics.length > 0 && (
+            <div className="mb-4 space-y-1.5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+                {project.metrics.slice(0, 2).map((m, i) => (
+                  <div
+                    key={i}
+                    className="px-2.5 py-1.5 rounded-lg bg-[var(--panel)] border border-[var(--border)] text-[11px] font-mono text-[var(--text)] flex items-center gap-1.5 truncate"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] flex-shrink-0" />
+                    <span className="truncate">{m}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Tech Tags */}
           <div className="flex flex-wrap gap-1.5 mb-6">
-            {project.tags.slice(0, 4).map((tag) => (
+            {project.tags.slice(0, 5).map((tag) => (
               <span
                 key={tag}
-                className="px-2 py-0.5 rounded text-[11px] font-mono bg-[var(--panel)] border border-[var(--border)] text-[var(--text-muted)]"
+                className="px-2.5 py-0.5 rounded text-[11px] font-mono bg-[var(--panel)] border border-[var(--border)] text-[var(--text-muted)]"
               >
                 {tag}
               </span>
             ))}
-            {project.tags.length > 4 && (
-              <span className="px-2 py-0.5 rounded text-[11px] font-mono text-[var(--text-subtle)]">
-                +{project.tags.length - 4} more
-              </span>
-            )}
           </div>
         </div>
 
         {/* Card Footer Actions */}
-        <div className="pt-4 border-t border-[var(--border)] flex items-center justify-between gap-3">
+        <div
+          className="pt-4 border-t border-[var(--border)] flex items-center justify-between gap-3"
+          onClick={(e) => e.stopPropagation()}
+        >
           <button
             onClick={() => onSelect(project)}
             type="button"
-            className="text-xs font-semibold text-[var(--text)] hover:text-[var(--accent)] inline-flex items-center gap-1.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] rounded"
+            className="text-xs font-semibold text-[var(--text)] hover:text-[var(--accent)] inline-flex items-center gap-1.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] rounded cursor-pointer"
           >
-            <span>Case Study & Details</span>
+            <span>Deep Dive Case Study</span>
             <ArrowUpRight className="w-3.5 h-3.5 text-[var(--accent)]" />
           </button>
 
@@ -126,11 +188,12 @@ export function ProjectCard({ project, index, onSelect }: ProjectCardProps) {
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 rounded-lg border border-[var(--border)] bg-[var(--panel)] hover:border-[var(--accent)] flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--text)] transition-colors"
-                title={`Visit ${project.title} live`}
+                className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg border border-[var(--border)] bg-[var(--panel)] hover:border-[var(--accent)] text-xs font-mono text-[var(--text)] hover:text-[var(--accent)] transition-colors"
+                title={`Visit ${project.title} live deployment`}
                 aria-label={`Visit ${project.title} live website`}
               >
-                <ExternalLink className="w-3.5 h-3.5" />
+                <span>Live</span>
+                <ExternalLink className="w-3 h-3" />
               </a>
             )}
             {project.githubUrl && (
@@ -138,11 +201,12 @@ export function ProjectCard({ project, index, onSelect }: ProjectCardProps) {
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 rounded-lg border border-[var(--border)] bg-[var(--panel)] hover:border-[var(--accent)] flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--text)] transition-colors"
-                title={`View ${project.title} source on GitHub`}
-                aria-label={`View ${project.title} GitHub repository`}
+                className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg border border-[var(--border)] bg-[var(--panel)] hover:border-[var(--accent)] text-xs font-mono text-[var(--text)] hover:text-[var(--accent)] transition-colors"
+                title={`View ${project.title} source code on GitHub`}
+                aria-label={`View ${project.title} repository`}
               >
                 <GithubIcon className="w-3.5 h-3.5" />
+                <span>Code</span>
               </a>
             )}
           </div>

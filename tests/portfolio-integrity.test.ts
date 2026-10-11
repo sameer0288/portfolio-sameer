@@ -31,6 +31,11 @@ test("All 4 required primary projects exist with verified live URLs", () => {
   assert.equal(kuanta.liveUrl, "https://kuanta.ai/");
   assert.ok(kuanta.description.includes("Milvus"));
   assert.ok(kuanta.description.includes("3M+"));
+
+  const movieLib = PORTFOLIO_DATA.projects.find((p) => p.id === "movie-library");
+  assert.ok(movieLib, "Movie Library should exist");
+  assert.equal(movieLib.liveUrl, "https://movie-library-flame.vercel.app/");
+  assert.equal(movieLib.githubUrl, "https://github.com/sameer0288/movie-library");
 });
 
 test("Experience history reflects verified roles from résumé", () => {
