@@ -39,16 +39,16 @@ export function Hero() {
             </div>
 
             {/* Main Editorial Headline */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[66px] font-extrabold tracking-tight leading-[1.08] text-[var(--text)] mb-6">
-              <span>Full-Stack Engineer building </span>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[62px] font-extrabold tracking-tight leading-[1.12] text-[var(--text)] mb-6 [text-wrap:balance]">
+              <span>Building scalable web platforms, </span>
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400">
-                reliable systems & applied AI.
+                resilient backends & practical AI.
               </span>
             </h1>
 
             {/* Subheading / Human Bio */}
             <p className="text-base sm:text-lg text-[var(--text-muted)] leading-relaxed max-w-2xl mb-8">
-              Hi, I&apos;m <strong className="text-[var(--text)] font-semibold">Sameer Ali</strong>, an SDE-1 at <strong className="text-[var(--text)] font-semibold">Techdome</strong> with 2.5+ years of production experience. I specialize in React, TypeScript, Node.js, Python, PostgreSQL, and vector search systems (Milvus). From optimizing query speeds on banking scale at TCS to indexing 3M+ records at Kuanta, I focus on clean architecture, high reliability, and real business impact.
+              I&apos;m <strong className="text-[var(--text)] font-semibold">Sameer Ali</strong>, an SDE-1 at <strong className="text-[var(--text)] font-semibold">Techdome</strong> with 2.5+ years of production experience. I build high-performance web applications, scalable backend APIs, and vector search systems. From enterprise EMR platforms to indexing 3M+ records in Milvus at Kuanta and optimizing banking-scale queries at TCS, I deliver clean code that scales in production.
             </p>
 
             {/* Action Buttons */}

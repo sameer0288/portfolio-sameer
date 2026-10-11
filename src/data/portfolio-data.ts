@@ -58,8 +58,8 @@ export const PORTFOLIO_DATA = {
   personal: {
     name: "Sameer Ali",
     title: "Software Development Engineer & GenAI Developer",
-    headline: "Full-Stack Engineer building reliable systems & applied AI.",
-    bio: "Software Development Engineer and GenAI builder with 2.5+ years of production experience crafting scalable enterprise web apps, high-throughput backend APIs, and vector search systems. Proven track record across EMR platform modules at Techdome, 3M+ Milvus vector embeddings at Kuanta, high-traffic banking systems (SBI YONO 2.0 at TCS), and commercial SaaS products.",
+    headline: "Building scalable web platforms, resilient backends & practical AI.",
+    bio: "I'm Sameer Ali, an SDE-1 at Techdome with 2.5+ years of production experience crafting high-performance web applications, scalable backend APIs, and vector search systems. From enterprise EMR platforms to indexing 3M+ records in Milvus at Kuanta and optimizing banking-scale queries at TCS, I deliver clean code that scales in production.",
     location: "Indore / Remote, India",
     email: "sameersheikh0288@gmail.com",
     phone: "+91 8306690288",
