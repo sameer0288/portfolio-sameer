@@ -58,8 +58,8 @@ export const PORTFOLIO_DATA = {
   personal: {
     name: "Sameer Ali",
     title: "Software Development Engineer & GenAI Developer",
-    headline: "I build software that works. AI that delivers.",
-    bio: "Software Development Engineer and GenAI builder with 2.5+ years of experience crafting reliable interfaces, high-throughput backend systems, and intelligent applications. Proven track record across EMR software systems at Techdome, AI vector platforms with 3M+ records (Kuanta), mission-critical banking platforms (SBI YONO 2.0 at TCS), and commercial SaaS.",
+    headline: "Full-Stack Engineer building reliable systems & applied AI.",
+    bio: "Software Development Engineer and GenAI builder with 2.5+ years of production experience crafting scalable enterprise web apps, high-throughput backend APIs, and vector search systems. Proven track record across EMR platform modules at Techdome, 3M+ Milvus vector embeddings at Kuanta, high-traffic banking systems (SBI YONO 2.0 at TCS), and commercial SaaS products.",
     location: "Indore / Remote, India",
     email: "sameersheikh0288@gmail.com",
     phone: "+91 8306690288",

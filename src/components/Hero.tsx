@@ -39,16 +39,16 @@ export function Hero() {
             </div>
 
             {/* Main Editorial Headline */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[64px] font-extrabold tracking-tight leading-[1.08] text-[var(--text)] mb-6">
-              <span>Engineering robust systems. </span>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[66px] font-extrabold tracking-tight leading-[1.08] text-[var(--text)] mb-6">
+              <span>Full-Stack Engineer building </span>
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400">
-                AI grounded in reality.
+                reliable systems & applied AI.
               </span>
             </h1>
 
             {/* Subheading / Human Bio */}
             <p className="text-base sm:text-lg text-[var(--text-muted)] leading-relaxed max-w-2xl mb-8">
-              Hi, I&apos;m <strong className="text-[var(--text)] font-semibold">Sameer Ali</strong>. Software Engineer with 2.5+ years of production experience crafting scalable enterprise web apps at Techdome, vector-search pipelines indexing 3M+ records in Milvus (Kuanta), and high-throughput banking systems (SBI YONO 2.0 at TCS).
+              Hi, I&apos;m <strong className="text-[var(--text)] font-semibold">Sameer Ali</strong>, an SDE-1 at <strong className="text-[var(--text)] font-semibold">Techdome</strong> with 2.5+ years of production experience. I specialize in React, TypeScript, Node.js, Python, PostgreSQL, and vector search systems (Milvus). From optimizing query speeds on banking scale at TCS to indexing 3M+ records at Kuanta, I focus on clean architecture, high reliability, and real business impact.
             </p>
 
             {/* Action Buttons */}
