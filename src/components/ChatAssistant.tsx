@@ -13,6 +13,12 @@ import {
   FileDown,
   AlertTriangle,
   Info,
+  Copy,
+  Check,
+  CornerDownLeft,
+  ChevronDown,
+  Maximize2,
+  Terminal,
 } from "lucide-react";
 
 interface Message {
@@ -21,14 +27,17 @@ interface Message {
   content: string;
   isFallback?: boolean;
   note?: string;
+  copied?: boolean;
 }
 
 const SUGGESTED_PROMPTS = [
-  "Tell me about Sameer’s experience",
-  "Explain JourneyWise AI",
-  "What backend systems has he built?",
-  "Which projects demonstrate GenAI?",
-  "Download his résumé",
+  "Tell me about Sameer's experience",
+  "How does Growza work?",
+  "What is MPRAR Central CRM?",
+  "Explain JourneyWise AI & War Room",
+  "How does Movie Library use TMDB?",
+  "Kuanta AI & 3M+ Milvus vectors",
+  "Download Sameer's résumé",
 ];
 
 export function ChatAssistant() {
@@ -37,17 +46,19 @@ export function ChatAssistant() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
 
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "init",
       role: "assistant",
       content:
-        "Greetings! I'm **Cosmic Guide**, Sameer Ali's portfolio assistant. I can answer questions about his 2.5+ years of software engineering, GenAI projects, backend systems, and technical background strictly from his verified résumé.",
+        "Hi! I'm **Sameer's Portfolio AI**. Ask me anything about his **2.5+ years of engineering**, production projects (**Growza**, **MPRAR Central**, **JourneyWise**, **Movie Library**, **Kuanta**), or tech stack. Every answer is grounded in his verified résumé.",
     },
   ]);
 
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -56,8 +67,15 @@ export function ChatAssistant() {
   useEffect(() => {
     if (isOpen && !isMinimized) {
       scrollToBottom();
+      inputRef.current?.focus();
     }
   }, [messages, isOpen, isMinimized]);
+
+  const handleCopy = (id: string, text: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedId(id);
+    setTimeout(() => setCopiedId(null), 2000);
+  };
 
   const handleSend = async (userText: string) => {
     const text = userText.trim();
@@ -120,7 +138,7 @@ export function ChatAssistant() {
         id: "init",
         role: "assistant",
         content:
-          "Conversation reset. What would you like to know about Sameer's engineering experience or projects?",
+          "Conversation reset. What would you like to know about Sameer's engineering experience, backend systems, or projects?",
       },
     ]);
     setErrorMessage(null);
@@ -128,7 +146,7 @@ export function ChatAssistant() {
 
   return (
     <div className="fixed bottom-5 right-5 z-50 select-none">
-      {/* Floating Launcher Button */}
+      {/* Floating Modern Pill Launcher */}
       {!isOpen && (
         <button
           onClick={() => {
@@ -136,46 +154,56 @@ export function ChatAssistant() {
             setIsMinimized(false);
           }}
           type="button"
-          aria-label="Open Cosmic AI Portfolio Guide"
-          className="group relative flex items-center gap-2.5 px-4 py-3 rounded-full bg-[var(--panel-solid)] border border-[var(--accent)] text-[var(--text)] shadow-[0_0_25px_rgba(var(--accent-rgb),0.25)] hover:shadow-[0_0_35px_rgba(var(--accent-rgb),0.4)] transition-all duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
+          aria-label="Open AI Portfolio Assistant"
+          className="group relative flex items-center gap-3 px-4 py-3 rounded-full bg-[var(--panel-solid)] border border-[var(--border-strong)] text-[var(--text)] shadow-[0_12px_40px_rgba(0,0,0,0.5)] hover:border-[var(--accent)] hover:shadow-[0_0_30px_rgba(var(--accent-rgb),0.3)] transition-all duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] cursor-pointer"
         >
-          <div className="relative">
-            <Bot className="w-5 h-5 text-[var(--accent)]" />
-            <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-[var(--accent)] animate-ping" />
+          {/* Animated Glowing Ring */}
+          <div className="relative flex items-center justify-center w-8 h-8 rounded-full bg-[color-mix(in_srgb,var(--accent)_16%,transparent)] border border-[var(--border)] group-hover:border-[var(--accent)] transition-colors">
+            <Sparkles className="w-4 h-4 text-[var(--accent)] group-hover:scale-110 transition-transform" />
+            <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-[var(--panel-solid)] shadow-[0_0_8px_#34d399]" />
           </div>
-          <span className="text-xs font-mono font-bold tracking-wide">
-            Ask Cosmic Guide
-          </span>
-          <span className="mono-label text-[10px] px-1.5 py-0.5 rounded bg-[color-mix(in_srgb,var(--accent)_15%,transparent)] text-[var(--accent)] font-semibold">
-            AI
-          </span>
+
+          <div className="text-left">
+            <div className="text-xs font-bold text-[var(--text)] flex items-center gap-1.5">
+              <span>Ask Sameer AI</span>
+              <span className="mono-label text-[9px] px-1.5 py-0.2 rounded bg-[color-mix(in_srgb,var(--accent)_15%,transparent)] text-[var(--accent)] font-semibold border border-[rgba(var(--accent-rgb),0.3)]">
+                LIVE
+              </span>
+            </div>
+            <div className="text-[10px] font-mono text-[var(--text-muted)]">
+              Verified Résumé & Code
+            </div>
+          </div>
         </button>
       )}
 
-      {/* Chat Window */}
+      {/* Modern High-End Chat Window */}
       {isOpen && (
         <div
-          className={`cosmic-panel rounded-2xl border border-[var(--border-strong)] bg-[var(--panel-solid)] shadow-2xl flex flex-col transition-all duration-300 ${
+          className={`cosmic-panel rounded-2xl border border-[var(--border-strong)] bg-[color-mix(in_srgb,var(--panel-solid)_96%,transparent)] backdrop-blur-2xl shadow-[0_25px_60px_rgba(0,0,0,0.6)] flex flex-col transition-all duration-300 overflow-hidden ${
             isMinimized
-              ? "w-72 h-14"
-              : "w-[92vw] sm:w-[410px] h-[550px] max-h-[85vh]"
+              ? "w-80 h-14"
+              : "w-[94vw] sm:w-[440px] h-[580px] max-h-[88vh]"
           }`}
           role="complementary"
           aria-label="AI Portfolio Assistant"
         >
-          {/* Header */}
-          <div className="px-4 py-3 border-b border-[var(--border)] flex items-center justify-between bg-[color-mix(in_srgb,var(--bg)_70%,transparent)] rounded-t-2xl">
+          {/* Top Window Header */}
+          <div className="px-4 py-3 border-b border-[var(--border)] flex items-center justify-between bg-[color-mix(in_srgb,var(--bg)_80%,transparent)]">
             <div className="flex items-center gap-2.5">
-              <div className="w-7 h-7 rounded-full bg-[color-mix(in_srgb,var(--accent)_15%,transparent)] border border-[var(--accent)] flex items-center justify-center text-[var(--accent)]">
-                <Sparkles className="w-3.5 h-3.5" />
+              <div className="relative w-8 h-8 rounded-xl bg-[color-mix(in_srgb,var(--accent)_14%,transparent)] border border-[rgba(var(--accent-rgb),0.3)] flex items-center justify-center text-[var(--accent)] shadow-inner">
+                <Bot className="w-4 h-4" />
+                <span className="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-400 border border-[var(--panel-solid)] animate-pulse" />
               </div>
               <div>
                 <div className="text-xs font-bold text-[var(--text)] flex items-center gap-1.5">
-                  Cosmic Guide
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                  <span>Sameer AI Assistant</span>
+                  <span className="text-[10px] font-mono text-emerald-400 font-semibold px-1.5 py-0.2 rounded bg-emerald-500/10 border border-emerald-500/20">
+                    Online
+                  </span>
                 </div>
-                <div className="text-[10px] font-mono text-[var(--text-muted)]">
-                  Verified Portfolio AI
+                <div className="text-[10px] font-mono text-[var(--text-muted)] flex items-center gap-1">
+                  <span>Grounding: Verified Knowledge Base</span>
                 </div>
               </div>
             </div>
@@ -184,23 +212,23 @@ export function ChatAssistant() {
               <button
                 onClick={handleReset}
                 title="Reset conversation"
-                className="w-7 h-7 rounded-lg hover:bg-[var(--panel)] flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--text)] transition-colors"
+                className="w-7 h-7 rounded-lg hover:bg-[var(--panel)] flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--text)] transition-colors cursor-pointer"
                 aria-label="Reset chat conversation"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
               </button>
               <button
                 onClick={() => setIsMinimized(!isMinimized)}
-                title={isMinimized ? "Maximize" : "Minimize"}
-                className="w-7 h-7 rounded-lg hover:bg-[var(--panel)] flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--text)] transition-colors"
+                title={isMinimized ? "Expand" : "Minimize"}
+                className="w-7 h-7 rounded-lg hover:bg-[var(--panel)] flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--text)] transition-colors cursor-pointer"
                 aria-label={isMinimized ? "Maximize chat window" : "Minimize chat window"}
               >
-                <Minus className="w-3.5 h-3.5" />
+                {isMinimized ? <Maximize2 className="w-3.5 h-3.5" /> : <Minus className="w-3.5 h-3.5" />}
               </button>
               <button
                 onClick={() => setIsOpen(false)}
                 title="Close"
-                className="w-7 h-7 rounded-lg hover:bg-[var(--panel)] flex items-center justify-center text-[var(--text-muted)] hover:text-rose-400 transition-colors"
+                className="w-7 h-7 rounded-lg hover:bg-[var(--panel)] flex items-center justify-center text-[var(--text-muted)] hover:text-rose-400 transition-colors cursor-pointer"
                 aria-label="Close chat window"
               >
                 <X className="w-3.5 h-3.5" />
@@ -210,50 +238,81 @@ export function ChatAssistant() {
 
           {!isMinimized && (
             <>
-              {/* Disclaimer bar */}
-              <div className="px-3.5 py-1.5 bg-[color-mix(in_srgb,var(--bg)_85%,transparent)] border-b border-[var(--border)] flex items-center gap-1.5 text-[10px] text-[var(--text-subtle)] font-mono">
-                <Info className="w-3 h-3 text-[var(--accent)] flex-shrink-0" />
-                <span className="truncate">
-                  Grounded strictly in Sameer&apos;s verified résumé
+              {/* Disclaimer / Model Telemetry Banner */}
+              <div className="px-3.5 py-1.5 bg-[color-mix(in_srgb,var(--bg)_90%,transparent)] border-b border-[var(--border)] flex items-center justify-between text-[10px] text-[var(--text-subtle)] font-mono">
+                <span className="flex items-center gap-1.5 truncate">
+                  <Terminal className="w-3 h-3 text-[var(--accent)] flex-shrink-0" />
+                  <span className="truncate">Model: Google Gemma 31B / Nemotron Lightning</span>
                 </span>
+                <span className="text-emerald-400 font-semibold flex-shrink-0">● OpenRouter Live</span>
               </div>
 
               {/* Message List */}
-              <div className="flex-1 overflow-y-auto p-4 space-y-3.5 text-xs select-text">
+              <div className="flex-1 overflow-y-auto p-4 space-y-4 text-xs select-text no-scrollbar">
                 {messages.map((msg) => {
                   const isUser = msg.role === "user";
+                  const isCopied = copiedId === msg.id;
+
                   return (
                     <div
                       key={msg.id}
-                      className={`flex gap-2.5 ${isUser ? "justify-end" : "justify-start"}`}
+                      className={`flex gap-2.5 ${isUser ? "justify-end" : "justify-start"} group/msg`}
                     >
                       {!isUser && (
-                        <div className="w-6 h-6 rounded-full bg-[var(--panel)] border border-[var(--border)] flex items-center justify-center text-[var(--accent)] flex-shrink-0 mt-0.5">
+                        <div className="w-7 h-7 rounded-lg bg-[var(--panel)] border border-[var(--border)] flex items-center justify-center text-[var(--accent)] flex-shrink-0 mt-0.5 shadow-sm">
                           <Bot className="w-3.5 h-3.5" />
                         </div>
                       )}
 
                       <div
-                        className={`max-w-[85%] rounded-2xl px-3.5 py-2.5 leading-relaxed ${
+                        className={`max-w-[85%] rounded-2xl px-4 py-3 leading-relaxed relative ${
                           isUser
-                            ? "bg-[var(--accent)] text-[var(--accent-dark)] font-medium rounded-tr-none shadow-md"
-                            : "bg-[var(--panel)] border border-[var(--border)] text-[var(--text)] rounded-tl-none"
+                            ? "bg-[color-mix(in_srgb,var(--accent)_92%,black)] text-[var(--accent-dark)] font-medium rounded-tr-sm shadow-md"
+                            : "bg-[var(--panel)] border border-[var(--border)] text-[var(--text)] rounded-tl-sm shadow-sm"
                         }`}
                       >
-                        <div className="whitespace-pre-wrap space-y-1">
+                        <div className="space-y-1 text-xs">
                           {renderFormattedText(msg.content)}
                         </div>
 
-                        {msg.note && (
-                          <div className="mt-2 pt-1.5 border-t border-[var(--border)] text-[10px] text-[var(--text-subtle)] font-mono flex items-center gap-1">
-                            <Info className="w-3 h-3 text-[var(--accent)]" />
-                            <span>{msg.note}</span>
+                        {/* Bot message footer with copy button and note */}
+                        {!isUser && (
+                          <div className="mt-2 pt-2 border-t border-[var(--border)] flex items-center justify-between text-[10px] font-mono text-[var(--text-muted)]">
+                            <span className="flex items-center gap-1 text-[var(--text-subtle)]">
+                              {msg.note ? (
+                                <>
+                                  <Info className="w-2.5 h-2.5 text-[var(--accent)]" />
+                                  <span className="truncate">{msg.note}</span>
+                                </>
+                              ) : (
+                                <span>Verified Portfolio Grounding</span>
+                              )}
+                            </span>
+
+                            <button
+                              onClick={() => handleCopy(msg.id, msg.content)}
+                              className="p-1 rounded hover:bg-[var(--panel-solid)] text-[var(--text-subtle)] hover:text-[var(--text)] transition-colors inline-flex items-center gap-1 cursor-pointer"
+                              title="Copy response"
+                              aria-label="Copy assistant answer"
+                            >
+                              {isCopied ? (
+                                <>
+                                  <Check className="w-3 h-3 text-emerald-400" />
+                                  <span className="text-emerald-400 text-[9px]">Copied</span>
+                                </>
+                              ) : (
+                                <>
+                                  <Copy className="w-3 h-3" />
+                                  <span className="text-[9px]">Copy</span>
+                                </>
+                              )}
+                            </button>
                           </div>
                         )}
                       </div>
 
                       {isUser && (
-                        <div className="w-6 h-6 rounded-full bg-[var(--panel)] border border-[var(--border)] flex items-center justify-center text-[var(--text-muted)] flex-shrink-0 mt-0.5">
+                        <div className="w-7 h-7 rounded-lg bg-[var(--panel)] border border-[var(--border)] flex items-center justify-center text-[var(--text-muted)] flex-shrink-0 mt-0.5">
                           <User className="w-3.5 h-3.5" />
                         </div>
                       )}
@@ -262,24 +321,24 @@ export function ChatAssistant() {
                 })}
 
                 {loading && (
-                  <div className="flex gap-2.5 items-center text-[var(--text-muted)]">
-                    <div className="w-6 h-6 rounded-full bg-[var(--panel)] border border-[var(--border)] flex items-center justify-center text-[var(--accent)] flex-shrink-0">
+                  <div className="flex gap-2.5 items-center text-[var(--text-muted)] animate-in fade-in duration-200">
+                    <div className="w-7 h-7 rounded-lg bg-[var(--panel)] border border-[var(--border)] flex items-center justify-center text-[var(--accent)] flex-shrink-0">
                       <Bot className="w-3.5 h-3.5" />
                     </div>
-                    <div className="px-3.5 py-2 rounded-2xl bg-[var(--panel)] border border-[var(--border)] flex items-center gap-1.5">
+                    <div className="px-4 py-2.5 rounded-2xl bg-[var(--panel)] border border-[var(--border)] flex items-center gap-2 rounded-tl-sm">
                       <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-bounce" />
                       <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-bounce [animation-delay:0.2s]" />
                       <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-bounce [animation-delay:0.4s]" />
                       <span className="text-[11px] font-mono text-[var(--text-muted)] ml-1">
-                        Synthesizing verified facts...
+                        Synthesizing verified response...
                       </span>
                     </div>
                   </div>
                 )}
 
                 {errorMessage && (
-                  <div className="p-2.5 rounded-xl border border-rose-500/30 bg-rose-500/10 flex items-center gap-2 text-rose-300 text-[11px]">
-                    <AlertTriangle className="w-3.5 h-3.5 flex-shrink-0" />
+                  <div className="p-3 rounded-xl border border-rose-500/30 bg-rose-500/10 flex items-center gap-2 text-rose-300 text-xs">
+                    <AlertTriangle className="w-4 h-4 flex-shrink-0" />
                     <span>{errorMessage}</span>
                   </div>
                 )}
@@ -287,43 +346,51 @@ export function ChatAssistant() {
                 <div ref={messagesEndRef} />
               </div>
 
-              {/* Suggested Prompts pills */}
-              <div className="px-3 py-2 border-t border-[var(--border)] bg-[color-mix(in_srgb,var(--bg)_50%,transparent)] overflow-x-auto no-scrollbar flex items-center gap-1.5">
+              {/* Suggested Questions Carousel */}
+              <div className="px-3 py-2 border-t border-[var(--border)] bg-[color-mix(in_srgb,var(--bg)_60%,transparent)] overflow-x-auto no-scrollbar flex items-center gap-1.5">
+                <span className="text-[9px] font-mono uppercase text-[var(--text-subtle)] mr-1 flex-shrink-0">
+                  Quick Ask:
+                </span>
                 {SUGGESTED_PROMPTS.map((prompt) => (
                   <button
                     key={prompt}
                     type="button"
                     onClick={() => handleSend(prompt)}
-                    className="px-2.5 py-1 rounded-full text-[10px] font-mono whitespace-nowrap bg-[var(--panel)] border border-[var(--border)] hover:border-[var(--accent)] text-[var(--text-muted)] hover:text-[var(--text)] transition-colors cursor-pointer flex-shrink-0"
+                    className="px-2.5 py-1 rounded-lg text-[10px] font-mono whitespace-nowrap bg-[var(--panel)] border border-[var(--border)] hover:border-[var(--accent)] text-[var(--text-muted)] hover:text-[var(--text)] transition-all cursor-pointer flex-shrink-0 hover:bg-[color-mix(in_srgb,var(--accent)_8%,transparent)]"
                   >
                     {prompt}
                   </button>
                 ))}
               </div>
 
-              {/* Chat Input Form */}
+              {/* Chat Input Bar */}
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
                   handleSend(input);
                 }}
-                className="p-3 border-t border-[var(--border)] bg-[var(--panel-solid)] flex items-center gap-2 rounded-b-2xl"
+                className="p-3 border-t border-[var(--border)] bg-[var(--panel-solid)] flex items-center gap-2"
               >
-                <input
-                  type="text"
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  placeholder="Ask about Sameer's projects or skills..."
-                  maxLength={500}
-                  className="flex-1 px-3.5 py-2 rounded-xl border border-[var(--border)] bg-[var(--panel)] text-[var(--text)] text-xs focus:outline-none focus:ring-1 focus:ring-[var(--accent)]"
-                />
+                <div className="relative flex-1">
+                  <input
+                    ref={inputRef}
+                    type="text"
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    placeholder="Ask about Sameer's projects, stack, or experience..."
+                    maxLength={500}
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-[var(--border)] bg-[var(--panel)] text-[var(--text)] text-xs placeholder:text-[var(--text-subtle)] focus:outline-none focus:ring-1 focus:ring-[var(--accent)] focus:border-[var(--accent)] transition-all"
+                  />
+                </div>
+
                 <button
                   type="submit"
                   disabled={!input.trim() || loading}
-                  className="w-8 h-8 rounded-xl bg-[var(--accent)] text-[var(--accent-dark)] flex items-center justify-center hover:opacity-90 disabled:opacity-40 transition-opacity cursor-pointer flex-shrink-0"
+                  className="px-3 py-2.5 rounded-xl bg-[var(--accent)] text-[var(--accent-dark)] font-bold text-xs flex items-center justify-center gap-1 hover:opacity-90 disabled:opacity-40 transition-all cursor-pointer flex-shrink-0 shadow-sm"
                   aria-label="Send message"
                 >
                   <Send className="w-3.5 h-3.5" />
+                  <span className="hidden sm:inline">Send</span>
                 </button>
               </form>
             </>
@@ -335,20 +402,25 @@ export function ChatAssistant() {
 }
 
 /**
- * Simple markdown link and bold text renderer for assistant responses
+ * Enhanced markdown link, code, and bold renderer
  */
 function renderFormattedText(text: string) {
-  const parts = text.split("\n");
-  return parts.map((line, lineIdx) => {
+  const lines = text.split("\n");
+
+  return lines.map((line, lineIdx) => {
+    // Check if line is bullet item
+    const isBullet = line.trim().startsWith("- ") || line.trim().startsWith("• ");
+    const cleanLine = isBullet ? line.trim().replace(/^[-•]\s*/, "") : line;
+
     // Process markdown links [text](url)
     const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
     const elements: (string | React.ReactNode)[] = [];
     let lastIndex = 0;
     let match: RegExpExecArray | null;
 
-    while ((match = linkRegex.exec(line)) !== null) {
+    while ((match = linkRegex.exec(cleanLine)) !== null) {
       if (match.index > lastIndex) {
-        elements.push(line.substring(lastIndex, match.index));
+        elements.push(cleanLine.substring(lastIndex, match.index));
       }
       const label = match[1];
       const href = match[2];
@@ -374,27 +446,53 @@ function renderFormattedText(text: string) {
       lastIndex = linkRegex.lastIndex;
     }
 
-    if (lastIndex < line.length) {
-      elements.push(line.substring(lastIndex));
+    if (lastIndex < cleanLine.length) {
+      elements.push(cleanLine.substring(lastIndex));
     }
 
-    // Process bold text **bold**
+    // Process inline code `code` and bold **bold**
     const renderedElements = elements.map((item, idx) => {
       if (typeof item !== "string") return item;
+
+      // Handle bold
       const boldParts = item.split(/\*\*([^*]+)\*\*/g);
-      return boldParts.map((bPart, bIdx) =>
-        bIdx % 2 === 1 ? (
-          <strong key={`b-${lineIdx}-${idx}-${bIdx}`} className="text-[var(--text)] font-bold">
-            {bPart}
-          </strong>
-        ) : (
-          bPart
-        )
-      );
+      return boldParts.map((bPart, bIdx) => {
+        if (bIdx % 2 === 1) {
+          return (
+            <strong key={`b-${lineIdx}-${idx}-${bIdx}`} className="text-[var(--text)] font-bold">
+              {bPart}
+            </strong>
+          );
+        }
+
+        // Handle inline code `code`
+        const codeParts = bPart.split(/`([^`]+)`/g);
+        return codeParts.map((cPart, cIdx) =>
+          cIdx % 2 === 1 ? (
+            <code
+              key={`c-${lineIdx}-${idx}-${bIdx}-${cIdx}`}
+              className="px-1.5 py-0.5 rounded bg-[var(--panel-solid)] text-[var(--accent)] font-mono text-[10px] border border-[var(--border)]"
+            >
+              {cPart}
+            </code>
+          ) : (
+            cPart
+          )
+        );
+      });
     });
 
+    if (isBullet) {
+      return (
+        <div key={`p-${lineIdx}`} className="flex items-start gap-2 pl-1 my-0.5">
+          <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] mt-1.5 flex-shrink-0" />
+          <span className="flex-1 leading-relaxed">{renderedElements}</span>
+        </div>
+      );
+    }
+
     return (
-      <p key={`p-${lineIdx}`} className="min-h-[1em]">
+      <p key={`p-${lineIdx}`} className="min-h-[1em] leading-relaxed">
         {renderedElements}
       </p>
     );
