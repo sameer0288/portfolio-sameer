@@ -29,7 +29,7 @@ Total Professional Experience: 2.5+ years
 WORK EXPERIENCE:
 1. Techdome (Jun 2026 – Present)
    - Role: Software Development Engineer – 1 (SDE-1), Indore, India
-   - Scope: Healthcare EMR platform backend services (Node.js/Python, PostgreSQL).
+   - Scope: Enterprise EMR platform backend services (Node.js/Python, PostgreSQL).
    - Contributions: Subscription & billing module, usage-based access control, query & indexing optimization for heavy production datasets, Agile code reviews and standards.
 
 2. Kuanta (Dec 2025 – Jun 2026)
@@ -98,9 +98,9 @@ export interface FallbackMatch {
 export const DETERMINISTIC_FALLBACKS: FallbackMatch[] = [
   {
     keywords: ["experience", "background", "career", "trajectory", "worked", "history", "companies", "job"],
-    response: `**Sameer Ali** has **2.5+ years of full-stack and AI software engineering experience** across healthcare, banking, AI products, and SaaS:
+    response: `**Sameer Ali** has **2.5+ years of full-stack and AI software engineering experience** across enterprise EMR systems, banking, AI products, and SaaS:
 
-1. **Techdome (Jun 2026 – Present)** — SDE-1 (Healthcare EMR backend with Node.js/Python & PostgreSQL, billing modules, query optimization).
+1. **Techdome (Jun 2026 – Present)** — SDE-1 (EMR platform backend with Node.js/Python & PostgreSQL, billing modules, query optimization).
 2. **Kuanta (Dec 2025 – Jun 2026)** — Full Stack & AI Systems (Vector search with Milvus processing 3M+ records, FastAPI backend, React/TS UI).
 3. **Tata Consultancy Services (TCS) (Oct 2024 – Dec 2025)** — Assistant System Engineer on **SBI YONO 2.0** banking platform (~30% PostgreSQL query latency reduction, Grafana monitoring).
 4. **Markoknow (Jan 2023 – Sep 2024)** — Full Stack Developer (~60% API latency cut with Redis caching).
@@ -148,7 +148,7 @@ You can review his complete timeline in the **Experience** section or [Download 
   {
     keywords: ["backend", "api", "database", "sql", "postgres", "fastapi", "node"],
     response: `Sameer's backend systems experience spans enterprise and high-traffic scale:
-- **Healthcare EMR (Techdome)**: Node.js/Python, PostgreSQL, usage-based access control, billing modules.
+- **EMR Platform (Techdome)**: Node.js/Python, PostgreSQL, usage-based access control, billing modules.
 - **Banking Platform (TCS / SBI YONO 2.0)**: PostgreSQL query optimization achieving **~30% latency reduction**, production incident root-cause analysis.
 - **AI Vector Backend (Kuanta)**: FastAPI + Milvus vector database handling 3M+ records.
 - **SaaS Backend (Markoknow)**: Node.js + Redis caching achieving **~60% latency reduction**.
@@ -187,7 +187,7 @@ export function getDeterministicFallback(userMessage: string): string {
 
   return `I am Sameer Ali's portfolio assistant. 
 I can share verified details about:
-- **Experience**: Techdome (Healthcare EMR), Kuanta (AI & Milvus), TCS (SBI YONO 2.0), Markoknow
+- **Experience**: Techdome (EMR Platform), Kuanta (AI & Milvus), TCS (SBI YONO 2.0), Markoknow
 - **Projects**: Growza, MPRAR Central CRM, JourneyWise AI, Movie Library, Kuanta AI
 - **Skills**: React, Next.js, TypeScript, Node.js, Python, FastAPI, PostgreSQL, Milvus, Redis, Docker
 - **Credentials**: B.Tech AI (CGPA 8.95), Azure Certified, 250+ DSA problems

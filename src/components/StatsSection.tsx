@@ -9,7 +9,7 @@ export function StatsSection() {
       icon: Terminal,
       value: "SDE-1",
       label: "Current Role",
-      detail: "Techdome Healthcare EMR",
+      detail: "Techdome",
       badge: "Indore / Active",
       accent: "text-[var(--accent)]",
     },
@@ -47,9 +47,8 @@ export function StatsSection() {
           return (
             <div
               key={stat.label}
-              className={`flex flex-col justify-between ${
-                idx !== 0 ? "sm:pl-6 sm:pt-0 pt-6" : ""
-              } ${idx !== stats.length - 1 ? "sm:pr-6" : ""}`}
+              className={`flex flex-col justify-between ${idx !== 0 ? "sm:pl-6 sm:pt-0 pt-6" : ""
+                } ${idx !== stats.length - 1 ? "sm:pr-6" : ""}`}
             >
               <div className="flex items-center justify-between mb-3">
                 <div className="w-10 h-10 rounded-xl bg-[color-mix(in_srgb,var(--accent)_10%,transparent)] border border-[var(--border)] flex items-center justify-center">

@@ -48,7 +48,7 @@ export function Hero() {
 
             {/* Subheading / Human Bio */}
             <p className="text-base sm:text-lg text-[var(--text-muted)] leading-relaxed max-w-2xl mb-8">
-              Hi, I&apos;m <strong className="text-[var(--text)] font-semibold">Sameer Ali</strong>. Software Engineer with 2.5+ years of production experience crafting scalable enterprise web apps (Techdome Healthcare), vector-search pipelines indexing 3M+ records in Milvus (Kuanta), and high-throughput banking systems (SBI YONO 2.0 at TCS).
+              Hi, I&apos;m <strong className="text-[var(--text)] font-semibold">Sameer Ali</strong>. Software Engineer with 2.5+ years of production experience crafting scalable enterprise web apps at Techdome, vector-search pipelines indexing 3M+ records in Milvus (Kuanta), and high-throughput banking systems (SBI YONO 2.0 at TCS).
             </p>
 
             {/* Action Buttons */}
@@ -114,11 +114,10 @@ export function Hero() {
                 <button
                   type="button"
                   onClick={() => setActiveView("profile")}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all flex items-center gap-1.5 cursor-pointer ${
-                    activeView === "profile"
+                  className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all flex items-center gap-1.5 cursor-pointer ${activeView === "profile"
                       ? "bg-[var(--accent)] text-[var(--accent-dark)] font-bold shadow-sm"
                       : "text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--panel)]"
-                  }`}
+                    }`}
                 >
                   <User className="w-3.5 h-3.5" />
                   <span>Engineer Profile</span>
@@ -126,11 +125,10 @@ export function Hero() {
                 <button
                   type="button"
                   onClick={() => setActiveView("console")}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all flex items-center gap-1.5 cursor-pointer ${
-                    activeView === "console"
+                  className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all flex items-center gap-1.5 cursor-pointer ${activeView === "console"
                       ? "bg-[var(--accent)] text-[var(--accent-dark)] font-bold shadow-sm"
                       : "text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--panel)]"
-                  }`}
+                    }`}
                 >
                   <Terminal className="w-3.5 h-3.5" />
                   <span>Systems Console</span>

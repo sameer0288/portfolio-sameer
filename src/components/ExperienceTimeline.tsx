@@ -23,7 +23,7 @@ export function ExperienceTimeline() {
           </div>
 
           <p className="max-w-md text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
-            2.5+ years building full-stack applications, vector-search pipelines, enterprise banking systems (SBI YONO 2.0 at TCS), and healthcare EMR software.
+            2.5+ years building full-stack applications, vector-search pipelines, enterprise banking systems (SBI YONO 2.0 at TCS), and enterprise EMR systems at Techdome.
           </p>
         </div>
 
