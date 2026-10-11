@@ -66,6 +66,7 @@ export const PORTFOLIO_DATA = {
     github: "https://github.com/sameer0288",
     linkedin: "https://www.linkedin.com/in/sameer0288/",
     resumeUrl: "/Sameer_Ali_Resume.pdf",
+    avatarUrl: "/images/sameer.jpg",
     stats: [
       { label: "Current Role", value: "SDE-1", sub: "Techdome Healthcare EMR" },
       { label: "DSA Problems", value: "250+", sub: "Competitive platforms" },

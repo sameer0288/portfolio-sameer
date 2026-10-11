@@ -58,16 +58,21 @@ export function Navbar() {
           className="flex items-center gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] rounded-lg p-1"
           aria-label="Sameer Ali - Home"
         >
-          <div className="w-10 h-10 rounded-full border border-[var(--accent)] text-[var(--accent)] font-bold text-sm flex items-center justify-center shadow-[0_0_18px_rgba(var(--accent-rgb),0.2)] group-hover:scale-105 transition-transform bg-[var(--panel)]">
-            SA
+          <div className="relative w-10 h-10 rounded-full border border-[var(--border-strong)] overflow-hidden shadow-[0_0_15px_rgba(var(--accent-rgb),0.2)] group-hover:scale-105 transition-transform bg-[var(--panel)] flex-shrink-0">
+            <img
+              src="/images/sameer.jpg"
+              alt="Sameer Ali"
+              className="w-full h-full object-cover object-top"
+            />
+            <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-[var(--bg)]" />
           </div>
           <div>
             <div className="font-bold tracking-wider text-sm sm:text-base text-[var(--text)] flex items-center gap-1.5">
               SAMEER ALI
-              <span className="inline-block w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-pulse" />
+              <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
             </div>
             <div className="text-[11px] text-[var(--text-muted)] font-mono tracking-wider">
-              SDE · GENAI DEVELOPER
+              SDE-1 @ TECHDOME · GENAI
             </div>
           </div>
         </Link>

@@ -3,7 +3,6 @@ import { Space_Grotesk, DM_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { StarfieldCanvas } from "@/components/StarfieldCanvas";
 import { ChatAssistant } from "@/components/ChatAssistant";
 
 const spaceGrotesk = Space_Grotesk({
@@ -62,7 +61,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#060913",
+  themeColor: "#090d16",
   width: "device-width",
   initialScale: 1,
 };
@@ -75,11 +74,8 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="dark" className={`${spaceGrotesk.variable} ${dmMono.variable}`}>
       <body className="min-h-screen font-sans selection:bg-[var(--accent)] selection:text-[var(--accent-dark)] antialiased relative">
-        {/* Procedural starfield canvas */}
-        <StarfieldCanvas />
-
-        {/* Nebula ambient gradients */}
-        <div className="nebula-glow" aria-hidden="true" />
+        {/* Subtle ambient lighting radiance */}
+        <div className="ambient-glow" aria-hidden="true" />
 
         {/* Subtle tech grid mesh */}
         <div className="tech-grid" aria-hidden="true" />

@@ -132,7 +132,7 @@ type ConsoleCmd = "verify" | "stack" | "contact";
 export function CosmosScene() {
   const [activeTab, setActiveTab] = useState<SystemTab["id"]>("growza");
   const [consoleOutput, setConsoleOutput] = useState<string>(
-    "System telemetry online. Click tabs above to inspect production architecture & live metrics."
+    "Production systems ready. Select a tab above to inspect architecture, metrics & live deployments."
   );
   const [lastCmd, setLastCmd] = useState<ConsoleCmd | null>(null);
 
@@ -341,7 +341,7 @@ export function CosmosScene() {
           <div className="flex items-center justify-between gap-2">
             <div className="flex items-center gap-1.5 text-[var(--text-muted)] text-[11px]">
               <Terminal className="w-3.5 h-3.5 text-[var(--accent)]" />
-              <span>Interactive Telemetry Terminal:</span>
+              <span>Interactive Systems Console:</span>
             </div>
 
             <div className="flex items-center gap-1.5">

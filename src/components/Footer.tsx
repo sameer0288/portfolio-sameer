@@ -15,8 +15,12 @@ export function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-[var(--border)]">
           {/* Brand & Subtext */}
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full border border-[var(--accent)] text-[var(--accent)] font-bold text-xs flex items-center justify-center bg-[var(--panel)]">
-              SA
+            <div className="w-8 h-8 rounded-full border border-[var(--border-strong)] overflow-hidden bg-[var(--panel)] flex-shrink-0 shadow-sm">
+              <img
+                src="/images/sameer.jpg"
+                alt="Sameer Ali"
+                className="w-full h-full object-cover object-top"
+              />
             </div>
             <div>
               <div className="font-bold text-sm text-[var(--text)] tracking-wider">
@@ -73,7 +77,7 @@ export function Footer() {
             href="#home"
             className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-[var(--border)] bg-[var(--panel)] text-xs font-mono text-[var(--text-muted)] hover:text-[var(--accent)] hover:border-[var(--accent)] transition-colors"
           >
-            <span>Back to Orbit</span>
+            <span>Back to Top</span>
             <ArrowUp className="w-3.5 h-3.5" />
           </a>
         </div>
@@ -81,7 +85,7 @@ export function Footer() {
         {/* Legal & Tech disclaimer */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[var(--text-subtle)] font-mono">
           <p>© {currentYear} Sameer Ali. All rights reserved.</p>
-          <p>Cosmic Engineering Lab · Next.js App Router · Verified Portfolio Knowledge</p>
+          <p>Full-Stack Engineering & Applied GenAI · Built with Next.js, TypeScript & Tailwind</p>
         </div>
       </div>
     </footer>

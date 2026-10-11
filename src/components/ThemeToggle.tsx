@@ -17,7 +17,7 @@ export function ThemeToggle() {
     // Update theme-color meta tag
     const metaThemeColor = document.querySelector('meta[name="theme-color"]');
     if (metaThemeColor) {
-      metaThemeColor.setAttribute("content", initialTheme === "light" ? "#f4f7fb" : "#060913");
+      metaThemeColor.setAttribute("content", initialTheme === "light" ? "#f4f7fb" : "#090d16");
     }
   }, []);
 
@@ -29,7 +29,7 @@ export function ThemeToggle() {
 
     const metaThemeColor = document.querySelector('meta[name="theme-color"]');
     if (metaThemeColor) {
-      metaThemeColor.setAttribute("content", nextTheme === "light" ? "#f4f7fb" : "#060913");
+      metaThemeColor.setAttribute("content", nextTheme === "light" ? "#f4f7fb" : "#090d16");
     }
   };
 

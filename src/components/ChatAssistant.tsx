@@ -157,9 +157,13 @@ export function ChatAssistant() {
           aria-label="Open AI Portfolio Assistant"
           className="group relative flex items-center gap-3 px-4 py-3 rounded-full bg-[var(--panel-solid)] border border-[var(--border-strong)] text-[var(--text)] shadow-[0_12px_40px_rgba(0,0,0,0.5)] hover:border-[var(--accent)] hover:shadow-[0_0_30px_rgba(var(--accent-rgb),0.3)] transition-all duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] cursor-pointer"
         >
-          {/* Animated Glowing Ring */}
-          <div className="relative flex items-center justify-center w-8 h-8 rounded-full bg-[color-mix(in_srgb,var(--accent)_16%,transparent)] border border-[var(--border)] group-hover:border-[var(--accent)] transition-colors">
-            <Sparkles className="w-4 h-4 text-[var(--accent)] group-hover:scale-110 transition-transform" />
+          {/* Sameer Portrait Launcher Avatar */}
+          <div className="relative flex items-center justify-center w-9 h-9 rounded-full overflow-hidden border border-[var(--border-strong)] group-hover:border-[var(--accent)] transition-colors flex-shrink-0 shadow-sm">
+            <img
+              src="/images/sameer.jpg"
+              alt="Sameer Ali"
+              className="w-full h-full object-cover object-top"
+            />
             <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-[var(--panel-solid)] shadow-[0_0_8px_#34d399]" />
           </div>
 
@@ -191,9 +195,13 @@ export function ChatAssistant() {
           {/* Top Window Header */}
           <div className="px-4 py-3 border-b border-[var(--border)] flex items-center justify-between bg-[color-mix(in_srgb,var(--bg)_80%,transparent)]">
             <div className="flex items-center gap-2.5">
-              <div className="relative w-8 h-8 rounded-xl bg-[color-mix(in_srgb,var(--accent)_14%,transparent)] border border-[rgba(var(--accent-rgb),0.3)] flex items-center justify-center text-[var(--accent)] shadow-inner">
-                <Bot className="w-4 h-4" />
-                <span className="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-400 border border-[var(--panel-solid)] animate-pulse" />
+              <div className="relative w-8 h-8 rounded-full overflow-hidden border border-[var(--border-strong)] flex items-center justify-center flex-shrink-0 shadow-sm">
+                <img
+                  src="/images/sameer.jpg"
+                  alt="Sameer Ali"
+                  className="w-full h-full object-cover object-top"
+                />
+                <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-[var(--panel-solid)] animate-pulse" />
               </div>
               <div>
                 <div className="text-xs font-bold text-[var(--text)] flex items-center gap-1.5">
@@ -259,8 +267,12 @@ export function ChatAssistant() {
                       className={`flex gap-2.5 ${isUser ? "justify-end" : "justify-start"} group/msg`}
                     >
                       {!isUser && (
-                        <div className="w-7 h-7 rounded-lg bg-[var(--panel)] border border-[var(--border)] flex items-center justify-center text-[var(--accent)] flex-shrink-0 mt-0.5 shadow-sm">
-                          <Bot className="w-3.5 h-3.5" />
+                        <div className="w-7 h-7 rounded-full overflow-hidden border border-[var(--border)] flex-shrink-0 mt-0.5 shadow-sm">
+                          <img
+                            src="/images/sameer.jpg"
+                            alt="Sameer Ali AI"
+                            className="w-full h-full object-cover object-top"
+                          />
                         </div>
                       )}
 
@@ -322,8 +334,12 @@ export function ChatAssistant() {
 
                 {loading && (
                   <div className="flex gap-2.5 items-center text-[var(--text-muted)] animate-in fade-in duration-200">
-                    <div className="w-7 h-7 rounded-lg bg-[var(--panel)] border border-[var(--border)] flex items-center justify-center text-[var(--accent)] flex-shrink-0">
-                      <Bot className="w-3.5 h-3.5" />
+                    <div className="w-7 h-7 rounded-full overflow-hidden border border-[var(--border)] flex-shrink-0 shadow-sm">
+                      <img
+                        src="/images/sameer.jpg"
+                        alt="Sameer Ali AI"
+                        className="w-full h-full object-cover object-top"
+                      />
                     </div>
                     <div className="px-4 py-2.5 rounded-2xl bg-[var(--panel)] border border-[var(--border)] flex items-center gap-2 rounded-tl-sm">
                       <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-bounce" />
