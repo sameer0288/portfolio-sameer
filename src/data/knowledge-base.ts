@@ -42,10 +42,12 @@ WORK EXPERIENCE:
    - Scope: SBI YONO 2.0 enterprise banking platform.
    - Contributions: UI debugging, integration with backend microservices, PostgreSQL query optimization (~30% latency reduction), telemetry monitoring with Grafana, incident root-cause analysis.
 
-4. Markoknow (Jan 2023 – Sep 2024)
-   - Role: Full Stack Developer, Remote
+4. Markoknow (Jan 2023 – Sep 2024 / Internship: Jan 26 2023 – May 26 2023)
+   - Role: Full Stack Developer / Full Stack Developer Intern (MERN), Remote
    - Scope: SaaS platform backend services & APIs (Node.js, Redis).
    - Contributions: ~60% reduction in response times through Redis caching and query optimizations.
+   - Honors & Verification: Awarded "Silver Belt Badge", Certificate of Completion (Certificate ID: 110080), and Letter of Recommendation (LOR) signed by Kaushiki, Founder & CEO.
+   - Certificate & LOR Link: [View Markoknow Certificate & LOR](https://drive.google.com/file/d/1XbJS6dSRiW62hg5Lz29BGc-0ojNn38PR/view?usp=sharing)
 
 FEATURED PROJECTS:
 1. Growza (https://www.growza.me/)
@@ -153,6 +155,16 @@ You can review his complete timeline in the **Experience** section or [Download 
 - **AI Vector Backend (Kuanta)**: FastAPI + Milvus vector database handling 3M+ records.
 - **SaaS Backend (Markoknow)**: Node.js + Redis caching achieving **~60% latency reduction**.
 - **Protocols & Storage**: REST APIs, WebSockets, Redis pub/sub, MongoDB, PostgreSQL, MySQL.`,
+  },
+  {
+    keywords: ["markoknow", "lor", "certificate", "recommendation", "silver belt", "110080", "kaushiki"],
+    response: `At **Markoknow**, Sameer completed his Full Stack Developer (MERN) tenure and was awarded the prestigious **Silver Belt Badge**:
+- **Role**: Full Stack Developer / MERN Intern (Jan 26, 2023 – May 26, 2023)
+- **Certificate ID**: **110080**
+- **Issued by**: Kaushiki, Founder & CEO, Markoknow
+- **Achievements**: Built backend services in Node.js & Redis, cutting response times by ~60%.
+- 📜 **[View Markoknow Certificate & Letter of Recommendation (LOR) on Google Drive](https://drive.google.com/file/d/1XbJS6dSRiW62hg5Lz29BGc-0ojNn38PR/view?usp=sharing)**
+You can also preview the certificate directly in the **Experience** and **Resume** sections!`,
   },
   {
     keywords: ["resume", "cv", "download", "pdf"],

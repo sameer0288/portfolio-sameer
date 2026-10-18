@@ -41,9 +41,9 @@ export function SkillsGrid() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
           <div>
-            <div className="inline-flex items-center gap-2 text-[var(--accent)] mono-label mb-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono font-semibold mb-3">
               <Wrench className="w-3.5 h-3.5" />
-              <span>03 // TECHNICAL SKILLS</span>
+              <span>Technical Competencies & Stack</span>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[var(--text)]">
               Core stack & <span className="text-[var(--accent)]">technologies.</span>

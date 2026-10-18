@@ -2,12 +2,14 @@
 
 import React from "react";
 import { PORTFOLIO_DATA } from "@/data/portfolio-data";
-import { ArrowUp, Mail, FileDown } from "lucide-react";
+import { ArrowUp, Mail, FileDown, Award, FileText } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "./BrandIcons";
+import { useResumeModal } from "@/context/ResumeModalContext";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
   const { personal } = PORTFOLIO_DATA;
+  const { openResume } = useResumeModal();
 
   return (
     <footer className="border-t border-[var(--border)] bg-[color-mix(in_srgb,var(--bg)_80%,transparent)] py-12 relative z-10">
@@ -62,14 +64,14 @@ export function Footer() {
               <span>Email</span>
             </a>
 
-            <a
-              href={personal.resumeUrl}
-              download="Sameer_Ali_Resume.pdf"
-              className="text-[var(--accent)] hover:underline flex items-center gap-1.5 font-semibold"
+            <button
+              type="button"
+              onClick={() => openResume("ats")}
+              className="text-[var(--accent)] hover:underline flex items-center gap-1.5 font-semibold cursor-pointer"
             >
-              <FileDown className="w-3.5 h-3.5" />
-              <span>Download CV</span>
-            </a>
+              <FileText className="w-3.5 h-3.5" />
+              <span>Interactive Résumé & LOR</span>
+            </button>
           </div>
 
           {/* Back to Top */}

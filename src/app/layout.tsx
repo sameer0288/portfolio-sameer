@@ -4,6 +4,9 @@ import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { ChatAssistant } from "@/components/ChatAssistant";
+import { MobileBottomNav } from "@/components/MobileBottomNav";
+import { ResumeModal } from "@/components/ResumeModal";
+import { ResumeModalProvider } from "@/context/ResumeModalContext";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -74,25 +77,33 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="dark" className={`${spaceGrotesk.variable} ${dmMono.variable}`}>
       <body className="min-h-screen font-sans selection:bg-[var(--accent)] selection:text-[var(--accent-dark)] antialiased relative">
-        {/* Subtle ambient lighting radiance */}
-        <div className="ambient-glow" aria-hidden="true" />
+        <ResumeModalProvider>
+          {/* Subtle ambient lighting radiance */}
+          <div className="ambient-glow" aria-hidden="true" />
 
-        {/* Subtle tech grid mesh */}
-        <div className="tech-grid" aria-hidden="true" />
+          {/* Subtle tech grid mesh */}
+          <div className="tech-grid" aria-hidden="true" />
 
-        {/* Global sticky navigation bar */}
-        <Navbar />
+          {/* Global sticky navigation bar */}
+          <Navbar />
 
-        {/* Main application content */}
-        <main id="main-content" tabIndex={-1}>
-          {children}
-        </main>
+          {/* Main application content with mobile safe bottom spacing */}
+          <main id="main-content" tabIndex={-1} className="pb-20 md:pb-0">
+            {children}
+          </main>
 
-        {/* Global footer */}
-        <Footer />
+          {/* Global footer */}
+          <Footer />
 
-        {/* Floating AI portfolio assistant */}
-        <ChatAssistant />
+          {/* Ergonomic Mobile Bottom Navigation Dock */}
+          <MobileBottomNav />
+
+          {/* Interactive Global Résumé & Credentials Modal */}
+          <ResumeModal />
+
+          {/* Floating AI portfolio assistant */}
+          <ChatAssistant />
+        </ResumeModalProvider>
       </body>
     </html>
   );

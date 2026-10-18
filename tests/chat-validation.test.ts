@@ -64,6 +64,13 @@ test("Deterministic fallback returns direct résumé download link", () => {
   assert.ok(reply.includes("sameersheikh0288@gmail.com"));
 });
 
+test("Deterministic fallback returns Markoknow certificate ID and Drive link", () => {
+  const reply = getDeterministicFallback("Show me Markoknow certificate and LOR");
+  assert.ok(reply.includes("110080"));
+  assert.ok(reply.includes("Silver Belt"));
+  assert.ok(reply.includes("https://drive.google.com/file/d/1XbJS6dSRiW62hg5Lz29BGc-0ojNn38PR/view?usp=sharing"));
+});
+
 test("OpenRouterProvider gracefully defaults to fallback when unconfigured", async () => {
   const provider = new OpenRouterProvider();
   const res = await provider.sendMessage([{ role: "user", content: "Tell me about Sameer" }]);

@@ -32,10 +32,10 @@ interface Message {
 
 const SUGGESTED_PROMPTS = [
   "Tell me about Sameer's experience",
+  "Markoknow Silver Belt Certificate & LOR",
   "How does Growza work?",
   "What is MPRAR Central CRM?",
   "Explain JourneyWise AI & War Room",
-  "How does Movie Library use TMDB?",
   "Kuanta AI & 3M+ Milvus vectors",
   "Download Sameer's résumé",
 ];
@@ -145,7 +145,7 @@ export function ChatAssistant() {
   };
 
   return (
-    <div className="fixed bottom-5 right-5 z-50 select-none">
+    <div className="fixed bottom-20 right-4 sm:bottom-6 sm:right-6 z-40 select-none">
       {/* Floating Modern Pill Launcher */}
       {!isOpen && (
         <button
@@ -155,27 +155,27 @@ export function ChatAssistant() {
           }}
           type="button"
           aria-label="Open AI Portfolio Assistant"
-          className="group relative flex items-center gap-3 px-4 py-3 rounded-full bg-[var(--panel-solid)] border border-[var(--border-strong)] text-[var(--text)] shadow-[0_12px_40px_rgba(0,0,0,0.5)] hover:border-[var(--accent)] hover:shadow-[0_0_30px_rgba(var(--accent-rgb),0.3)] transition-all duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] cursor-pointer"
+          className="group relative flex items-center gap-2.5 px-3 py-2 sm:px-3.5 sm:py-2 rounded-full bg-slate-900/95 border border-slate-700/80 hover:border-emerald-500 text-slate-100 shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:shadow-[0_0_25px_rgba(16,185,129,0.2)] transition-all duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 cursor-pointer backdrop-blur-xl"
         >
           {/* Sameer Portrait Launcher Avatar */}
-          <div className="relative flex items-center justify-center w-9 h-9 rounded-full overflow-hidden border border-[var(--border-strong)] group-hover:border-[var(--accent)] transition-colors flex-shrink-0 shadow-sm">
+          <div className="relative flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden border border-slate-700 group-hover:border-emerald-400 transition-colors flex-shrink-0 shadow-sm">
             <img
               src="/images/sameer.jpg"
               alt="Sameer Ali"
               className="w-full h-full object-cover object-top"
             />
-            <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-[var(--panel-solid)] shadow-[0_0_8px_#34d399]" />
+            <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-400 border border-slate-900 shadow-[0_0_6px_#34d399]" />
           </div>
 
           <div className="text-left">
-            <div className="text-xs font-bold text-[var(--text)] flex items-center gap-1.5">
-              <span>Ask Sameer AI</span>
-              <span className="mono-label text-[9px] px-1.5 py-0.2 rounded bg-[color-mix(in_srgb,var(--accent)_15%,transparent)] text-[var(--accent)] font-semibold border border-[rgba(var(--accent-rgb),0.3)]">
+            <div className="text-[11px] sm:text-xs font-bold text-slate-100 flex items-center gap-1.5">
+              <span>Ask AI Guide</span>
+              <span className="text-[9px] font-mono font-bold px-1.5 py-0.2 rounded bg-emerald-500/15 text-emerald-400 border border-emerald-500/25">
                 LIVE
               </span>
             </div>
-            <div className="text-[10px] font-mono text-[var(--text-muted)]">
-              Verified Résumé & Code
+            <div className="text-[9px] sm:text-[10px] font-mono text-slate-400">
+              Verified Résumé
             </div>
           </div>
         </button>
@@ -186,8 +186,8 @@ export function ChatAssistant() {
         <div
           className={`cosmic-panel rounded-2xl border border-[var(--border-strong)] bg-[color-mix(in_srgb,var(--panel-solid)_96%,transparent)] backdrop-blur-2xl shadow-[0_25px_60px_rgba(0,0,0,0.6)] flex flex-col transition-all duration-300 overflow-hidden ${
             isMinimized
-              ? "w-80 h-14"
-              : "w-[94vw] sm:w-[440px] h-[580px] max-h-[88vh]"
+              ? "w-72 sm:w-80 h-14"
+              : "w-[92vw] sm:w-[440px] h-[520px] sm:h-[580px] max-h-[78vh] sm:max-h-[86vh]"
           }`}
           role="complementary"
           aria-label="AI Portfolio Assistant"

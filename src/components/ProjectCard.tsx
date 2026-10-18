@@ -104,9 +104,9 @@ export function ProjectCard({ project, index, onSelect }: ProjectCardProps) {
           </div>
         )}
 
-        {/* Index counter badge */}
-        <div className="absolute top-3 left-3 px-2 py-1 rounded bg-black/60 backdrop-blur-md border border-white/10 text-[10px] font-mono text-white/90">
-          0{index + 1} // {project.category}
+        {/* Category tag badge */}
+        <div className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-black/70 backdrop-blur-md border border-white/15 text-[10px] font-mono text-white/90 font-medium">
+          {project.category}
         </div>
       </div>
 

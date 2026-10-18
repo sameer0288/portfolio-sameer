@@ -31,6 +31,11 @@ export interface ExperienceItem {
   summary: string;
   bullets: string[];
   technologies: string[];
+  certificateUrl?: string;
+  certificateTitle?: string;
+  certificateId?: string;
+  certificateBadge?: string;
+  certificateImage?: string;
 }
 
 export interface SkillCategory {
@@ -52,6 +57,10 @@ export interface CertificationItem {
   title: string;
   issuer: string;
   year?: string;
+  certificateId?: string;
+  certificateUrl?: string;
+  certificateImage?: string;
+  badge?: string;
 }
 
 export const PORTFOLIO_DATA = {
@@ -287,12 +296,18 @@ async def semantic_search(query: QuerySchema):
       period: "JAN 2023 — SEP 2024",
       location: "Remote",
       type: "Full-Time",
-      summary: "Engineered scalable backend services and caching layers for a commercial SaaS product.",
+      summary: "Engineered scalable backend services and caching layers for a commercial SaaS product. Awarded the Silver Belt Badge for outstanding MERN stack performance.",
       bullets: [
         "Built backend services and REST APIs for a SaaS platform using Node.js and Redis.",
         "Achieved a ~60% reduction in response times through multi-tiered Redis caching and route optimization.",
+        "Earned the Silver Belt Badge as Full Stack Developer Intern (MERN) with Certificate ID #110080 and Letter of Recommendation (LOR) from Founder & CEO Kaushiki.",
       ],
-      technologies: ["Node.js", "Express", "Redis", "REST APIs", "Performance Optimization (~60% speedup)"],
+      technologies: ["Node.js", "Express", "Redis", "REST APIs", "MERN Stack", "Performance Optimization (~60% speedup)"],
+      certificateUrl: "https://drive.google.com/file/d/1XbJS6dSRiW62hg5Lz29BGc-0ojNn38PR/view?usp=sharing",
+      certificateTitle: "Certificate of Completion & Letter of Recommendation (LOR)",
+      certificateId: "110080",
+      certificateBadge: "Silver Belt Badge",
+      certificateImage: "/images/certifications/markoknow-certificate.png",
     },
   ] as ExperienceItem[],
 
@@ -395,6 +410,15 @@ async def semantic_search(query: QuerySchema):
   ] as EducationItem[],
 
   certifications: [
+    {
+      title: "Full Stack Developer Intern (MERN) — Silver Belt Badge",
+      issuer: "Markoknow (Kaushiki, Founder & CEO)",
+      year: "2023",
+      certificateId: "110080",
+      certificateUrl: "https://drive.google.com/file/d/1XbJS6dSRiW62hg5Lz29BGc-0ojNn38PR/view?usp=sharing",
+      certificateImage: "/images/certifications/markoknow-certificate.png",
+      badge: "Silver Belt Badge & LOR",
+    },
     { title: "Microsoft Azure Certified", issuer: "Microsoft" },
     { title: "Google Cloud Facilitator Program", issuer: "Google Cloud Platform" },
     { title: "Python for Everybody", issuer: "University of Michigan (Coursera)" },
@@ -402,6 +426,7 @@ async def semantic_search(query: QuerySchema):
   ] as CertificationItem[],
 
   achievements: [
+    "Awarded Silver Belt Badge & Letter of Recommendation (Certificate ID: 110080) at Markoknow.",
     "250+ DSA problems solved across LeetCode, HackerRank, and GeeksforGeeks.",
     "80+ public GitHub repositories demonstrating full-stack, AI, and systems engineering.",
     "Engineered vector retrieval pipeline processing 3M+ records in Milvus at Kuanta.",

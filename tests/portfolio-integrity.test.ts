@@ -69,3 +69,22 @@ test("Public resume PDF files exist on disk", () => {
   assert.ok(fs.existsSync(resume2), "public/assets/Sameer-Ali-Resume.pdf must exist");
   assert.ok(fs.statSync(resume1).size > 100000, "Resume file must be a non-empty genuine PDF");
 });
+
+test("Markoknow certificate and LOR credentials match verified Drive document", () => {
+  const markoknow = PORTFOLIO_DATA.experience.find((e) => e.company === "Markoknow");
+  assert.ok(markoknow, "Markoknow entry must exist");
+  assert.equal(markoknow.certificateId, "110080");
+  assert.equal(markoknow.certificateBadge, "Silver Belt Badge");
+  assert.equal(
+    markoknow.certificateUrl,
+    "https://drive.google.com/file/d/1XbJS6dSRiW62hg5Lz29BGc-0ojNn38PR/view?usp=sharing"
+  );
+
+  const certImage = path.join(process.cwd(), "public", "images", "certifications", "markoknow-certificate.png");
+  assert.ok(fs.existsSync(certImage), "Markoknow certificate image must exist in public directory");
+  assert.ok(fs.statSync(certImage).size > 50000, "Certificate image must be valid and non-empty");
+
+  const certItem = PORTFOLIO_DATA.certifications.find((c) => c.issuer.includes("Markoknow"));
+  assert.ok(certItem, "Markoknow must be listed under verified certifications");
+  assert.equal(certItem.certificateId, "110080");
+});
