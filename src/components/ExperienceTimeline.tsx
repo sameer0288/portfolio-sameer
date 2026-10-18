@@ -45,10 +45,10 @@ export function ExperienceTimeline() {
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono font-semibold mb-3">
               <Briefcase className="w-3.5 h-3.5" />
-              <span>Career Trajectory</span>
+              <span>Work Experience</span>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[var(--text)]">
-              Experience across <span className="text-[var(--accent)]">production systems.</span>
+              Experience building <span className="text-[var(--accent)]">production systems.</span>
             </h2>
           </div>
 
@@ -57,15 +57,61 @@ export function ExperienceTimeline() {
           </p>
         </div>
 
+        {/* Mobile-only Quick Company Switcher & Resume Pill (< lg) */}
+        <div className="lg:hidden mb-8 space-y-3">
+          <div className="flex items-center justify-between px-1">
+            <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400">Companies</span>
+            <span className="text-[10px] text-emerald-400 font-mono">4 Roles</span>
+          </div>
+
+          <div className="flex items-center gap-2 overflow-x-auto pb-2 no-scrollbar">
+            {experience.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => scrollToRole(item.id)}
+                className={`px-3 py-2 rounded-xl text-xs font-mono font-medium whitespace-nowrap flex items-center gap-1.5 border transition-all cursor-pointer flex-shrink-0 ${
+                  selectedRole === item.id
+                    ? "bg-emerald-500/15 border-emerald-500/40 text-emerald-300 font-bold shadow-sm"
+                    : "bg-slate-900/70 border-slate-800 text-slate-300 hover:text-white"
+                }`}
+              >
+                <span>{item.company}</span>
+                {item.id === "techdome" && (
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                )}
+                {item.certificateBadge && (
+                  <span className="text-[9px] px-1 rounded bg-emerald-500/20 text-emerald-300">
+                    Silver Belt
+                  </span>
+                )}
+              </button>
+            ))}
+          </div>
+
+          {/* Mobile Quick Action Pill */}
+          <div className="pt-1 flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => openResume("resume")}
+              className="w-full py-2.5 px-4 rounded-xl border border-emerald-500/35 bg-emerald-500/10 hover:bg-emerald-500/15 text-emerald-300 font-semibold text-xs flex items-center justify-center gap-2 transition-colors cursor-pointer"
+            >
+              <FileText className="w-4 h-4 text-emerald-400" />
+              <span>View Full Résumé</span>
+              <ArrowUpRight className="w-3.5 h-3.5 text-emerald-400" />
+            </button>
+          </div>
+        </div>
+
         {/* 2-Column Balanced Layout with Sticky Navigation Panel */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-          {/* Left Column: STICKY Career Navigation & Philosophy (stays in view always!) */}
-          <div className="lg:col-span-5 lg:sticky lg:top-24 lg:self-start space-y-6">
+          {/* Left Column: STICKY Career Navigation (Desktop) */}
+          <div className="hidden lg:block lg:col-span-5 lg:sticky lg:top-24 lg:self-start space-y-5">
             {/* Quick Company Directory / Jump Switcher */}
             <div className="cosmic-panel p-5 sm:p-6 rounded-2xl border border-[var(--border)] shadow-xl">
               <div className="text-xs font-mono uppercase tracking-wider text-[var(--text-muted)] mb-3 flex items-center justify-between">
-                <span>Select Company to Inspect</span>
-                <span className="text-[10px] text-emerald-400 font-semibold">4 Verified Tenures</span>
+                <span>Companies</span>
+                <span className="text-[10px] text-emerald-400 font-semibold">4 Roles</span>
               </div>
 
               <div className="space-y-2">
@@ -76,13 +122,15 @@ export function ExperienceTimeline() {
                     onClick={() => scrollToRole(item.id)}
                     className={`w-full p-3 rounded-xl border text-left transition-all duration-200 flex items-center justify-between group cursor-pointer ${
                       selectedRole === item.id
-                        ? "bg-[color-mix(in_srgb,var(--accent)_12%,transparent)] border-emerald-500/40 shadow-sm"
-                        : "bg-[var(--panel-solid)] border-[var(--border)] hover:border-slate-700 hover:bg-slate-900/60"
+                        ? "bg-emerald-500/15 border-emerald-500/40 text-emerald-300 shadow-sm"
+                        : "bg-slate-900/60 border-slate-800/80 hover:border-slate-700 hover:bg-slate-900 text-slate-300 hover:text-white"
                     }`}
                   >
                     <div>
-                      <div className="text-xs sm:text-sm font-bold text-[var(--text)] flex items-center gap-1.5">
-                        <span>{item.company}</span>
+                      <div className="text-xs sm:text-sm font-bold flex items-center gap-1.5">
+                        <span className={selectedRole === item.id ? "text-emerald-300" : "text-slate-100"}>
+                          {item.company}
+                        </span>
                         {item.id === "techdome" && (
                           <span className="text-[9px] font-mono px-1.5 py-0.2 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/25">
                             Active
@@ -94,7 +142,7 @@ export function ExperienceTimeline() {
                           </span>
                         )}
                       </div>
-                      <div className="text-[11px] text-[var(--text-muted)] font-mono mt-0.5 truncate max-w-[240px]">
+                      <div className="text-[11px] text-slate-400 font-mono mt-0.5 truncate max-w-[240px]">
                         {item.role}
                       </div>
                     </div>
@@ -102,7 +150,7 @@ export function ExperienceTimeline() {
                     <ChevronRight
                       className={`w-4 h-4 transition-transform ${
                         selectedRole === item.id
-                          ? "text-[var(--accent)] translate-x-1"
+                          ? "text-emerald-400 translate-x-1"
                           : "text-slate-600 group-hover:text-slate-400"
                       }`}
                     />
@@ -111,47 +159,30 @@ export function ExperienceTimeline() {
               </div>
 
               {/* Career Highlights Row */}
-              <div className="pt-5 mt-5 border-t border-[var(--border)] grid grid-cols-2 gap-3 text-center">
-                <div className="p-2.5 rounded-xl bg-[var(--panel-solid)] border border-[var(--border)]">
-                  <div className="text-[10px] font-mono uppercase text-[var(--text-muted)]">Total Tenure</div>
-                  <div className="text-base font-bold text-[var(--text)] mt-0.5">2.5+ Years</div>
+              <div className="pt-4 mt-4 border-t border-slate-800 grid grid-cols-2 gap-3 text-center">
+                <div className="p-3 rounded-xl bg-slate-900/60 border border-slate-800/80">
+                  <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400">Experience</div>
+                  <div className="text-sm sm:text-base font-bold text-slate-100 mt-1">2.5+ Years</div>
                 </div>
-                <div className="p-2.5 rounded-xl bg-[var(--panel-solid)] border border-[var(--border)]">
-                  <div className="text-[10px] font-mono uppercase text-[var(--text-muted)]">Target Roles</div>
-                  <div className="text-base font-bold text-[var(--accent)] mt-0.5">SDE-1 / SDE-2</div>
+                <div className="p-3 rounded-xl bg-slate-900/60 border border-slate-800/80">
+                  <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400">Focus Roles</div>
+                  <div className="text-sm sm:text-base font-bold text-emerald-400 mt-1">SDE-1 / SDE-2</div>
                 </div>
               </div>
 
-              {/* Résumé Action Button */}
-              <div className="pt-4 flex flex-col gap-2">
+              {/* Single Clean Résumé Action Button */}
+              <div className="pt-4">
                 <button
                   type="button"
-                  onClick={() => openResume("ats")}
-                  className="w-full py-3 rounded-xl bg-[var(--accent)] text-[var(--accent-dark)] font-bold text-xs font-mono flex items-center justify-center gap-2 transition-all hover:opacity-90 shadow-sm cursor-pointer"
+                  onClick={() => openResume("resume")}
+                  className="w-full py-3 px-4 rounded-xl border border-emerald-500/40 bg-gradient-to-r from-emerald-500/15 via-emerald-500/10 to-teal-500/10 hover:from-emerald-500/25 hover:to-teal-500/20 text-slate-100 font-semibold text-xs sm:text-sm flex items-center justify-between transition-all duration-200 group shadow-sm hover:shadow-[0_0_20px_rgba(16,185,129,0.15)] cursor-pointer"
                 >
-                  <FileText className="w-4 h-4" />
-                  <span>Inspect Complete ATS Résumé</span>
+                  <span className="flex items-center gap-2.5">
+                    <FileText className="w-4 h-4 text-emerald-400" />
+                    <span>View Full Résumé</span>
+                  </span>
+                  <ArrowUpRight className="w-4 h-4 text-emerald-400/80 group-hover:text-emerald-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </button>
-
-                <button
-                  type="button"
-                  onClick={() => openResume("markoknow")}
-                  className="w-full py-2.5 rounded-xl border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 font-semibold text-xs font-mono flex items-center justify-center gap-2 transition-colors hover:bg-emerald-500/15 cursor-pointer"
-                >
-                  <Award className="w-4 h-4" />
-                  <span>View Markoknow Certificate & LOR</span>
-                </button>
-              </div>
-            </div>
-
-            {/* Verified Credentials Trust Badge */}
-            <div className="cosmic-panel p-4 sm:p-5 rounded-2xl border border-[var(--border)] flex items-center gap-3.5 shadow-sm">
-              <div className="w-9 h-9 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 flex-shrink-0">
-                <CheckCircle2 className="w-4 h-4" />
-              </div>
-              <div className="text-xs text-[var(--text-muted)] leading-relaxed">
-                <strong className="text-[var(--text)] block mb-0.5">Grounded Career History</strong>
-                All companies, tenures, titles, and metrics strictly correspond to verified records and letters of recommendation.
               </div>
             </div>
           </div>
@@ -212,26 +243,28 @@ export function ExperienceTimeline() {
                   {isMarkoknow && (
                     <div className="mb-6 p-5 sm:p-6 rounded-2xl bg-gradient-to-b from-slate-900/90 to-slate-950 border border-emerald-500/30 shadow-2xl space-y-4">
                       {/* Top Header of Credential */}
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-3">
-                        <div className="flex items-center gap-2.5">
-                          <div className="w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 flex-shrink-0">
+                      <div className="flex flex-col md:flex-row md:items-center justify-between gap-3.5 border-b border-slate-800 pb-3.5">
+                        <div className="flex items-start gap-3">
+                          <div className="w-9 h-9 rounded-xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 flex-shrink-0 mt-0.5">
                             <Award className="w-4 h-4" />
                           </div>
                           <div>
-                            <div className="text-xs sm:text-sm font-bold text-slate-100 flex items-center gap-2 flex-wrap">
-                              <span>Certificate of Completion & LOR</span>
+                            <div className="flex items-center gap-2 flex-wrap">
+                              <span className="text-xs sm:text-sm font-bold text-slate-100">
+                                Certificate of Completion & Letter of Recommendation
+                              </span>
                               <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
                                 ID: #{item.certificateId}
                               </span>
                             </div>
-                            <div className="text-[11px] text-emerald-400 font-mono">
-                              Silver Belt Badge · Kaushiki, Founder & CEO
+                            <div className="text-[11px] text-emerald-400 font-mono mt-0.5">
+                              Silver Belt Badge · Markoknow Full Stack Internship
                             </div>
                           </div>
                         </div>
 
                         {/* Action buttons */}
-                        <div className="flex items-center gap-2 self-start sm:self-auto flex-wrap">
+                        <div className="flex items-center gap-2 self-start sm:self-auto flex-shrink-0 pt-1 md:pt-0">
                           <button
                             type="button"
                             onClick={() => openResume("markoknow")}

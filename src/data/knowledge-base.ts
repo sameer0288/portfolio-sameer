@@ -46,7 +46,7 @@ WORK EXPERIENCE:
    - Role: Full Stack Developer / Full Stack Developer Intern (MERN), Remote
    - Scope: SaaS platform backend services & APIs (Node.js, Redis).
    - Contributions: ~60% reduction in response times through Redis caching and query optimizations.
-   - Honors & Verification: Awarded "Silver Belt Badge", Certificate of Completion (Certificate ID: 110080), and Letter of Recommendation (LOR) signed by Kaushiki, Founder & CEO.
+   - Honors & Verification: Awarded "Silver Belt Badge", Certificate of Completion (Certificate ID: 110080), and official Letter of Recommendation (LOR).
    - Certificate & LOR Link: [View Markoknow Certificate & LOR](https://drive.google.com/file/d/1XbJS6dSRiW62hg5Lz29BGc-0ojNn38PR/view?usp=sharing)
 
 FEATURED PROJECTS:
@@ -65,7 +65,7 @@ FEATURED PROJECTS:
    - Category: AI & GenAI Career Platform
    - Role: Creator & Lead Developer
    - Stack: Next.js, GenAI APIs, TypeScript, Tailwind CSS
-   - Description: AI career platform with automated résumé parsing, ATS-style scoring & feedback, 72/100 readiness rubrics, and interactive AI interview War Room practice.
+   - Description: AI career platform with automated résumé evaluation, ATS-style scoring & feedback, 72/100 readiness rubrics, and interactive AI mock interview practice.
 
 4. Movie Library Platform (https://movie-library-flame.vercel.app/ | https://github.com/sameer0288/movie-library)
    - Category: Full Stack Media Discovery Platform
@@ -157,11 +157,11 @@ You can review his complete timeline in the **Experience** section or [Download 
 - **Protocols & Storage**: REST APIs, WebSockets, Redis pub/sub, MongoDB, PostgreSQL, MySQL.`,
   },
   {
-    keywords: ["markoknow", "lor", "certificate", "recommendation", "silver belt", "110080", "kaushiki"],
+    keywords: ["markoknow", "lor", "certificate", "recommendation", "silver belt", "110080"],
     response: `At **Markoknow**, Sameer completed his Full Stack Developer (MERN) tenure and was awarded the prestigious **Silver Belt Badge**:
 - **Role**: Full Stack Developer / MERN Intern (Jan 26, 2023 – May 26, 2023)
 - **Certificate ID**: **110080**
-- **Issued by**: Kaushiki, Founder & CEO, Markoknow
+- **Issued by**: Markoknow Leadership
 - **Achievements**: Built backend services in Node.js & Redis, cutting response times by ~60%.
 - 📜 **[View Markoknow Certificate & Letter of Recommendation (LOR) on Google Drive](https://drive.google.com/file/d/1XbJS6dSRiW62hg5Lz29BGc-0ojNn38PR/view?usp=sharing)**
 You can also preview the certificate directly in the **Experience** and **Resume** sections!`,

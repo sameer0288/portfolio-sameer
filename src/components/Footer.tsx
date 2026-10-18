@@ -66,7 +66,7 @@ export function Footer() {
 
             <button
               type="button"
-              onClick={() => openResume("ats")}
+              onClick={() => openResume("resume")}
               className="text-[var(--accent)] hover:underline flex items-center gap-1.5 font-semibold cursor-pointer"
             >
               <FileText className="w-3.5 h-3.5" />

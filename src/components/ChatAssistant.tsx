@@ -35,7 +35,7 @@ const SUGGESTED_PROMPTS = [
   "Markoknow Silver Belt Certificate & LOR",
   "How does Growza work?",
   "What is MPRAR Central CRM?",
-  "Explain JourneyWise AI & War Room",
+  "Explain JourneyWise AI & Interview Prep",
   "Kuanta AI & 3M+ Milvus vectors",
   "Download Sameer's résumé",
 ];
@@ -53,7 +53,7 @@ export function ChatAssistant() {
       id: "init",
       role: "assistant",
       content:
-        "Hi! I'm **Sameer's Portfolio AI**. Ask me anything about his **2.5+ years of engineering**, production projects (**Growza**, **MPRAR Central**, **JourneyWise**, **Movie Library**, **Kuanta**), or tech stack. Every answer is grounded in his verified résumé.",
+        "Hi! I'm **Sameer's Portfolio AI**. Ask me anything about his **2.5+ years of engineering**, production projects (**Growza**, **MPRAR Central**, **JourneyWise**, **Movie Library**, **Kuanta**), or tech stack.",
     },
   ]);
 
@@ -175,7 +175,7 @@ export function ChatAssistant() {
               </span>
             </div>
             <div className="text-[9px] sm:text-[10px] font-mono text-slate-400">
-              Verified Résumé
+              Interactive Guide
             </div>
           </div>
         </button>
@@ -211,7 +211,7 @@ export function ChatAssistant() {
                   </span>
                 </div>
                 <div className="text-[10px] font-mono text-[var(--text-muted)] flex items-center gap-1">
-                  <span>Grounding: Verified Knowledge Base</span>
+                  <span>Knowledge Base Live</span>
                 </div>
               </div>
             </div>
@@ -297,7 +297,7 @@ export function ChatAssistant() {
                                   <span className="truncate">{msg.note}</span>
                                 </>
                               ) : (
-                                <span>Verified Portfolio Grounding</span>
+                                <span>Portfolio Assistant</span>
                               )}
                             </span>
 

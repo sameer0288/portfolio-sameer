@@ -106,9 +106,9 @@ export function Navbar() {
           {/* Quick Resume & LOR button */}
           <button
             type="button"
-            onClick={() => openResume("ats")}
+            onClick={() => openResume("resume")}
             className="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-lg border border-slate-700/80 bg-slate-900/90 hover:border-emerald-500 text-xs font-mono font-semibold text-slate-200 transition-all duration-200 hover:-translate-y-0.5 shadow-sm cursor-pointer"
-            title="Open Interactive Résumé & Markoknow Certificate"
+            title="Open Résumé & Credentials"
           >
             <FileText className="w-3.5 h-3.5 text-emerald-400" />
             <span>CV & LOR</span>

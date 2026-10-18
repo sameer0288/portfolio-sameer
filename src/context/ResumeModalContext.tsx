@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useState, ReactNode } from "react";
 
-export type ResumeTab = "ats" | "markoknow" | "pdf";
+export type ResumeTab = "resume" | "ats" | "markoknow" | "pdf";
 
 interface ResumeModalContextType {
   isOpen: boolean;
@@ -16,9 +16,9 @@ const ResumeModalContext = createContext<ResumeModalContextType | undefined>(und
 
 export function ResumeModalProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState<ResumeTab>("ats");
+  const [activeTab, setActiveTab] = useState<ResumeTab>("resume");
 
-  const openResume = (tab: ResumeTab = "ats") => {
+  const openResume = (tab: ResumeTab = "resume") => {
     setActiveTab(tab);
     setIsOpen(true);
   };

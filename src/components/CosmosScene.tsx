@@ -73,18 +73,18 @@ const SYSTEMS: SystemTab[] = [
   {
     id: "journeywise",
     name: "JourneyWise AI",
-    badge: "AI War Room",
+    badge: "Mock Interview",
     accent: "#38bdf8",
     domain: "journeywise-ai.vercel.app",
-    title: "AI Career Platform & Interview War Room",
-    subtitle: "Automated résumé parsing, structured ATS rubrics & mock interview simulator",
+    title: "AI Career Platform & Interview Simulator",
+    subtitle: "Automated résumé parsing, structured rubrics & mock interview simulator",
     stats: [
       { label: "Readiness Score", value: "72 / 100", detail: "Schema rubric rating" },
-      { label: "Simulation", value: "War Room", detail: "Interactive AI practice" },
+      { label: "Simulation", value: "Mock Interview", detail: "Interactive AI practice" },
       { label: "Analysis", value: "Resume vs JD", detail: "Gap & keyword matching" },
       { label: "Inference", value: "Next.js + LLM", detail: "Structured output JSON" },
     ],
-    flow: ["Candidate Resume", "LLM Structured Parser", "Interactive War Room"],
+    flow: ["Candidate Resume", "LLM Structured Parser", "Mock Interview Simulator"],
     liveUrl: "https://journeywise-ai.vercel.app/",
     icon: Sparkles,
   },
@@ -143,7 +143,7 @@ export function CosmosScene() {
     setLastCmd(cmd);
     if (cmd === "verify") {
       setConsoleOutput(
-        "✓ Growza: WhatsApp retention live · ✓ Central CRM: 28 co / £2.6k MRR · ✓ JourneyWise: 72/100 War Room · ✓ Movie Library: TMDB 8.4 rating · ✓ Kuanta: 3M+ Milvus vectors healthy."
+        "✓ Growza: WhatsApp retention live · ✓ Central CRM: 28 co / £2.6k MRR · ✓ JourneyWise: 72/100 Readiness · ✓ Movie Library: TMDB 8.4 rating · ✓ Kuanta: 3M+ Milvus vectors healthy."
       );
     } else if (cmd === "stack") {
       setConsoleOutput(

@@ -62,7 +62,7 @@ export function MobileBottomNav() {
               <button
                 key={item.id}
                 type="button"
-                onClick={() => openResume("ats")}
+                onClick={() => openResume("resume")}
                 className={`relative flex flex-col items-center justify-center py-1 px-1 rounded-xl transition-all duration-200 active:scale-95 cursor-pointer group ${
                   isResumeActive
                     ? "text-emerald-400 bg-emerald-500/15"

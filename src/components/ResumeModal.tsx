@@ -101,7 +101,7 @@ Grade: ${e.grade} ${e.honors ? `| ${e.honors}` : ""}`
   .join("\n")}
 
 CERTIFICATIONS & CREDENTIALS
-• Full Stack Developer Intern (MERN) — Silver Belt Badge (Cert ID: 110080), Markoknow (Founder & CEO Kaushiki)
+• Full Stack Developer Intern (MERN) — Silver Belt Badge (Cert ID: 110080), Markoknow
   Drive Link: https://drive.google.com/file/d/1XbJS6dSRiW62hg5Lz29BGc-0ojNn38PR/view?usp=sharing
 • Microsoft Azure Certified
 • Google Cloud Facilitator Program (GCP)
@@ -149,7 +149,7 @@ ${achievements.map((a) => `• ${a}`).join("\n")}
                   Sameer Ali — Résumé & Credentials
                 </h2>
                 <span className="hidden sm:inline-flex items-center gap-1 text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
-                  <CheckCircle2 className="w-3 h-3 inline" /> Verified SDE
+                  <CheckCircle2 className="w-3 h-3 inline" /> SDE-1
                 </span>
               </div>
               <p className="text-xs text-[var(--text-muted)] font-mono">
@@ -163,18 +163,18 @@ ${achievements.map((a) => `• ${a}`).join("\n")}
             <button
               type="button"
               onClick={handleCopyText}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[var(--border)] bg-[var(--panel)] hover:border-[var(--accent)] text-xs font-mono text-[var(--text)] transition-colors cursor-pointer"
-              title="Copy ATS Plain Text"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-700/80 bg-slate-900/80 hover:border-emerald-500/50 text-xs font-mono text-slate-200 transition-colors cursor-pointer"
+              title="Copy Plain Text"
             >
               {copied ? (
                 <>
                   <Check className="w-3.5 h-3.5 text-emerald-400" />
-                  <span className="text-emerald-400 font-semibold">Copied ATS!</span>
+                  <span className="text-emerald-400 font-semibold">Copied!</span>
                 </>
               ) : (
                 <>
-                  <Copy className="w-3.5 h-3.5 text-[var(--accent)]" />
-                  <span>Copy ATS</span>
+                  <Copy className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>Copy Text</span>
                 </>
               )}
             </button>
@@ -182,17 +182,17 @@ ${achievements.map((a) => `• ${a}`).join("\n")}
             <button
               type="button"
               onClick={handlePrint}
-              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[var(--border)] bg-[var(--panel)] hover:border-[var(--accent)] text-xs font-mono text-[var(--text)] transition-colors cursor-pointer"
+              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-700/80 bg-slate-900/80 hover:border-emerald-500/50 text-xs font-mono text-slate-200 transition-colors cursor-pointer"
               title="Print Résumé"
             >
-              <Printer className="w-3.5 h-3.5 text-[var(--text-muted)]" />
+              <Printer className="w-3.5 h-3.5 text-slate-400" />
               <span>Print</span>
             </button>
 
             <a
               href="/Sameer_Ali_Resume.pdf"
               download="Sameer_Ali_Resume.pdf"
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[var(--accent)] text-[var(--accent-dark)] text-xs font-bold transition-all hover:opacity-90 shadow-sm"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-bold transition-all shadow-sm cursor-pointer"
               title="Download PDF Résumé"
             >
               <FileDown className="w-3.5 h-3.5" />
@@ -202,7 +202,7 @@ ${achievements.map((a) => `• ${a}`).join("\n")}
             <button
               type="button"
               onClick={closeResume}
-              className="w-8 h-8 rounded-lg border border-[var(--border)] bg-[var(--panel)] hover:bg-rose-500/10 hover:border-rose-500/30 hover:text-rose-400 flex items-center justify-center text-[var(--text-muted)] transition-colors cursor-pointer ml-1"
+              className="w-8 h-8 rounded-lg border border-slate-700/80 bg-slate-900/80 hover:bg-rose-500/10 hover:border-rose-500/40 hover:text-rose-400 flex items-center justify-center text-slate-400 transition-colors cursor-pointer ml-1"
               aria-label="Close Résumé Modal"
             >
               <X className="w-4 h-4" />
@@ -211,18 +211,18 @@ ${achievements.map((a) => `• ${a}`).join("\n")}
         </div>
 
         {/* View Selection Tabs */}
-        <div className="px-4 sm:px-6 py-2.5 border-b border-[var(--border)] bg-[var(--panel)] flex items-center gap-2 overflow-x-auto no-scrollbar flex-shrink-0">
+        <div className="px-4 sm:px-6 py-2.5 border-b border-slate-800 bg-slate-900/60 flex items-center gap-2 overflow-x-auto no-scrollbar flex-shrink-0">
           <button
             type="button"
-            onClick={() => setActiveTab("ats")}
+            onClick={() => setActiveTab("resume")}
             className={`px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium flex items-center gap-2 whitespace-nowrap transition-all cursor-pointer ${
-              activeTab === "ats"
-                ? "bg-[var(--accent)] text-[var(--accent-dark)] font-bold shadow-sm"
-                : "text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[color-mix(in_srgb,var(--border)_50%,transparent)]"
+              activeTab === "resume" || activeTab === "ats"
+                ? "bg-emerald-500/15 text-emerald-300 border border-emerald-500/35 font-semibold shadow-sm"
+                : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 border border-transparent"
             }`}
           >
             <FileText className="w-3.5 h-3.5" />
-            <span>Interactive ATS Résumé</span>
+            <span>Full Résumé</span>
           </button>
 
           <button
@@ -230,13 +230,13 @@ ${achievements.map((a) => `• ${a}`).join("\n")}
             onClick={() => setActiveTab("markoknow")}
             className={`px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium flex items-center gap-2 whitespace-nowrap transition-all cursor-pointer relative ${
               activeTab === "markoknow"
-                ? "bg-[var(--accent)] text-[var(--accent-dark)] font-bold shadow-sm"
-                : "text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[color-mix(in_srgb,var(--border)_50%,transparent)]"
+                ? "bg-emerald-500/15 text-emerald-300 border border-emerald-500/35 font-semibold shadow-sm"
+                : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 border border-transparent"
             }`}
           >
             <Award className="w-3.5 h-3.5" />
             <span>Markoknow Certificate & LOR</span>
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
           </button>
 
           <button
@@ -244,19 +244,19 @@ ${achievements.map((a) => `• ${a}`).join("\n")}
             onClick={() => setActiveTab("pdf")}
             className={`px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium flex items-center gap-2 whitespace-nowrap transition-all cursor-pointer ${
               activeTab === "pdf"
-                ? "bg-[var(--accent)] text-[var(--accent-dark)] font-bold shadow-sm"
-                : "text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[color-mix(in_srgb,var(--border)_50%,transparent)]"
+                ? "bg-emerald-500/15 text-emerald-300 border border-emerald-500/35 font-semibold shadow-sm"
+                : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 border border-transparent"
             }`}
           >
             <Eye className="w-3.5 h-3.5" />
-            <span>PDF Document Preview</span>
+            <span>PDF Document</span>
           </button>
         </div>
 
         {/* Modal Scrollable Body */}
         <div className="flex-1 overflow-y-auto p-4 sm:p-8 bg-[var(--bg)] selection:bg-[var(--accent)] selection:text-[var(--accent-dark)]">
-          {/* TAB 1: INTERACTIVE ATS RÉSUMÉ */}
-          {activeTab === "ats" && (
+          {/* TAB 1: FULL RÉSUMÉ */}
+          {(activeTab === "resume" || activeTab === "ats") && (
             <div className="max-w-4xl mx-auto space-y-8 text-[var(--text)] font-sans print:max-w-none">
               {/* Résumé Header */}
               <div className="border-b border-[var(--border)] pb-6">
@@ -475,7 +475,7 @@ ${achievements.map((a) => `• ${a}`).join("\n")}
               <div>
                 <h3 className="text-xs font-mono uppercase tracking-widest text-[var(--accent)] font-bold mb-3 flex items-center gap-2">
                   <Award className="w-3.5 h-3.5" />
-                  <span>Certifications & Verified Honors</span>
+                  <span>Certifications & Credentials</span>
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-4">
                   {certifications.map((cert, cIdx) => (
@@ -496,7 +496,7 @@ ${achievements.map((a) => `• ${a}`).join("\n")}
 
                 <div className="p-4 rounded-xl border border-[var(--border)] bg-[var(--panel)]">
                   <div className="text-xs font-mono uppercase text-[var(--accent)] font-semibold mb-2">
-                    Verified Production Milestones
+                    Key Achievements
                   </div>
                   <ul className="space-y-1.5">
                     {achievements.map((item, i) => (
@@ -517,9 +517,9 @@ ${achievements.map((a) => `• ${a}`).join("\n")}
               {/* Highlight Banner */}
               <div className="p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-emerald-500/15 via-teal-500/10 to-transparent border border-emerald-500/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-mono font-bold mb-2">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-400 text-xs font-mono font-medium mb-2 border border-emerald-500/25">
                     <ShieldCheck className="w-3.5 h-3.5" />
-                    <span>OFFICIALLY VERIFIED CREDENTIAL</span>
+                    <span>INTERNSHIP CREDENTIAL & LOR</span>
                   </div>
                   <h3 className="text-xl sm:text-2xl font-extrabold text-[var(--text)]">
                     Markoknow Certificate of Completion & LOR
@@ -572,9 +572,9 @@ ${achievements.map((a) => `• ${a}`).join("\n")}
                 </div>
 
                 <div className="p-4 rounded-xl border border-[var(--border)] bg-[var(--panel)]">
-                  <div className="text-[11px] font-mono text-[var(--text-muted)] uppercase">Signatory</div>
-                  <div className="text-sm font-bold text-[var(--text)] mt-1">Kaushiki</div>
-                  <div className="text-[11px] text-[var(--text-muted)] font-mono mt-0.5">Founder & CEO, Markoknow</div>
+                  <div className="text-[11px] font-mono text-[var(--text-muted)] uppercase">Organization</div>
+                  <div className="text-sm font-bold text-[var(--text)] mt-1">Markoknow</div>
+                  <div className="text-[11px] text-[var(--text-muted)] font-mono mt-0.5">MERN Stack Internship</div>
                 </div>
               </div>
 
@@ -585,7 +585,7 @@ ${achievements.map((a) => `• ${a}`).join("\n")}
                   <span>Letter of Recommendation & Engineering Contributions</span>
                 </h4>
                 <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed">
-                  During his tenure at Markoknow as a Full Stack Developer (MERN Stack), Sameer architected high-performance backend microservices and implemented multi-tiered Redis caching strategies that cut API response times by <strong className="text-[var(--text)] font-semibold">~60%</strong>. His dedication, clean architecture, and rapid feature turnaround earned him the company&apos;s coveted <strong className="text-emerald-400">Silver Belt Badge</strong> along with a formal recommendation from CEO Kaushiki.
+                  During his tenure at Markoknow as a Full Stack Developer (MERN Stack), Sameer architected high-performance backend microservices and implemented multi-tiered Redis caching strategies that cut API response times by <strong className="text-[var(--text)] font-semibold">~60%</strong>. His dedication, clean architecture, and rapid feature turnaround earned him the company&apos;s coveted <strong className="text-emerald-400">Silver Belt Badge</strong> along with an official Letter of Recommendation.
                 </p>
 
                 <div className="pt-3 border-t border-[var(--border)] flex flex-wrap items-center justify-between gap-3">
@@ -598,7 +598,7 @@ ${achievements.map((a) => `• ${a}`).join("\n")}
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-xs font-mono text-emerald-400 font-semibold underline hover:opacity-80"
                   >
-                    <span>Inspect Raw Drive Document</span>
+                    <span>Open in Google Drive</span>
                     <ExternalLink className="w-3.5 h-3.5" />
                   </a>
                 </div>

@@ -26,13 +26,13 @@ export function EducationAchievements() {
           <div className="lg:col-span-6 space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono font-semibold mb-2">
               <GraduationCap className="w-4 h-4" />
-              <span>Academic Foundations</span>
+              <span>Education</span>
             </div>
             <h3 className="text-2xl sm:text-3xl font-extrabold text-[var(--text)] tracking-tight">
-              Education & Computer Science Rigor
+              Education & Academic Background
             </h3>
             <p className="text-sm text-[var(--text-muted)] leading-relaxed">
-              Formal engineering degree specialized in Artificial Intelligence and strong mathematics / physics credentials.
+              B.Tech in Computer Science & Artificial Intelligence with foundational coursework in algorithms and distributed systems.
             </p>
 
             <div className="space-y-4 pt-2">
@@ -72,13 +72,13 @@ export function EducationAchievements() {
           <div className="lg:col-span-6 space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono font-semibold mb-2">
               <Trophy className="w-4 h-4" />
-              <span>Credentials & Honors</span>
+              <span>Certifications</span>
             </div>
             <h3 className="text-2xl sm:text-3xl font-extrabold text-[var(--text)] tracking-tight">
-              Certifications & Engineering Milestones
+              Certifications & Key Milestones
             </h3>
             <p className="text-sm text-[var(--text-muted)] leading-relaxed">
-              Industry cloud certifications, competitive problem solving, and production performance milestones.
+              Cloud credentials, competitive problem solving, and professional achievements.
             </p>
 
             {/* Certifications Grid */}
@@ -161,7 +161,7 @@ export function EducationAchievements() {
             <div className="cosmic-panel p-5 sm:p-6 rounded-2xl border border-[var(--border)] mt-4">
               <div className="text-xs font-mono uppercase text-[var(--accent)] font-semibold tracking-wider mb-3 flex items-center gap-1.5">
                 <BookOpen className="w-4 h-4" />
-                <span>Verified Milestones</span>
+                <span>Key Achievements</span>
               </div>
               <ul className="space-y-2.5">
                 {achievements.map((item, i) => (

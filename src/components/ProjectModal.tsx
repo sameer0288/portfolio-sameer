@@ -142,7 +142,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
             </div>
             <div className="flex items-center gap-1.5 text-xs text-emerald-400 font-mono">
               <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
-              <span>Verified Experience & Codebase</span>
+              <span>Production Codebase</span>
             </div>
           </div>
 
@@ -220,7 +220,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
           {activeTab === "metrics" && (
             <div className="space-y-4">
               <p className="text-xs text-[var(--text-muted)]">
-                Verified milestones, scale metrics, and production operational statistics:
+                Key metrics, scale, and performance statistics:
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {project.metrics?.map((metric, i) => (

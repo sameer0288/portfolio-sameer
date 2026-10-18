@@ -43,10 +43,10 @@ export function SkillsGrid() {
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono font-semibold mb-3">
               <Wrench className="w-3.5 h-3.5" />
-              <span>Technical Competencies & Stack</span>
+              <span>Skills & Stack</span>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[var(--text)]">
-              Core stack & <span className="text-[var(--accent)]">technologies.</span>
+              Core technologies & <span className="text-[var(--accent)]">tools.</span>
             </h2>
           </div>
 
