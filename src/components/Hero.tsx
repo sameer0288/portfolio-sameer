@@ -15,20 +15,20 @@ import {
   MapPin,
   CheckCircle2,
   Award,
-  ExternalLink,
   Layers,
   Sparkles,
 } from "lucide-react";
 import { PORTFOLIO_DATA } from "@/data/portfolio-data";
 
 export function Hero() {
-  const [activeTab, setActiveTab] = useState<"profile" | "code" | "certificate">("profile");
+  const [activeTab, setActiveTab] = useState<"profile" | "code">("profile");
   const [activeCodeSnippet, setActiveCodeSnippet] = useState<"kuanta" | "mprar" | "journeywise">("kuanta");
   const { openResume } = useResumeModal();
   const { personal } = PORTFOLIO_DATA;
 
   const CODE_SNIPPETS = {
     kuanta: {
+      filename: "deal_scout.py",
       title: "Kuanta AI · Milvus Vector Search",
       language: "python",
       caption: "FastAPI service performing cosine search over 3M+ indexed records",
@@ -46,6 +46,7 @@ async def semantic_search(query: QuerySchema):
     return format_ranked_startups(results)`,
     },
     mprar: {
+      filename: "timesheet_tx.sql",
       title: "MPRAR CRM · Attendance Transaction",
       language: "sql",
       caption: "Audited clock-in/out SQL transaction handling geo-spatial coordinates",
@@ -60,12 +61,13 @@ WHERE employee_timesheets.clock_out_timestamp IS NULL
 RETURNING id, shift_id, duration_minutes;`,
     },
     journeywise: {
-      title: "JourneyWise AI · Structured Résumé Parser",
+      filename: "evaluator.ts",
+      title: "JourneyWise AI · Structured Parser",
       language: "typescript",
       caption: "Schema-grounded LLM inference pipeline generating rubric readiness scores",
       code: `// JourneyWise AI - Schema-grounded rubric evaluation
-export async function evaluateResumeAgainstATS(resumeText: string, jobDescription: string) {
-  const prompt = \`Evaluate candidate resume against target role requirements.
+export async function evaluateCandidateRubric(resumeText: string, jobDescription: string) {
+  const prompt = \`Evaluate candidate profile against target role requirements.
 Return JSON strictly adhering to schema:
 { readinessScore: number, strengths: string[], missingKeywords: string[], gaps: string[] }\`;
   return await llmClient.generateStructuredOutput({ 
@@ -165,11 +167,11 @@ Return JSON strictly adhering to schema:
           <div className="lg:col-span-5 flex flex-col items-center justify-center">
             {/* View Mode Toggle Controls */}
             <div className="flex items-center justify-between mb-3 w-full max-w-[560px]">
-              <div className="p-1 rounded-xl bg-slate-900/80 border border-slate-800 inline-flex gap-1 shadow-sm">
+              <div className="p-1 rounded-xl bg-slate-900/90 backdrop-blur-md border border-slate-800/80 inline-flex items-center gap-1 shadow-sm">
                 <button
                   type="button"
                   onClick={() => setActiveTab("profile")}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all flex items-center gap-1.5 cursor-pointer ${
+                  className={`px-3.5 py-1.5 rounded-lg text-xs font-mono transition-all duration-200 flex items-center gap-2 cursor-pointer ${
                     activeTab === "profile"
                       ? "bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 font-semibold shadow-sm"
                       : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 border border-transparent"
@@ -182,35 +184,24 @@ Return JSON strictly adhering to schema:
                 <button
                   type="button"
                   onClick={() => setActiveTab("code")}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all flex items-center gap-1.5 cursor-pointer ${
+                  className={`px-3.5 py-1.5 rounded-lg text-xs font-mono transition-all duration-200 flex items-center gap-2 cursor-pointer ${
                     activeTab === "code"
                       ? "bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 font-semibold shadow-sm"
                       : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 border border-transparent"
                   }`}
                 >
                   <Code2 className="w-3.5 h-3.5" />
-                  <span>Code Proof</span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setActiveTab("certificate")}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-all flex items-center gap-1.5 cursor-pointer relative ${
-                    activeTab === "certificate"
-                      ? "bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 font-semibold shadow-sm"
-                      : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 border border-transparent"
-                  }`}
-                >
-                  <Award className="w-3.5 h-3.5" />
-                  <span>Markoknow LOR</span>
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span>Production Code</span>
                 </button>
               </div>
 
-              <span className="text-[11px] font-mono text-[var(--text-muted)] hidden sm:inline-flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+              <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900/70 border border-slate-800/70 text-[11px] font-mono text-slate-300 shadow-sm">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+                </span>
                 <span>SDE-1 @ Techdome</span>
-              </span>
+              </div>
             </div>
 
             {/* TAB 1: GENUINE ENGINEER PROFILE */}
@@ -286,9 +277,9 @@ Return JSON strictly adhering to schema:
               </div>
             )}
 
-            {/* TAB 2: PRODUCTION CODE PROOF */}
+            {/* TAB 2: PRODUCTION CODE */}
             {activeTab === "code" && (
-              <div className="w-full max-w-[560px] rounded-2xl border border-[var(--border-strong)] bg-[#0c121e] shadow-2xl p-4 sm:p-5 flex flex-col justify-between min-h-[460px] animate-in fade-in duration-200">
+              <div className="w-full max-w-[560px] rounded-2xl border border-[var(--border-strong)] bg-[#0c121e] shadow-2xl p-4 sm:p-5 flex flex-col justify-between min-h-[460px] sm:min-h-[490px] animate-in fade-in duration-200">
                 <div>
                   {/* Code snippet sub-tabs */}
                   <div className="flex items-center justify-between border-b border-slate-800 pb-3 mb-3">
@@ -296,17 +287,19 @@ Return JSON strictly adhering to schema:
                       <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
                       <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
                       <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
-                      <span className="text-xs font-mono text-slate-400 ml-2">production-code.ts</span>
+                      <span className="text-xs font-mono text-slate-400 ml-2">
+                        {CODE_SNIPPETS[activeCodeSnippet].filename}
+                      </span>
                     </div>
 
                     <div className="flex items-center gap-1 bg-slate-900 p-0.5 rounded-lg border border-slate-800">
                       <button
                         type="button"
                         onClick={() => setActiveCodeSnippet("kuanta")}
-                        className={`px-2 py-0.5 rounded text-[10px] font-mono transition-colors ${
+                        className={`px-2.5 py-1 rounded text-[10px] font-mono transition-colors cursor-pointer ${
                           activeCodeSnippet === "kuanta"
-                            ? "bg-emerald-500/20 text-emerald-300 font-bold"
-                            : "text-slate-400 hover:text-slate-200"
+                            ? "bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/30"
+                            : "text-slate-400 hover:text-slate-200 border border-transparent"
                         }`}
                       >
                         Milvus
@@ -314,10 +307,10 @@ Return JSON strictly adhering to schema:
                       <button
                         type="button"
                         onClick={() => setActiveCodeSnippet("mprar")}
-                        className={`px-2 py-0.5 rounded text-[10px] font-mono transition-colors ${
+                        className={`px-2.5 py-1 rounded text-[10px] font-mono transition-colors cursor-pointer ${
                           activeCodeSnippet === "mprar"
-                            ? "bg-purple-500/20 text-purple-300 font-bold"
-                            : "text-slate-400 hover:text-slate-200"
+                            ? "bg-purple-500/20 text-purple-300 font-bold border border-purple-500/30"
+                            : "text-slate-400 hover:text-slate-200 border border-transparent"
                         }`}
                       >
                         SQL
@@ -325,13 +318,13 @@ Return JSON strictly adhering to schema:
                       <button
                         type="button"
                         onClick={() => setActiveCodeSnippet("journeywise")}
-                        className={`px-2 py-0.5 rounded text-[10px] font-mono transition-colors ${
+                        className={`px-2.5 py-1 rounded text-[10px] font-mono transition-colors cursor-pointer ${
                           activeCodeSnippet === "journeywise"
-                            ? "bg-cyan-500/20 text-cyan-300 font-bold"
-                            : "text-slate-400 hover:text-slate-200"
+                            ? "bg-cyan-500/20 text-cyan-300 font-bold border border-cyan-500/30"
+                            : "text-slate-400 hover:text-slate-200 border border-transparent"
                         }`}
                       >
-                        GenAI / LLM
+                        GenAI
                       </button>
                     </div>
                   </div>
@@ -344,7 +337,7 @@ Return JSON strictly adhering to schema:
                   </div>
 
                   {/* Code Editor Body */}
-                  <div className="p-3.5 rounded-xl bg-slate-950/90 border border-slate-800 text-[11px] font-mono text-slate-300 overflow-x-auto leading-relaxed">
+                  <div className="p-3.5 rounded-xl bg-slate-950/90 border border-slate-800 text-[11px] font-mono text-slate-300 overflow-x-auto leading-relaxed shadow-inner">
                     <pre>
                       <code>{CODE_SNIPPETS[activeCodeSnippet].code}</code>
                     </pre>
@@ -352,82 +345,17 @@ Return JSON strictly adhering to schema:
                 </div>
 
                 <div className="pt-3 border-t border-slate-800 flex items-center justify-between mt-4">
-                  <span className="text-[10px] font-mono text-emerald-400 flex items-center gap-1">
+                  <span className="text-[10px] font-mono text-emerald-400 flex items-center gap-1.5">
                     <ShieldCheck className="w-3.5 h-3.5" />
                     <span>Tested in Production</span>
                   </span>
 
                   <a
                     href="#projects"
-                    className="text-xs font-mono text-slate-300 hover:text-emerald-400 flex items-center gap-1"
+                    className="text-xs font-mono text-slate-300 hover:text-emerald-400 flex items-center gap-1 transition-colors"
                   >
                     <span>View System Case Studies</span>
                     <ArrowUpRight className="w-3.5 h-3.5" />
-                  </a>
-                </div>
-              </div>
-            )}
-
-            {/* TAB 3: MARKOKNOW CERTIFICATE & LOR SHOWCASE */}
-            {activeTab === "certificate" && (
-              <div className="w-full max-w-[560px] rounded-2xl border border-emerald-500/30 bg-[#0c1424] shadow-2xl p-4 sm:p-5 flex flex-col justify-between min-h-[460px] animate-in fade-in duration-200">
-                <div>
-                  <div className="flex items-center justify-between mb-3 border-b border-emerald-500/20 pb-2.5">
-                    <div className="inline-flex items-center gap-1.5 text-xs font-mono text-emerald-400 font-bold">
-                      <Award className="w-4 h-4 text-emerald-400" />
-                      <span>Markoknow Official Credential</span>
-                    </div>
-                    <span className="text-[10px] font-mono bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded border border-emerald-500/30 font-semibold">
-                      Cert ID: 110080
-                    </span>
-                  </div>
-
-                  {/* Certificate Image Preview */}
-                  <div
-                    onClick={() => openResume("markoknow")}
-                    className="relative rounded-xl overflow-hidden border border-white/10 group cursor-pointer bg-black/60 shadow-lg mb-3"
-                  >
-                    <img
-                      src="/images/certifications/markoknow-certificate.png"
-                      alt="Markoknow Certificate of Completion"
-                      className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                      <span className="px-3.5 py-1.5 rounded-lg bg-emerald-500 text-slate-950 font-mono text-xs font-bold inline-flex items-center gap-1.5 shadow-xl">
-                        <span>Click to Enlarge & View LOR</span>
-                        <ArrowUpRight className="w-3.5 h-3.5" />
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="space-y-1.5">
-                    <div className="text-xs font-bold text-slate-100">
-                      Full Stack Developer Intern (MERN) — Silver Belt Badge
-                    </div>
-                    <p className="text-[11px] text-slate-300 leading-relaxed">
-                      Completed internship from Jan 26, 2023 to May 26, 2023. Awarded Silver Belt Badge and official Letter of Recommendation (LOR) for cutting backend response latency by ~60%.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="pt-3 border-t border-emerald-500/20 flex flex-wrap items-center justify-between gap-2 mt-4">
-                  <button
-                    type="button"
-                    onClick={() => openResume("markoknow")}
-                    className="text-xs font-mono text-emerald-400 hover:underline flex items-center gap-1 cursor-pointer font-semibold"
-                  >
-                    <span>View in Résumé Modal</span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
-                  </button>
-
-                  <a
-                    href="https://drive.google.com/file/d/1XbJS6dSRiW62hg5Lz29BGc-0ojNn38PR/view?usp=sharing"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-3 py-1.5 rounded-lg bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30 border border-emerald-500/30 text-xs font-mono font-semibold flex items-center gap-1.5 transition-colors"
-                  >
-                    <span>Open in Google Drive</span>
-                    <ExternalLink className="w-3 h-3" />
                   </a>
                 </div>
               </div>
