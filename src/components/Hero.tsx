@@ -6,17 +6,12 @@ import {
   ArrowUpRight,
   FileDown,
   Code2,
-  Server,
-  BrainCircuit,
   Database,
   ShieldCheck,
-  Terminal,
   User,
   MapPin,
   CheckCircle2,
   Award,
-  Layers,
-  Sparkles,
 } from "lucide-react";
 import { PORTFOLIO_DATA } from "@/data/portfolio-data";
 
@@ -91,47 +86,37 @@ Return JSON strictly adhering to schema:
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[var(--border-strong)] bg-[var(--panel)] backdrop-blur-md mb-5 w-fit shadow-sm">
               <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_10px_#34d399] animate-pulse" />
               <span className="mono-label text-[11px] text-[var(--text)] font-semibold">
-                SDE-1 @ Techdome · Full-Stack & GenAI Engineer
+                SDE-1 at Techdome · Open to software engineer roles
               </span>
             </div>
 
             {/* Main Editorial Headline */}
-            <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.12] text-[var(--text)] mb-5 [text-wrap:balance]">
-              <span>Building scalable web platforms, </span>
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400">
-                resilient backends & practical AI.
-              </span>
+            <h1 className="text-[2rem] sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.12] text-[var(--text)] mb-5 [text-wrap:balance]">
+              <span>I build full-stack products </span>
+              <span className="headline-accent">and the systems behind them.</span>
             </h1>
 
-            {/* Subheading / Human Bio */}
-            <p className="text-sm sm:text-base text-[var(--text-muted)] leading-relaxed max-w-2xl mb-8">
-              I&apos;m <strong className="text-[var(--text)] font-semibold">Sameer Ali</strong>, an SDE-1 at <strong className="text-[var(--text)] font-semibold">Techdome</strong> with <strong className="text-[var(--text)] font-semibold">2.5+ years of production experience</strong>. I craft high-performance web applications, scalable backend APIs, and vector search systems. From enterprise EMR platforms to indexing 3M+ records in Milvus at Kuanta, optimizing queries on SBI YONO 2.0 at TCS, and earning the Silver Belt Badge at Markoknow, I build code that scales in production.
+            <p className="text-sm sm:text-base text-[var(--text-muted)] leading-relaxed max-w-2xl mb-4">
+              {personal.bio}
+            </p>
+            <p className="text-xs sm:text-sm font-mono text-[var(--text-subtle)] mb-8 max-w-2xl">
+              React · Next.js · Node.js · Python · FastAPI · PostgreSQL · Milvus · TypeScript
             </p>
 
             {/* Action Buttons */}
             <div className="flex flex-wrap items-center gap-3 sm:gap-3.5 mb-8">
-              <a
-                href="#projects"
-                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs sm:text-sm tracking-wide transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(16,185,129,0.3)] shadow-sm cursor-pointer"
-              >
-                <span>Explore Projects</span>
+              <a href="#projects" className="btn-primary px-5 py-3 text-xs sm:text-sm">
+                <span>View projects</span>
                 <ArrowUpRight className="w-4 h-4" />
               </a>
 
-              <button
-                type="button"
-                onClick={() => openResume("resume")}
-                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl border border-slate-700/80 bg-slate-900/90 hover:border-emerald-500/50 text-slate-100 font-semibold text-xs sm:text-sm transition-all duration-200 hover:-translate-y-0.5 shadow-sm cursor-pointer"
-              >
-                <FileDown className="w-4 h-4 text-emerald-400" />
-                <span>View Full Résumé</span>
+              <button type="button" onClick={() => openResume("resume")} className="btn-secondary px-5 py-3 text-xs sm:text-sm">
+                <FileDown className="w-4 h-4 text-[var(--accent)]" />
+                <span>View résumé</span>
               </button>
 
-              <a
-                href="#contact"
-                className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-transparent hover:border-slate-800 text-slate-400 hover:text-slate-100 font-medium text-xs sm:text-sm transition-all duration-200"
-              >
-                <span>Contact Me</span>
+              <a href="#contact" className="btn-ghost px-4 py-3 text-xs sm:text-sm">
+                <span>Contact</span>
               </a>
             </div>
 
@@ -140,12 +125,12 @@ Return JSON strictly adhering to schema:
               <div className="p-3 rounded-xl bg-[var(--panel)] border border-[var(--border)]">
                 <div className="text-[11px] font-mono text-[var(--text-muted)] uppercase">Current Role</div>
                 <div className="text-xs sm:text-sm font-bold text-[var(--text)] mt-0.5">SDE-1 @ Techdome</div>
-                <div className="text-[10px] text-emerald-400 font-mono">EMR Platforms</div>
+                <div className="text-[10px] text-[var(--accent)] font-mono">EMR Platforms</div>
               </div>
 
               <div className="p-3 rounded-xl bg-[var(--panel)] border border-[var(--border)]">
                 <div className="text-[11px] font-mono text-[var(--text-muted)] uppercase">Vector Search</div>
-                <div className="text-xs sm:text-sm font-bold text-cyan-400 mt-0.5">3M+ Milvus Vectors</div>
+                <div className="text-xs sm:text-sm font-bold text-[var(--cyan)] mt-0.5">3M+ Milvus records</div>
                 <div className="text-[10px] text-[var(--text-muted)] font-mono">Kuanta AI</div>
               </div>
 
@@ -157,7 +142,7 @@ Return JSON strictly adhering to schema:
 
               <div className="p-3 rounded-xl bg-[var(--panel)] border border-[var(--border)]">
                 <div className="text-[11px] font-mono text-[var(--text-muted)] uppercase">Honors</div>
-                <div className="text-xs sm:text-sm font-bold text-emerald-400 mt-0.5">Silver Belt Badge</div>
+                <div className="text-xs sm:text-sm font-bold text-[var(--accent)] mt-0.5">Silver Belt Badge</div>
                 <div className="text-[10px] text-[var(--text-muted)] font-mono">Markoknow Cert #110080</div>
               </div>
             </div>
@@ -167,14 +152,14 @@ Return JSON strictly adhering to schema:
           <div className="lg:col-span-5 flex flex-col items-center justify-center">
             {/* View Mode Toggle Controls */}
             <div className="flex items-center justify-between mb-3 w-full max-w-[560px]">
-              <div className="p-1 rounded-xl bg-slate-900/90 backdrop-blur-md border border-slate-800/80 inline-flex items-center gap-1 shadow-sm">
+              <div className="p-1 rounded-xl bg-[var(--panel-solid)] backdrop-blur-md border border-[var(--border)] inline-flex items-center gap-1 shadow-sm">
                 <button
                   type="button"
                   onClick={() => setActiveTab("profile")}
                   className={`px-3.5 py-1.5 rounded-lg text-xs font-mono transition-all duration-200 flex items-center gap-2 cursor-pointer ${
                     activeTab === "profile"
-                      ? "bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 font-semibold shadow-sm"
-                      : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 border border-transparent"
+                      ? "bg-[color-mix(in_srgb,var(--accent)_16%,transparent)] text-[var(--accent)] border border-[var(--border-accent)] font-semibold shadow-sm"
+                      : "text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--chip-bg)] border border-transparent"
                   }`}
                 >
                   <User className="w-3.5 h-3.5" />
@@ -186,8 +171,8 @@ Return JSON strictly adhering to schema:
                   onClick={() => setActiveTab("code")}
                   className={`px-3.5 py-1.5 rounded-lg text-xs font-mono transition-all duration-200 flex items-center gap-2 cursor-pointer ${
                     activeTab === "code"
-                      ? "bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 font-semibold shadow-sm"
-                      : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 border border-transparent"
+                      ? "bg-[color-mix(in_srgb,var(--accent)_16%,transparent)] text-[var(--accent)] border border-[var(--border-accent)] font-semibold shadow-sm"
+                      : "text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--chip-bg)] border border-transparent"
                   }`}
                 >
                   <Code2 className="w-3.5 h-3.5" />
@@ -195,7 +180,7 @@ Return JSON strictly adhering to schema:
                 </button>
               </div>
 
-              <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900/70 border border-slate-800/70 text-[11px] font-mono text-slate-300 shadow-sm">
+              <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[var(--panel-solid)] border border-[var(--border)] text-[11px] font-mono text-[var(--text-muted)] shadow-sm">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
@@ -208,7 +193,7 @@ Return JSON strictly adhering to schema:
             {activeTab === "profile" && (
               <div className="w-full max-w-[560px] rounded-2xl border border-[var(--border-strong)] bg-[color-mix(in_srgb,var(--panel-solid)_95%,transparent)] backdrop-blur-2xl shadow-2xl p-4 sm:p-5 overflow-hidden transition-all duration-300 hover:border-[rgba(var(--accent-rgb),0.35)] animate-in fade-in duration-200">
                 {/* Genuine Portrait Canvas */}
-                <div className="relative w-full h-[360px] sm:h-[400px] rounded-xl overflow-hidden border border-[var(--border)] group bg-[#050811]">
+                <div className="relative w-full h-[260px] sm:h-[380px] lg:h-[400px] rounded-xl overflow-hidden border border-[var(--border)] group bg-[#050811]">
                   <img
                     src="/images/sameer.jpg"
                     alt="Sameer Ali — Software Development Engineer"
@@ -255,8 +240,8 @@ Return JSON strictly adhering to schema:
                   <div>
                     <div className="text-sm font-bold text-[var(--text)] flex items-center gap-2">
                       <span>Sameer Ali</span>
-                      <span className="text-[10px] font-mono text-emerald-400 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 font-semibold inline-flex items-center gap-1">
-                        <CheckCircle2 className="w-3 h-3 text-emerald-400 inline" />
+                      <span className="text-[10px] font-mono text-[var(--accent)] px-2 py-0.5 rounded-full bg-[color-mix(in_srgb,var(--accent)_12%,transparent)] border border-[var(--border-accent)] font-semibold inline-flex items-center gap-1">
+                        <CheckCircle2 className="w-3 h-3 text-[var(--accent)] inline" />
                         <span>SDE-1</span>
                       </span>
                     </div>
@@ -279,15 +264,15 @@ Return JSON strictly adhering to schema:
 
             {/* TAB 2: PRODUCTION CODE */}
             {activeTab === "code" && (
-              <div className="w-full max-w-[560px] rounded-2xl border border-[var(--border-strong)] bg-[#0c121e] shadow-2xl p-4 sm:p-5 flex flex-col justify-between min-h-[460px] sm:min-h-[490px] animate-in fade-in duration-200">
+              <div className="code-shell w-full max-w-[560px] p-4 sm:p-5 flex flex-col justify-between min-h-[420px] sm:min-h-[490px]">
                 <div>
                   {/* Code snippet sub-tabs */}
-                  <div className="flex items-center justify-between border-b border-slate-800 pb-3 mb-3">
-                    <div className="flex items-center gap-1.5">
+                  <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3 mb-3">
+                    <div className="flex min-w-0 items-center gap-1.5">
                       <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
                       <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
                       <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
-                      <span className="text-xs font-mono text-slate-400 ml-2">
+                      <span className="truncate text-xs font-mono text-slate-400 ml-2">
                         {CODE_SNIPPETS[activeCodeSnippet].filename}
                       </span>
                     </div>

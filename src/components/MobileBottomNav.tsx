@@ -49,7 +49,7 @@ export function MobileBottomNav() {
   return (
     <nav
       aria-label="Mobile Navigation Bar"
-      className="md:hidden fixed bottom-0 inset-x-0 z-40 border-t border-slate-800/90 bg-slate-950/95 backdrop-blur-2xl shadow-[0_-10px_35px_rgba(0,0,0,0.7)] px-2 pt-2 pb-[max(0.6rem,env(safe-area-inset-bottom))]"
+      className="md:hidden fixed bottom-0 inset-x-0 z-40 border-t border-[var(--border)] bg-[var(--nav-bg)] backdrop-blur-2xl shadow-[0_-8px_24px_rgba(0,0,0,0.12)] px-2 pt-2 pb-[max(0.6rem,env(safe-area-inset-bottom))]"
     >
       <div className="max-w-md mx-auto grid grid-cols-5 gap-1 items-center">
         {ITEMS.map((item) => {
@@ -65,13 +65,13 @@ export function MobileBottomNav() {
                 onClick={() => openResume("resume")}
                 className={`relative flex flex-col items-center justify-center py-1 px-1 rounded-xl transition-all duration-200 active:scale-95 cursor-pointer group ${
                   isResumeActive
-                    ? "text-emerald-400 bg-emerald-500/15"
-                    : "text-slate-400 hover:text-slate-100"
+                    ? "text-[var(--accent)] bg-emerald-500/15"
+                    : "text-[var(--text-muted)] hover:text-[var(--text)]"
                 }`}
               >
                 <div className="relative">
                   <Icon className="w-5 h-5 transition-transform group-hover:scale-110" />
-                  <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-emerald-400 border border-slate-950 shadow-[0_0_8px_#34d399] animate-pulse" />
+                  <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-[var(--accent)] border border-[var(--bg)]" />
                 </div>
                 <span className="text-[10px] font-mono font-medium tracking-tight mt-1 truncate max-w-full">
                   {item.label}
@@ -100,8 +100,8 @@ export function MobileBottomNav() {
               onClick={handleNavClick}
               className={`relative flex flex-col items-center justify-center py-1 px-1 rounded-xl transition-all duration-200 active:scale-95 cursor-pointer group ${
                 isActive
-                  ? "text-emerald-400 bg-emerald-500/15 font-bold"
-                  : "text-slate-400 hover:text-slate-100"
+                  ? "text-[var(--accent)] bg-emerald-500/15 font-bold"
+                  : "text-[var(--text-muted)] hover:text-[var(--text)]"
               }`}
             >
               <div className="relative">

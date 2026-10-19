@@ -22,9 +22,9 @@ const dmMono = DM_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Sameer Ali — Software Engineer × GenAI Builder",
+  title: "Sameer Ali — Software Engineer",
   description:
-    "Production portfolio of Sameer Ali, SDE-1 and GenAI Developer. 2.5+ years building full-stack applications, vector-search systems (Milvus), and high-reliability platforms.",
+    "Sameer Ali is a software engineer (SDE-1) with 2.5+ years building full-stack products, PostgreSQL backends, and applied AI systems including Milvus vector search.",
   keywords: [
     "Sameer Ali",
     "Software Development Engineer",
@@ -47,14 +47,15 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://sameerali.dev",
-    title: "Sameer Ali — Software Engineer × GenAI Builder",
-    description: "I build software that works. AI that delivers. SDE & GenAI developer portfolio.",
+    title: "Sameer Ali — Software Engineer",
+    description:
+      "Software engineer with 2.5+ years across EMR platforms, vector search, and banking systems.",
     siteName: "Sameer Ali Portfolio",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sameer Ali — Software Engineer × GenAI Builder",
-    description: "I build software that works. AI that delivers.",
+    title: "Sameer Ali — Software Engineer",
+    description: "Full-stack software engineer. EMR, vector search, and banking systems.",
   },
   icons: {
     icon: "/icon.svg",
@@ -76,7 +77,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" data-theme="dark" className={`${spaceGrotesk.variable} ${dmMono.variable}`}>
-      <body className="min-h-screen font-sans selection:bg-[var(--accent)] selection:text-[var(--accent-dark)] antialiased relative">
+      <body className="min-h-screen font-sans selection:bg-[var(--accent)] selection:text-[var(--accent-ink)] antialiased relative">
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var t=localStorage.getItem("sameer-portfolio-theme");if(t==="light"||t==="dark"){document.documentElement.setAttribute("data-theme",t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",t==="light"?"#f4f7f5":"#090d16");}}catch(e){}`,
+          }}
+        />
         <ResumeModalProvider>
           {/* Subtle ambient lighting radiance */}
           <div className="ambient-glow" aria-hidden="true" />

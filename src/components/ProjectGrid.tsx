@@ -31,17 +31,17 @@ export function ProjectGrid() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono font-semibold mb-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[var(--accent)] text-xs font-mono font-semibold mb-3">
               <Sparkles className="w-3.5 h-3.5" />
               <span>Featured Work</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[var(--text)]">
-              Featured projects & <span className="text-[var(--accent)]">applications.</span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[var(--text)] [text-wrap:balance]">
+              Selected work, with the outcome up front.
             </h2>
           </div>
 
           <p className="max-w-md text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
-            Full-stack platforms, workforce CRMs, and applied GenAI applications built with modern web technologies.
+            Live products and production systems: ordering, workforce CRM, résumé scoring, movie search, and vector retrieval.
           </p>
         </div>
 
@@ -61,19 +61,11 @@ export function ProjectGrid() {
                 role="tab"
                 aria-selected={isSelected}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3.5 py-2 rounded-xl text-xs font-mono whitespace-nowrap transition-all duration-200 cursor-pointer flex items-center gap-2 ${
-                  isSelected
-                    ? "bg-emerald-500/15 text-emerald-300 border border-emerald-500/40 font-semibold shadow-sm"
-                    : "bg-slate-900/60 text-slate-400 hover:text-slate-200 border border-slate-800"
-                }`}
+                className={`whitespace-nowrap ${isSelected ? "chip-active" : "chip"}`}
               >
                 <span>{cat}</span>
                 <span
-                  className={`text-[10px] px-1.5 py-0.5 rounded-md font-semibold ${
-                    isSelected
-                      ? "bg-emerald-500/20 text-emerald-300"
-                      : "bg-slate-800/80 text-slate-400 border border-slate-700/60"
-                  }`}
+                  className="text-[10px] px-1.5 py-0.5 rounded-md font-semibold bg-[var(--panel-solid)] text-[var(--text-muted)] border border-[var(--border)]"
                 >
                   {count}
                 </span>

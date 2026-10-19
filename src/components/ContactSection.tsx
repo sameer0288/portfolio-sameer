@@ -77,18 +77,17 @@ export function ContactSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
           {/* Left Column: Direct Info & CTAs */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono font-semibold mb-2">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[var(--accent)] text-xs font-mono font-semibold mb-2">
               <Mail className="w-3.5 h-3.5" />
               <span>Get in Touch</span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[var(--text)] leading-tight">
-              Let&apos;s talk about <br />
-              <span className="text-[var(--accent)]">your engineering needs.</span>
+              Tell me about the role <span className="text-[var(--accent)]">or the problem.</span>
             </h2>
 
             <p className="text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
-              Available for full-time Software Engineer (SDE-1 / SDE-2) roles, contract engineering, and high-impact GenAI development.
+              I am open to software engineer roles and selective contract work. A short note with the team, stack, and what you need built is enough.
             </p>
 
             {/* Direct Channels */}
@@ -156,15 +155,15 @@ export function ContactSection() {
           <div className="lg:col-span-7">
             <div className="cosmic-panel p-6 sm:p-8 rounded-2xl border border-[var(--border)]">
               <h3 className="text-xl font-bold text-[var(--text)] mb-2">
-                Send an Inquiry or Job Opportunity
+                Send a message
               </h3>
               <p className="text-xs sm:text-sm text-[var(--text-muted)] mb-6">
-                Fill out the form below. Client-side and server-side rate limits protect this endpoint against spam.
+                I read every note. If email delivery is unavailable, the form still gives you a mail link.
               </p>
 
               {status === "success" ? (
                 <div className="p-6 rounded-xl border border-emerald-500/30 bg-emerald-500/10 text-center space-y-4 animate-in fade-in">
-                  <CheckCircle2 className="w-10 h-10 text-emerald-400 mx-auto" />
+                  <CheckCircle2 className="w-10 h-10 text-[var(--accent)] mx-auto" />
                   <h4 className="text-lg font-bold text-[var(--text)]">Message Logged</h4>
                   <p className="text-xs sm:text-sm text-[var(--text-muted)] max-w-md mx-auto">
                     {responseMsg}
@@ -283,7 +282,7 @@ export function ContactSection() {
                   </div>
 
                   {status === "error" && (
-                    <div className="p-3 rounded-lg border border-rose-500/30 bg-rose-500/10 flex items-center gap-2 text-xs text-rose-300">
+                    <div className="p-3 rounded-lg border border-rose-500/30 bg-rose-500/10 flex items-center gap-2 text-xs text-[var(--danger)]">
                       <AlertCircle className="w-4 h-4 flex-shrink-0" />
                       <span>{responseMsg}</span>
                     </div>
@@ -292,16 +291,16 @@ export function ContactSection() {
                   <button
                     type="submit"
                     disabled={status === "submitting"}
-                    className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[var(--accent)] text-[var(--accent-dark)] font-bold text-sm tracking-wider uppercase transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_24px_rgba(var(--accent-rgb),0.3)] disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
+                    className="btn-primary w-full px-6 py-3.5 text-sm disabled:opacity-60"
                   >
                     {status === "submitting" ? (
                       <>
                         <span className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
-                        <span>Transmitting Message...</span>
+                        <span>Sending…</span>
                       </>
                     ) : (
                       <>
-                        <span>Send Transmission</span>
+                        <span>Send message</span>
                         <Send className="w-4 h-4" />
                       </>
                     )}

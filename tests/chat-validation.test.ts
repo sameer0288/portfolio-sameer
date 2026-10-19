@@ -71,6 +71,25 @@ test("Deterministic fallback returns Markoknow certificate ID and Drive link", (
   assert.ok(reply.includes("https://drive.google.com/file/d/1XbJS6dSRiW62hg5Lz29BGc-0ojNn38PR/view?usp=sharing"));
 });
 
+test("Retrieval prefers the Techdome chunk over the generic help menu", () => {
+  const reply = getDeterministicFallback("What does Sameer do at Techdome on the EMR platform?");
+  assert.ok(reply.includes("Techdome"));
+  assert.ok(reply.includes("PostgreSQL"));
+  assert.ok(reply.includes("EMR"));
+});
+
+test("Retrieval can answer two topics in one question", () => {
+  const reply = getDeterministicFallback("Compare Kuanta and TCS");
+  assert.ok(reply.includes("Milvus"));
+  assert.ok(reply.includes("YONO"));
+});
+
+test("Unknown questions stay inside the portfolio index", () => {
+  const reply = getDeterministicFallback("What is the weather in Paris tomorrow?");
+  assert.ok(reply.toLowerCase().includes("portfolio"));
+  assert.equal(reply.includes("I invented"), false);
+});
+
 test("OpenRouterProvider gracefully defaults to fallback when unconfigured", async () => {
   const provider = new OpenRouterProvider();
   const res = await provider.sendMessage([{ role: "user", content: "Tell me about Sameer" }]);

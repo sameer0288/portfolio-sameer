@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { ThemeToggle } from "./ThemeToggle";
 import { useResumeModal } from "@/context/ResumeModalContext";
-import { Menu, X, ArrowUpRight, FileDown, Award, FileText } from "lucide-react";
+import { ArrowUpRight, FileText } from "lucide-react";
 
 const NAV_ITEMS = [
   { label: "Home", href: "#home" },
@@ -15,7 +15,6 @@ const NAV_ITEMS = [
 ];
 
 export function Navbar() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const { openResume } = useResumeModal();
@@ -73,8 +72,8 @@ export function Navbar() {
               SAMEER ALI
               <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
             </div>
-            <div className="text-[10px] sm:text-[11px] text-[var(--text-muted)] font-mono tracking-wider">
-              SDE-1 @ TECHDOME · GENAI
+            <div className="hidden min-[380px]:block text-[10px] sm:text-[11px] text-[var(--text-muted)] font-mono tracking-wider">
+              Software Engineer
             </div>
           </div>
         </Link>
@@ -87,11 +86,7 @@ export function Navbar() {
               <a
                 key={item.label}
                 href={item.href}
-                className={`px-3.5 py-1.5 rounded-lg text-xs font-mono transition-all duration-200 ${
-                  isActive
-                    ? "text-emerald-400 font-bold bg-emerald-500/10 border border-emerald-500/25 shadow-sm"
-                    : "text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 border border-transparent"
-                }`}
+                className={`nav-link ${isActive ? "nav-link-active" : ""}`}
               >
                 {item.label}
               </a>
@@ -107,16 +102,16 @@ export function Navbar() {
           <button
             type="button"
             onClick={() => openResume("resume")}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-lg border border-slate-700/80 bg-slate-900/90 hover:border-emerald-500 text-xs font-mono font-semibold text-slate-200 transition-all duration-200 hover:-translate-y-0.5 shadow-sm cursor-pointer"
+            className="btn-secondary !rounded-lg px-2.5 py-1.5 sm:px-3.5 sm:py-2 text-xs font-mono"
             title="Open Résumé & Credentials"
           >
-            <FileText className="w-3.5 h-3.5 text-emerald-400" />
-            <span>CV & LOR</span>
+            <FileText className="w-3.5 h-3.5 text-[var(--accent)]" />
+            <span className="hidden sm:inline">Résumé</span>
           </button>
 
           <a
             href="#contact"
-            className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-emerald-500 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all duration-200 hover:bg-emerald-400 hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(16,185,129,0.3)] shadow-sm"
+            className="btn-primary hidden sm:inline-flex px-4 py-2 text-xs"
           >
             <span>Let&apos;s Talk</span>
             <ArrowUpRight className="w-3.5 h-3.5" />

@@ -68,7 +68,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
           </div>
 
           <div className="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-md bg-[var(--panel)] border border-[var(--border)] text-xs font-mono text-[var(--text-muted)]">
-            <Lock className="w-3 h-3 text-emerald-400" />
+            <Lock className="w-3 h-3 text-[var(--accent)]" />
             <span>{getDisplayDomain()}</span>
           </div>
 
@@ -140,7 +140,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
               <div className="text-[10px] font-mono text-[var(--text-muted)] uppercase tracking-wider">Sameer&apos;s Engineering Contribution</div>
               <div className="text-sm font-semibold text-[var(--text)]">{project.role}</div>
             </div>
-            <div className="flex items-center gap-1.5 text-xs text-emerald-400 font-mono">
+            <div className="flex items-center gap-1.5 text-xs text-[var(--accent)] font-mono">
               <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
               <span>Production Codebase</span>
             </div>

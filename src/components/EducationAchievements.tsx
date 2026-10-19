@@ -19,12 +19,12 @@ export function EducationAchievements() {
   const { openResume } = useResumeModal();
 
   return (
-    <section className="py-16 sm:py-24 relative border-t border-[var(--border)]">
+    <section id="education" className="py-16 sm:py-24 relative border-t border-[var(--border)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
           {/* Education Column */}
           <div className="lg:col-span-6 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono font-semibold mb-2">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[var(--accent)] text-xs font-mono font-semibold mb-2">
               <GraduationCap className="w-4 h-4" />
               <span>Education</span>
             </div>
@@ -70,7 +70,7 @@ export function EducationAchievements() {
 
           {/* Certifications & Achievements Column */}
           <div className="lg:col-span-6 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono font-semibold mb-2">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[var(--accent)] text-xs font-mono font-semibold mb-2">
               <Trophy className="w-4 h-4" />
               <span>Certifications</span>
             </div>
@@ -100,7 +100,7 @@ export function EducationAchievements() {
                         <div
                           className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5 ${
                             isMarkoknow
-                              ? "bg-emerald-500/20 text-emerald-400"
+                              ? "bg-emerald-500/20 text-[var(--accent)]"
                               : "bg-[var(--panel-solid)] text-[var(--accent)] border border-[var(--border)]"
                           }`}
                         >
@@ -112,7 +112,7 @@ export function EducationAchievements() {
                               {cert.title}
                             </h5>
                             {cert.badge && (
-                              <span className="text-[10px] font-mono text-emerald-400 font-bold bg-emerald-500/20 px-2 py-0.2 rounded border border-emerald-500/30">
+                              <span className="text-[10px] font-mono text-[var(--accent)] font-bold bg-emerald-500/20 px-2 py-0.2 rounded border border-emerald-500/30">
                                 {cert.badge}
                               </span>
                             )}
@@ -126,7 +126,7 @@ export function EducationAchievements() {
                               <button
                                 type="button"
                                 onClick={() => openResume("markoknow")}
-                                className="px-2.5 py-1 rounded-md bg-[var(--panel-solid)] border border-emerald-500/30 text-xs font-mono text-emerald-400 hover:bg-emerald-500/10 transition-colors flex items-center gap-1 cursor-pointer font-semibold"
+                                className="px-2.5 py-1 rounded-md bg-[var(--panel-solid)] border border-emerald-500/30 text-xs font-mono text-[var(--accent)] hover:bg-emerald-500/10 transition-colors flex items-center gap-1 cursor-pointer font-semibold"
                               >
                                 <span>Preview Certificate</span>
                                 <ArrowUpRight className="w-3 h-3" />
@@ -136,7 +136,7 @@ export function EducationAchievements() {
                                 href={cert.certificateUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1 text-xs font-mono text-slate-300 hover:text-emerald-400 underline"
+                                className="inline-flex items-center gap-1 text-xs font-mono text-[var(--text)] hover:text-[var(--accent)] underline"
                               >
                                 <span>Drive LOR</span>
                                 <ExternalLink className="w-3 h-3" />
@@ -166,7 +166,7 @@ export function EducationAchievements() {
               <ul className="space-y-2.5">
                 {achievements.map((item, i) => (
                   <li key={i} className="text-xs sm:text-sm text-[var(--text-muted)] flex items-start gap-2.5 leading-relaxed">
-                    <CheckCircle className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 text-[var(--accent)] mt-0.5 flex-shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}

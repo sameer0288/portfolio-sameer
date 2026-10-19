@@ -62,6 +62,7 @@ export async function POST(req: NextRequest) {
         provider: result.provider,
         model: result.model,
         note: result.note,
+        sources: result.sources ?? [],
       },
       {
         status: 200,

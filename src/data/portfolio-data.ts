@@ -66,9 +66,9 @@ export interface CertificationItem {
 export const PORTFOLIO_DATA = {
   personal: {
     name: "Sameer Ali",
-    title: "Software Development Engineer & GenAI Developer",
-    headline: "Building scalable web platforms, resilient backends & practical AI.",
-    bio: "I'm Sameer Ali, an SDE-1 at Techdome with 2.5+ years of production experience crafting high-performance web applications, scalable backend APIs, and vector search systems. From enterprise EMR platforms to indexing 3M+ records in Milvus at Kuanta and optimizing banking-scale queries at TCS, I deliver clean code that scales in production.",
+    title: "Software Engineer",
+    headline: "Software engineer building full-stack products and applied AI systems.",
+    bio: "I am Sameer Ali, a software engineer with 2.5+ years of experience shipping production web applications and backend systems. I am an SDE-1 at Techdome, where I build EMR services with Node.js, Python, and PostgreSQL. Before that I indexed 3M+ startup records in Milvus at Kuanta, reduced PostgreSQL latency by about 30% on SBI YONO 2.0 at TCS, and cut API response time by about 60% with Redis at Markoknow.",
     location: "Indore / Remote, India",
     email: "sameersheikh0288@gmail.com",
     phone: "+91 8306690288",

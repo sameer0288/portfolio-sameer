@@ -19,7 +19,7 @@ export function StatsSection() {
       label: "Vector Records",
       detail: "Milvus vector DB deal-scout @ Kuanta",
       badge: "GenAI Scale",
-      accent: "text-cyan-400",
+      accent: "text-[var(--cyan)]",
     },
     {
       icon: Zap,
@@ -27,7 +27,7 @@ export function StatsSection() {
       label: "Latency Reduction",
       detail: "PostgreSQL query tuning @ SBI YONO 2.0",
       badge: "High-Traffic Banking",
-      accent: "text-emerald-400",
+      accent: "text-[var(--accent)]",
     },
     {
       icon: GitBranch,
@@ -35,7 +35,7 @@ export function StatsSection() {
       label: "DSA & Repositories",
       detail: "Competitive coding & open source systems",
       badge: "CS Foundations",
-      accent: "text-indigo-400",
+      accent: "text-[var(--cosmic-blue)]",
     },
   ];
 

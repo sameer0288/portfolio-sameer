@@ -1,4 +1,4 @@
-import { SYSTEM_PROMPT, getDeterministicFallback } from "@/data/knowledge-base";
+import { SYSTEM_PROMPT, answerQuestion, buildGroundingContext } from "@/data/knowledge-base";
 
 export interface ChatMessage {
   role: "user" | "assistant" | "system";
@@ -11,6 +11,7 @@ export interface ChatProviderResult {
   provider: string;
   model: string;
   note?: string;
+  sources?: string[];
 }
 
 export interface ChatProvider {
@@ -18,9 +19,15 @@ export interface ChatProvider {
   sendMessage(messages: ChatMessage[]): Promise<ChatProviderResult>;
 }
 
+const LLM_TIMEOUT_MS = 4500;
+
 /**
- * OpenRouter Provider implementation
- * Uses configurable free or low-cost model via server environment variables.
+ * Retrieval-first chat provider.
+ *
+ * Portfolio questions are answered from the local RAG index immediately.
+ * An optional LLM call runs only for medium-confidence questions when an
+ * OpenRouter key exists, and it is bounded to a short timeout so the UI
+ * never sits on a slow model.
  */
 export class OpenRouterProvider implements ChatProvider {
   name = "openrouter";
@@ -29,7 +36,6 @@ export class OpenRouterProvider implements ChatProvider {
 
   constructor() {
     this.apiKey = process.env.OPENROUTER_API_KEY || "";
-    // Default to a widely available free model; configurable via env
     this.model = process.env.OPENROUTER_MODEL || "meta-llama/llama-3.3-70b-instruct:free";
   }
 
@@ -38,36 +44,67 @@ export class OpenRouterProvider implements ChatProvider {
   }
 
   async sendMessage(messages: ChatMessage[]): Promise<ChatProviderResult> {
-    const lastUserMessage = messages.filter((m) => m.role === "user").pop()?.content || "";
+    const lastUserMessage = messages.filter((message) => message.role === "user").pop()?.content || "";
+    const local = answerQuestion(lastUserMessage);
+    const localResult: ChatProviderResult = {
+      content: local.content,
+      isFallback: !this.isConfigured(),
+      provider: this.isConfigured() ? "portfolio-rag" : "deterministic-kb",
+      model: "portfolio-rag-v1",
+      sources: local.sources,
+      note: local.sources.length
+        ? `Answered from ${local.sources.join(" · ")}`
+        : "Answered from the verified portfolio index",
+    };
 
-    if (!this.isConfigured()) {
-      return {
-        content: getDeterministicFallback(lastUserMessage),
-        isFallback: true,
-        provider: "deterministic-kb",
-        model: "offline-knowledge-base",
-        note: "Live AI key (OPENROUTER_API_KEY) not configured. Responding via verified portfolio knowledge base.",
-      };
+    const shouldTryModel = this.isConfigured() && local.confidence === "medium";
+    if (!shouldTryModel) {
+      return localResult;
     }
 
-    // Keep up to 5 conversation turns to preserve token limits
-    const recentHistory = messages.slice(-5).map((m) => ({
-      role: m.role,
-      content: m.content.slice(0, 500), // Cap length
+    try {
+      const reply = await this.completeWithContext(messages, lastUserMessage);
+      if (!reply) return localResult;
+      return {
+        content: reply,
+        isFallback: false,
+        provider: "openrouter",
+        model: this.model,
+        sources: local.sources,
+        note: local.sources.length
+          ? `Drafted from ${local.sources.join(" · ")}`
+          : "Drafted from retrieved portfolio passages",
+      };
+    } catch {
+      return {
+        ...localResult,
+        note: "Model was slow or unavailable. Answered from the portfolio index instead.",
+      };
+    }
+  }
+
+  private async completeWithContext(messages: ChatMessage[], lastUserMessage: string): Promise<string | null> {
+    const history = messages.slice(-4).map((message) => ({
+      role: message.role,
+      content: message.content.slice(0, 500),
     }));
 
     const payload = {
       model: this.model,
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
-        ...recentHistory,
+        {
+          role: "system",
+          content: `Retrieved passages:\n\n${buildGroundingContext(lastUserMessage)}`,
+        },
+        ...history,
       ],
-      max_tokens: 550,
-      temperature: 0.25, // Lower temperature to prevent hallucination
+      max_tokens: 420,
+      temperature: 0.1,
     };
 
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 14000); // 14s timeout
+    const timeoutId = setTimeout(() => controller.abort(), LLM_TIMEOUT_MS);
 
     try {
       const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
@@ -76,107 +113,22 @@ export class OpenRouterProvider implements ChatProvider {
           "Content-Type": "application/json",
           Authorization: `Bearer ${this.apiKey.trim()}`,
           "HTTP-Referer": "https://sameerali.dev",
-          "X-Title": "Sameer Ali Portfolio Guide",
+          "X-Title": "Sameer Ali Portfolio",
         },
         body: JSON.stringify(payload),
         signal: controller.signal,
       });
 
-      clearTimeout(timeoutId);
-
-      if (!response.ok) {
-        const errorStatus = response.status;
-        console.warn(`[ChatProvider] OpenRouter responded with status ${errorStatus}`);
-        
-        // If primary model is rate-limited or temporarily unavailable, try alternate free model
-        if ((errorStatus === 429 || errorStatus === 404) && this.model !== "nvidia/nemotron-3.5-lightning:free") {
-          try {
-            const backupPayload = { ...payload, model: "nvidia/nemotron-3.5-lightning:free" };
-            const backupRes = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${this.apiKey.trim()}`,
-                "HTTP-Referer": "https://sameerali.dev",
-                "X-Title": "Sameer Ali Portfolio Guide",
-              },
-              body: JSON.stringify(backupPayload),
-            });
-            if (backupRes.ok) {
-              const bData = await backupRes.json();
-              const bReply = bData?.choices?.[0]?.message?.content?.trim();
-              if (bReply) {
-                return {
-                  content: bReply,
-                  isFallback: false,
-                  provider: "openrouter",
-                  model: "nvidia/nemotron-3.5-lightning:free",
-                };
-              }
-            }
-          } catch {
-            // Fall through to deterministic fallback
-          }
-        }
-
-        let warning = `Provider error (${errorStatus}). Using verified knowledge fallback.`;
-        if (errorStatus === 429) {
-          warning = "OpenRouter free-tier rate limit reached. Switched to verified knowledge fallback.";
-        } else if (errorStatus === 401) {
-          warning = "OpenRouter authentication failed. Please verify OPENROUTER_API_KEY in .env.";
-        }
-
-        return {
-          content: getDeterministicFallback(lastUserMessage),
-          isFallback: true,
-          provider: "openrouter-fallback",
-          model: this.model,
-          note: warning,
-        };
-      }
-
+      if (!response.ok) return null;
       const data = await response.json();
       const reply = data?.choices?.[0]?.message?.content?.trim();
-
-      if (!reply) {
-        return {
-          content: getDeterministicFallback(lastUserMessage),
-          isFallback: true,
-          provider: "openrouter-fallback",
-          model: this.model,
-          note: "Empty response from provider. Switched to verified knowledge fallback.",
-        };
-      }
-
-      return {
-        content: reply,
-        isFallback: false,
-        provider: "openrouter",
-        model: this.model,
-      };
-    } catch (err: unknown) {
+      return reply || null;
+    } finally {
       clearTimeout(timeoutId);
-      const isAbort = (err as { name?: string })?.name === "AbortError";
-      console.warn(`[ChatProvider] Request failed: ${isAbort ? "Timeout" : "Network error"}`);
-
-      return {
-        content: getDeterministicFallback(lastUserMessage),
-        isFallback: true,
-        provider: "offline-knowledge-base",
-        model: this.model,
-        note: isAbort
-          ? "Request timed out after 14s. Delivered verified knowledge fallback."
-          : "Network connectivity issue with provider. Delivered verified knowledge fallback.",
-      };
     }
   }
 }
 
-/**
- * Factory function to retrieve the active provider.
- * Allows easy switching to Gemini or another provider without touching the UI.
- */
 export function getActiveChatProvider(): ChatProvider {
-  // Provider can be extended here (e.g. GeminiProvider if GEMINI_API_KEY is preferred)
   return new OpenRouterProvider();
 }

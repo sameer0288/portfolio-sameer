@@ -140,7 +140,7 @@ ${achievements.map((a) => `• ${a}`).join("\n")}
         {/* Modal Top Bar */}
         <div className="px-4 sm:px-6 py-4 border-b border-[var(--border)] bg-[color-mix(in_srgb,var(--bg)_85%,transparent)] backdrop-blur-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 flex-shrink-0">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 flex-shrink-0">
+            <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-[var(--accent)] flex-shrink-0">
               <FileText className="w-5 h-5" />
             </div>
             <div>
@@ -148,7 +148,7 @@ ${achievements.map((a) => `• ${a}`).join("\n")}
                 <h2 id="resume-modal-title" className="text-base sm:text-lg font-bold text-[var(--text)]">
                   Sameer Ali — Résumé & Credentials
                 </h2>
-                <span className="hidden sm:inline-flex items-center gap-1 text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
+                <span className="hidden sm:inline-flex items-center gap-1 text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full bg-emerald-500/15 text-[var(--accent)] border border-emerald-500/30">
                   <CheckCircle2 className="w-3 h-3 inline" /> SDE-1
                 </span>
               </div>
@@ -163,17 +163,17 @@ ${achievements.map((a) => `• ${a}`).join("\n")}
             <button
               type="button"
               onClick={handleCopyText}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-700/80 bg-slate-900/80 hover:border-emerald-500/50 text-xs font-mono text-slate-200 transition-colors cursor-pointer"
+              className="btn-secondary !rounded-lg px-3 py-1.5 text-xs font-mono"
               title="Copy Plain Text"
             >
               {copied ? (
                 <>
-                  <Check className="w-3.5 h-3.5 text-emerald-400" />
-                  <span className="text-emerald-400 font-semibold">Copied!</span>
+                  <Check className="w-3.5 h-3.5 text-[var(--accent)]" />
+                  <span className="text-[var(--accent)] font-semibold">Copied!</span>
                 </>
               ) : (
                 <>
-                  <Copy className="w-3.5 h-3.5 text-emerald-400" />
+                  <Copy className="w-3.5 h-3.5 text-[var(--accent)]" />
                   <span>Copy Text</span>
                 </>
               )}
@@ -182,17 +182,17 @@ ${achievements.map((a) => `• ${a}`).join("\n")}
             <button
               type="button"
               onClick={handlePrint}
-              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-700/80 bg-slate-900/80 hover:border-emerald-500/50 text-xs font-mono text-slate-200 transition-colors cursor-pointer"
+              className="btn-secondary hidden sm:inline-flex !rounded-lg px-3 py-1.5 text-xs font-mono"
               title="Print Résumé"
             >
-              <Printer className="w-3.5 h-3.5 text-slate-400" />
+              <Printer className="w-3.5 h-3.5 text-[var(--text-muted)]" />
               <span>Print</span>
             </button>
 
             <a
               href="/Sameer_Ali_Resume.pdf"
               download="Sameer_Ali_Resume.pdf"
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-bold transition-all shadow-sm cursor-pointer"
+              className="btn-primary !rounded-lg px-3.5 py-1.5 text-xs"
               title="Download PDF Résumé"
             >
               <FileDown className="w-3.5 h-3.5" />
@@ -202,7 +202,7 @@ ${achievements.map((a) => `• ${a}`).join("\n")}
             <button
               type="button"
               onClick={closeResume}
-              className="w-8 h-8 rounded-lg border border-slate-700/80 bg-slate-900/80 hover:bg-rose-500/10 hover:border-rose-500/40 hover:text-rose-400 flex items-center justify-center text-slate-400 transition-colors cursor-pointer ml-1"
+              className="chat-icon-btn border border-[var(--border)] hover:text-rose-500"
               aria-label="Close Résumé Modal"
             >
               <X className="w-4 h-4" />
@@ -211,14 +211,14 @@ ${achievements.map((a) => `• ${a}`).join("\n")}
         </div>
 
         {/* View Selection Tabs */}
-        <div className="px-4 sm:px-6 py-2.5 border-b border-slate-800 bg-slate-900/60 flex items-center gap-2 overflow-x-auto no-scrollbar flex-shrink-0">
+        <div className="px-4 sm:px-6 py-2.5 border-b border-[var(--border)] bg-[var(--bg-secondary)] flex items-center gap-2 overflow-x-auto no-scrollbar flex-shrink-0">
           <button
             type="button"
             onClick={() => setActiveTab("resume")}
             className={`px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium flex items-center gap-2 whitespace-nowrap transition-all cursor-pointer ${
               activeTab === "resume" || activeTab === "ats"
-                ? "bg-emerald-500/15 text-emerald-300 border border-emerald-500/35 font-semibold shadow-sm"
-                : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 border border-transparent"
+                ? "chip-active"
+                : "chip !border-transparent"
             }`}
           >
             <FileText className="w-3.5 h-3.5" />
@@ -230,8 +230,8 @@ ${achievements.map((a) => `• ${a}`).join("\n")}
             onClick={() => setActiveTab("markoknow")}
             className={`px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium flex items-center gap-2 whitespace-nowrap transition-all cursor-pointer relative ${
               activeTab === "markoknow"
-                ? "bg-emerald-500/15 text-emerald-300 border border-emerald-500/35 font-semibold shadow-sm"
-                : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 border border-transparent"
+                ? "chip-active"
+                : "chip !border-transparent"
             }`}
           >
             <Award className="w-3.5 h-3.5" />
@@ -244,8 +244,8 @@ ${achievements.map((a) => `• ${a}`).join("\n")}
             onClick={() => setActiveTab("pdf")}
             className={`px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium flex items-center gap-2 whitespace-nowrap transition-all cursor-pointer ${
               activeTab === "pdf"
-                ? "bg-emerald-500/15 text-emerald-300 border border-emerald-500/35 font-semibold shadow-sm"
-                : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 border border-transparent"
+                ? "chip-active"
+                : "chip !border-transparent"
             }`}
           >
             <Eye className="w-3.5 h-3.5" />
@@ -274,7 +274,7 @@ ${achievements.map((a) => `• ${a}`).join("\n")}
                       href="https://drive.google.com/file/d/1XbJS6dSRiW62hg5Lz29BGc-0ojNn38PR/view?usp=sharing"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono font-semibold hover:bg-emerald-500/20 transition-colors"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-[var(--accent)] text-xs font-mono font-semibold hover:bg-emerald-500/20 transition-colors"
                     >
                       <Award className="w-3.5 h-3.5" />
                       <span>Markoknow Silver Belt #110080</span>
@@ -372,8 +372,8 @@ ${achievements.map((a) => `• ${a}`).join("\n")}
                       {exp.certificateUrl && (
                         <div className="mb-4 p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/25 flex flex-wrap items-center justify-between gap-2 text-xs">
                           <div className="flex items-center gap-2">
-                            <Award className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-                            <span className="text-emerald-400 font-semibold font-mono">
+                            <Award className="w-4 h-4 text-[var(--accent)] flex-shrink-0" />
+                            <span className="text-[var(--accent)] font-semibold font-mono">
                               Verified {exp.certificateBadge} · Certificate ID #{exp.certificateId}
                             </span>
                           </div>
@@ -381,7 +381,7 @@ ${achievements.map((a) => `• ${a}`).join("\n")}
                             <button
                               type="button"
                               onClick={() => setActiveTab("markoknow")}
-                              className="px-2.5 py-1 rounded bg-[var(--panel-solid)] text-xs font-mono text-[var(--text)] hover:text-emerald-400 border border-[var(--border)] transition-colors cursor-pointer"
+                              className="px-2.5 py-1 rounded bg-[var(--panel-solid)] text-xs font-mono text-[var(--text)] hover:text-[var(--accent)] border border-[var(--border)] transition-colors cursor-pointer"
                             >
                               Inspect Certificate
                             </button>
@@ -389,7 +389,7 @@ ${achievements.map((a) => `• ${a}`).join("\n")}
                               href={exp.certificateUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1 text-xs font-mono text-emerald-400 underline hover:opacity-80"
+                              className="inline-flex items-center gap-1 text-xs font-mono text-[var(--accent)] underline hover:opacity-80"
                             >
                               <span>Google Drive LOR</span>
                               <ExternalLink className="w-3 h-3" />
@@ -431,7 +431,7 @@ ${achievements.map((a) => `• ${a}`).join("\n")}
                             key={s.name}
                             className={`px-2 py-0.5 rounded text-[11px] font-mono ${
                               s.highlight
-                                ? "bg-emerald-500/10 text-emerald-400 font-semibold border border-emerald-500/25"
+                                ? "bg-emerald-500/10 text-[var(--accent)] font-semibold border border-emerald-500/25"
                                 : "bg-[var(--panel-solid)] text-[var(--text-muted)] border border-[var(--border)]"
                             }`}
                           >
@@ -480,12 +480,12 @@ ${achievements.map((a) => `• ${a}`).join("\n")}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-4">
                   {certifications.map((cert, cIdx) => (
                     <div key={cIdx} className="p-3 rounded-lg border border-[var(--border)] bg-[var(--panel)] flex items-start gap-2.5">
-                      <Award className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
+                      <Award className="w-4 h-4 text-[var(--accent)] mt-0.5 flex-shrink-0" />
                       <div>
                         <div className="text-xs font-bold text-[var(--text)]">{cert.title}</div>
                         <div className="text-[11px] text-[var(--text-muted)]">{cert.issuer}</div>
                         {cert.certificateId && (
-                          <div className="text-[10px] font-mono text-emerald-400 mt-0.5">
+                          <div className="text-[10px] font-mono text-[var(--accent)] mt-0.5">
                             Certificate ID: {cert.certificateId}
                           </div>
                         )}
@@ -501,7 +501,7 @@ ${achievements.map((a) => `• ${a}`).join("\n")}
                   <ul className="space-y-1.5">
                     {achievements.map((item, i) => (
                       <li key={i} className="text-xs text-[var(--text-muted)] flex items-start gap-2">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 mt-0.5 flex-shrink-0" />
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[var(--accent)] mt-0.5 flex-shrink-0" />
                         <span>{item}</span>
                       </li>
                     ))}
@@ -517,7 +517,7 @@ ${achievements.map((a) => `• ${a}`).join("\n")}
               {/* Highlight Banner */}
               <div className="p-5 sm:p-6 rounded-2xl bg-gradient-to-r from-emerald-500/15 via-teal-500/10 to-transparent border border-emerald-500/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-400 text-xs font-mono font-medium mb-2 border border-emerald-500/25">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/15 text-[var(--accent)] text-xs font-mono font-medium mb-2 border border-emerald-500/25">
                     <ShieldCheck className="w-3.5 h-3.5" />
                     <span>INTERNSHIP CREDENTIAL & LOR</span>
                   </div>
@@ -525,7 +525,7 @@ ${achievements.map((a) => `• ${a}`).join("\n")}
                     Markoknow Certificate of Completion & LOR
                   </h3>
                   <p className="text-xs sm:text-sm text-[var(--text-muted)] mt-1 max-w-xl">
-                    Awarded to <strong className="text-[var(--text)]">Sameer Ali</strong> for successfully completing his Full Stack Developer Internship (MERN) and achieving the prestigious <strong className="text-emerald-400 font-semibold">&quot;Silver Belt Badge&quot;</strong>.
+                    Awarded to <strong className="text-[var(--text)]">Sameer Ali</strong> for successfully completing his Full Stack Developer Internship (MERN) and achieving the prestigious <strong className="text-[var(--accent)] font-semibold">&quot;Silver Belt Badge&quot;</strong>.
                   </p>
                 </div>
 
@@ -533,7 +533,7 @@ ${achievements.map((a) => `• ${a}`).join("\n")}
                   href="https://drive.google.com/file/d/1XbJS6dSRiW62hg5Lz29BGc-0ojNn38PR/view?usp=sharing"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-500 text-slate-950 font-bold text-xs font-mono hover:bg-emerald-400 transition-all flex-shrink-0 shadow-lg shadow-emerald-500/20"
+                  className="btn-primary px-4 py-2.5 text-xs font-mono shrink-0"
                 >
                   <ExternalLink className="w-4 h-4" />
                   <span>Open in Google Drive</span>
@@ -541,7 +541,7 @@ ${achievements.map((a) => `• ${a}`).join("\n")}
               </div>
 
               {/* Certificate Image Canvas */}
-              <div className="rounded-2xl border border-[var(--border-strong)] bg-slate-950/80 p-2 sm:p-4 shadow-2xl overflow-hidden flex flex-col items-center">
+              <div className="rounded-2xl border border-[var(--border-strong)] bg-[var(--bg-secondary)] p-2 sm:p-4 shadow-sm overflow-hidden flex flex-col items-center">
                 <div className="relative w-full max-w-3xl rounded-xl overflow-hidden border border-white/10 group">
                   <img
                     src="/images/certifications/markoknow-certificate.png"
@@ -556,12 +556,12 @@ ${achievements.map((a) => `• ${a}`).join("\n")}
                 <div className="p-4 rounded-xl border border-[var(--border)] bg-[var(--panel)]">
                   <div className="text-[11px] font-mono text-[var(--text-muted)] uppercase">Awarded To</div>
                   <div className="text-sm font-bold text-[var(--text)] mt-1">Sameer Ali</div>
-                  <div className="text-[11px] text-emerald-400 font-mono mt-0.5">Recipient</div>
+                  <div className="text-[11px] text-[var(--accent)] font-mono mt-0.5">Recipient</div>
                 </div>
 
                 <div className="p-4 rounded-xl border border-[var(--border)] bg-[var(--panel)]">
                   <div className="text-[11px] font-mono text-[var(--text-muted)] uppercase">Honors Badge</div>
-                  <div className="text-sm font-bold text-emerald-400 mt-1">Silver Belt Badge</div>
+                  <div className="text-sm font-bold text-[var(--accent)] mt-1">Silver Belt Badge</div>
                   <div className="text-[11px] text-[var(--text-muted)] font-mono mt-0.5">Top Tier Achievement</div>
                 </div>
 
@@ -581,11 +581,11 @@ ${achievements.map((a) => `• ${a}`).join("\n")}
               {/* LOR & Engineering Scope Summary */}
               <div className="p-6 rounded-2xl border border-[var(--border)] bg-[var(--panel)] space-y-3">
                 <h4 className="text-sm font-bold text-[var(--text)] flex items-center gap-2">
-                  <FileText className="w-4 h-4 text-emerald-400" />
+                  <FileText className="w-4 h-4 text-[var(--accent)]" />
                   <span>Letter of Recommendation & Engineering Contributions</span>
                 </h4>
                 <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed">
-                  During his tenure at Markoknow as a Full Stack Developer (MERN Stack), Sameer architected high-performance backend microservices and implemented multi-tiered Redis caching strategies that cut API response times by <strong className="text-[var(--text)] font-semibold">~60%</strong>. His dedication, clean architecture, and rapid feature turnaround earned him the company&apos;s coveted <strong className="text-emerald-400">Silver Belt Badge</strong> along with an official Letter of Recommendation.
+                  During his tenure at Markoknow as a Full Stack Developer (MERN Stack), Sameer architected high-performance backend microservices and implemented multi-tiered Redis caching strategies that cut API response times by <strong className="text-[var(--text)] font-semibold">~60%</strong>. His dedication, clean architecture, and rapid feature turnaround earned him the company&apos;s coveted <strong className="text-[var(--accent)]">Silver Belt Badge</strong> along with an official Letter of Recommendation.
                 </p>
 
                 <div className="pt-3 border-t border-[var(--border)] flex flex-wrap items-center justify-between gap-3">
@@ -596,7 +596,7 @@ ${achievements.map((a) => `• ${a}`).join("\n")}
                     href="https://drive.google.com/file/d/1XbJS6dSRiW62hg5Lz29BGc-0ojNn38PR/view?usp=sharing"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-mono text-emerald-400 font-semibold underline hover:opacity-80"
+                    className="inline-flex items-center gap-1.5 text-xs font-mono text-[var(--accent)] font-semibold underline hover:opacity-80"
                   >
                     <span>Open in Google Drive</span>
                     <ExternalLink className="w-3.5 h-3.5" />
@@ -609,7 +609,7 @@ ${achievements.map((a) => `• ${a}`).join("\n")}
           {/* TAB 3: PDF EMBEDDED VIEWER */}
           {activeTab === "pdf" && (
             <div className="h-full flex flex-col items-center justify-center space-y-4">
-              <div className="w-full h-[620px] rounded-xl overflow-hidden border border-[var(--border)] bg-slate-900 shadow-inner relative hidden sm:block">
+              <div className="w-full h-[620px] rounded-xl overflow-hidden border border-[var(--border)] bg-[var(--panel-solid)] shadow-inner relative hidden sm:block">
                 <iframe
                   src="/Sameer_Ali_Resume.pdf#toolbar=1&navpanes=0"
                   title="Sameer Ali Résumé PDF"
@@ -619,7 +619,7 @@ ${achievements.map((a) => `• ${a}`).join("\n")}
 
               {/* Mobile PDF Fallback Card */}
               <div className="sm:hidden w-full p-6 rounded-2xl border border-[var(--border)] bg-[var(--panel)] text-center space-y-4">
-                <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto">
+                <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-[var(--accent)] flex items-center justify-center mx-auto">
                   <FileText className="w-8 h-8" />
                 </div>
                 <div>

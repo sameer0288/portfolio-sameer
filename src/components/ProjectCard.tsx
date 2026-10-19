@@ -48,7 +48,7 @@ export function ProjectCard({ project, index, onSelect }: ProjectCardProps) {
       className="group cosmic-panel rounded-2xl border border-[var(--border)] overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 hover:border-[var(--border-strong)] hover:shadow-[0_24px_50px_rgba(0,0,0,0.4)] cursor-pointer relative"
     >
       {/* Top Browser Titlebar */}
-      <div className="bg-[color-mix(in_srgb,var(--bg)_92%,transparent)] border-b border-[var(--border)] px-4 py-2.5 flex items-center justify-between gap-3 text-xs font-mono">
+      <div className="bg-[color-mix(in_srgb,var(--bg)_92%,transparent)] border-b border-[var(--border)] px-3 sm:px-4 py-2.5 flex items-center justify-between gap-2 text-xs font-mono">
         {/* macOS / Browser traffic lights */}
         <div className="flex items-center gap-1.5 flex-shrink-0">
           <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
@@ -57,15 +57,15 @@ export function ProjectCard({ project, index, onSelect }: ProjectCardProps) {
         </div>
 
         {/* Browser URL address capsule */}
-        <div className="flex-1 max-w-[280px] mx-auto px-2.5 py-1 rounded-md bg-[var(--panel-solid)] border border-[var(--border)] flex items-center justify-center gap-1.5 text-[11px] text-[var(--text-muted)] truncate shadow-inner">
-          <Lock className="w-2.5 h-2.5 text-emerald-400 flex-shrink-0" />
+        <div className="hidden sm:flex flex-1 max-w-[280px] mx-auto px-2.5 py-1 rounded-md bg-[var(--panel-solid)] border border-[var(--border)] items-center justify-center gap-1.5 text-[11px] text-[var(--text-muted)] truncate shadow-inner">
+          <Lock className="w-2.5 h-2.5 text-[var(--accent)] flex-shrink-0" />
           <span className="truncate">{getDisplayDomain()}</span>
         </div>
 
         {/* Verified status pill */}
         <div className="flex items-center gap-1.5 flex-shrink-0">
           <span
-            className="mono-label text-[10px] px-2 py-0.5 rounded font-semibold border"
+            className="mono-label text-[10px] px-2 py-0.5 rounded font-semibold border max-w-[11rem] sm:max-w-none truncate"
             style={{
               backgroundColor: `color-mix(in srgb, ${accent} 15%, transparent)`,
               color: accent,
@@ -118,7 +118,7 @@ export function ProjectCard({ project, index, onSelect }: ProjectCardProps) {
             <span className="text-[var(--text-muted)]">
               Role: <strong className="text-[var(--text)]">{project.role}</strong>
             </span>
-            <span className="flex items-center gap-1 text-emerald-400 text-[11px]">
+            <span className="flex items-center gap-1 text-[var(--accent)] text-[11px]">
               <CheckCircle2 className="w-3.5 h-3.5" />
               <span>Verified</span>
             </span>
